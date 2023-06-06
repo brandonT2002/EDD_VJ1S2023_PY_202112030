@@ -1,6 +1,7 @@
 package main
 
 import (
+	"paquete/clientes"
 	"paquete/empleados"
 	"paquete/imagenes"
 )
@@ -23,4 +24,13 @@ func main() {
 	l2.Insertar(&empleados.Empleado{Id: "3607", Nombre: "Yadira Ruiz", Cargo: "Diseño", Contrasena: "3607_Diseño"})
 	l2.Insertar(&empleados.Empleado{Id: "3518", Nombre: "Paula Fuentes", Cargo: "Ventas", Contrasena: "3518_Ventas"})
 	l2.Mostrar()
+
+	l3 := clientes.ListaCliente{}
+	l3.Insertar(&clientes.Cliente{Id: "4435", Nombre: "Cristian Suy"})
+	l3.Insertar(&clientes.Cliente{Id: "5268", Nombre: "Hector Jimenez"})
+	l3.Insertar(&clientes.Cliente{Id: "2503", Nombre: "Pablo Velasquez"})
+	l3.Insertar(&clientes.Cliente{Id: "4975", Nombre: "Jaquelin Gomez"})
+	l3.Insertar(&clientes.Cliente{Id: "1280", Nombre: "Yadira Ruiz"})
+	l3.Insertar(&clientes.Cliente{Id: "3101", Nombre: "Paula Fuentes"})
+	l3.Mostrar()
 }
