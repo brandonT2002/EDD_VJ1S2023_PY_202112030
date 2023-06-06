@@ -5,26 +5,26 @@ import (
 	"strconv"
 )
 
-type ListaEnlazada struct {
+type ListaImg struct {
 	primero  *Nodo
 	ultimo   *Nodo
 	longitud int
 }
 
-func (nodo *ListaEnlazada) Insertar(pelicula *Imagen) {
+func (nodo *ListaImg) Insertar(imagen *Imagen) {
 	if nodo.primero != nil {
-		nodo.ultimo.siguiente = &Nodo{imagen: pelicula}
+		nodo.ultimo.siguiente = &Nodo{imagen: imagen}
 		nodo.ultimo.siguiente.anterior = nodo.ultimo
 		nodo.ultimo = nodo.ultimo.siguiente
 		nodo.longitud++
 		return
 	}
-	nodo.primero = &Nodo{imagen: pelicula}
+	nodo.primero = &Nodo{imagen: imagen}
 	nodo.ultimo = nodo.primero
 	nodo.longitud++
 }
 
-func (nodo *ListaEnlazada) Mostrar() {
+func (nodo *ListaImg) Mostrar() {
 	actual := nodo.primero
 	formato := "%-15s %-10s\n"
 	fmt.Printf(formato, "Imagen", "Capas")
@@ -33,4 +33,5 @@ func (nodo *ListaEnlazada) Mostrar() {
 		fmt.Printf(formato, actual.imagen.Nombre, strconv.Itoa(actual.imagen.Capas))
 		actual = actual.siguiente
 	}
+	fmt.Println()
 }
