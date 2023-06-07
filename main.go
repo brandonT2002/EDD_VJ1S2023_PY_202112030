@@ -45,7 +45,7 @@ func IniciarSesion() {
 	fmt.Print("  -> 🔒 Contraseña: ")
 	fmt.Scanln(&pass)
 	if usuario == "admin" && pass == "123" {
-		admin.Hola()
+		admin.MenuAdmin()
 	} else {
 		fmt.Println("\n  Verifique sus credenciales")
 	}
