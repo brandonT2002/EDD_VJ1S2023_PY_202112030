@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"paquete/admin"
+)
 
 func Menu() {
 	opcion := 0
@@ -10,8 +13,7 @@ func Menu() {
 
 		switch opcion {
 		case 1:
-			fmt.Println()
-			fmt.Println("  algo")
+			IniciarSesion()
 		case 2:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -32,6 +34,21 @@ func Opciones() {
 	fmt.Println("  ║                                                    ║")
 	fmt.Println("  ╚════════════════════════════════════════════════════╝")
 	fmt.Print("  Opción: ")
+}
+
+func IniciarSesion() {
+	var usuario string
+	var pass string
+	fmt.Println()
+	fmt.Print("  -> 👨 Usuario: ")
+	fmt.Scanln(&usuario)
+	fmt.Print("  -> 🔒 Contraseña: ")
+	fmt.Scanln(&pass)
+	if usuario == "admin" && pass == "123" {
+		admin.Hola()
+	} else {
+		fmt.Println("\n  Verifique sus credenciales")
+	}
 }
 
 func main() {
