@@ -1,6 +1,9 @@
-package menuusuario
+package panelusuario
 
-import "fmt"
+import (
+	"fmt"
+	"paquete/consola"
+)
 
 func MenuUsuario(usuario string) {
 	opcion := 0
@@ -15,6 +18,7 @@ func MenuUsuario(usuario string) {
 			fmt.Println("  Añgp")
 		case 3:
 			fmt.Println()
+			consola.LimpiarConsola()
 		default:
 			fmt.Println()
 			fmt.Println("  Opción incorrecta")

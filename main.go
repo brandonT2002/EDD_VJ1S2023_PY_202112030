@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"paquete/admin"
-	menuusuario "paquete/menuUsuario"
+	"paquete/consola"
+	paneladmin "paquete/panelAdmin"
+	panelusuario "paquete/panelUsuario"
 )
 
 func Menu() {
@@ -46,13 +47,16 @@ func IniciarSesion() {
 	fmt.Print("  -> 🔒 Contraseña: ")
 	fmt.Scanln(&pass)
 	if usuario == "admin" && pass == "123" {
-		admin.MenuAdmin("PAKO")
+		consola.LimpiarConsola()
+		paneladmin.MenuAdmin("PAKO")
 	} else {
-		menuusuario.MenuUsuario("F")
+		consola.LimpiarConsola()
+		panelusuario.MenuUsuario("F")
 	}
 }
 
 func main() {
+	consola.LimpiarConsola()
 	Menu()
 	/*
 		l1 := imagenes.ListaImg{}

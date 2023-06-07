@@ -1,7 +1,8 @@
-package admin
+package paneladmin
 
 import (
 	"fmt"
+	"paquete/consola"
 )
 
 func MenuAdmin(admin string) {
@@ -27,6 +28,7 @@ func MenuAdmin(admin string) {
 			fmt.Println("  Hasta pronto")
 		case 6:
 			fmt.Println()
+			consola.LimpiarConsola()
 		default:
 			fmt.Println()
 			fmt.Println("  Opción incorrecta")
