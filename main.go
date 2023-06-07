@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"paquete/admin"
+	menuusuario "paquete/menuUsuario"
 )
 
 func Menu() {
@@ -45,9 +46,9 @@ func IniciarSesion() {
 	fmt.Print("  -> 🔒 Contraseña: ")
 	fmt.Scanln(&pass)
 	if usuario == "admin" && pass == "123" {
-		admin.MenuAdmin()
+		admin.MenuAdmin("PAKO")
 	} else {
-		fmt.Println("\n  Verifique sus credenciales")
+		menuusuario.MenuUsuario("F")
 	}
 }
 
