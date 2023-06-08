@@ -2,7 +2,6 @@ package empleados
 
 import (
 	"encoding/csv"
-	"fmt"
 	"io"
 	"os"
 
@@ -13,7 +12,7 @@ func LeerCSV(lista *ListaEmp) {
 	file, err := os.Open("ArchivosEntrada/empleados.csv")
 
 	if err != nil {
-		fmt.Println("\n  Error, no se pudo abrir el archivo")
+		color.Red("\n  Error, no se pudo abrir el archivo")
 		return
 	}
 	defer file.Close()
@@ -27,7 +26,7 @@ func LeerCSV(lista *ListaEmp) {
 			break
 		}
 		if err != nil {
-			fmt.Println("\n  No se pudo leer la linea del csv")
+			color.Yellow("\n  No se pudo leer la linea del csv")
 			continue
 		}
 		if encabezado {
