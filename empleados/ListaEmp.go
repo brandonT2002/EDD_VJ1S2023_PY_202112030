@@ -24,12 +24,13 @@ func (nodo *ListaEmp) Insertar(empleado *Empleado) {
 
 func (nodo *ListaEmp) Mostrar() {
 	actual := nodo.primero
-	formato := "%-10s %-25s %-15s %-10s\n"
+	formato := "  ║ %-10s %-25s %-15s %-15s  ║\n"
+	println("  ╔═══════════════════════════════════════════════════════════════════════╗")
 	fmt.Printf(formato, "ID", "Nombre", "Cargo", "Contraseña")
-	println("------------------------------------------------------------------")
+	println("  ╚═══════════════════════════════════════════════════════════════════════╝")
 	for actual != nil {
 		fmt.Printf(formato, actual.empleado.Id, actual.empleado.Nombre, actual.empleado.Cargo, actual.empleado.Contrasena)
 		actual = actual.siguiente
 	}
-	fmt.Println()
+	println("  ╚═══════════════════════════════════════════════════════════════════════╝")
 }

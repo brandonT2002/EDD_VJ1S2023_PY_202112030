@@ -3,6 +3,7 @@ package paneladmin
 import (
 	"fmt"
 	"paquete/consola"
+	"paquete/empleados"
 )
 
 func MenuAdmin(admin string) {
@@ -13,7 +14,7 @@ func MenuAdmin(admin string) {
 
 		switch opcion {
 		case 1:
-			fmt.Print("  Algo")
+			leerEmpleados()
 		case 2:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -34,6 +35,13 @@ func MenuAdmin(admin string) {
 			fmt.Println("  Opción incorrecta")
 		}
 	}
+}
+
+func leerEmpleados() {
+	l2 := &empleados.ListaEmp{}
+	empleados.LeerCSV(l2)
+
+	l2.Mostrar()
 }
 
 func opciones(admin string) {

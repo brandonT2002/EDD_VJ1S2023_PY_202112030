@@ -58,6 +58,7 @@ func IniciarSesion() {
 func main() {
 	consola.LimpiarConsola()
 	Menu()
+
 	/*
 		l1 := imagenes.ListaImg{}
 		l1.Insertar(&imagenes.Imagen{Nombre: "bmo", Capas: 3})
