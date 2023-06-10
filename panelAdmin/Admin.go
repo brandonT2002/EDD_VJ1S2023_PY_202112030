@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"paquete/consola"
 	"paquete/empleados"
+	"paquete/imagenes"
 )
 
-func MenuAdmin(admin string) {
+func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg) {
 	opcion := 0
 	for opcion != 6 {
 		opciones(admin)
@@ -14,10 +15,9 @@ func MenuAdmin(admin string) {
 
 		switch opcion {
 		case 1:
-			leerEmpleados()
+			leerEmpleados(lEmp)
 		case 2:
-			fmt.Println()
-			fmt.Println("  Hasta pronto")
+			leerImagenes(lImg)
 		case 3:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -37,11 +37,16 @@ func MenuAdmin(admin string) {
 	}
 }
 
-func leerEmpleados() {
-	l2 := &empleados.ListaEmp{}
-	empleados.LeerCSV(l2)
+func leerEmpleados(lEmp *empleados.ListaEmp) {
+	empleados.LeerCSV(lEmp)
 
-	l2.Mostrar()
+	lEmp.Mostrar()
+}
+
+func leerImagenes(lImg *imagenes.ListaImg) {
+	imagenes.LeerCSV(lImg)
+
+	lImg.Mostrar()
 }
 
 func opciones(admin string) {

@@ -2,7 +2,6 @@ package imagenes
 
 import (
 	"fmt"
-	"strconv"
 )
 
 type ListaImg struct {
@@ -30,7 +29,7 @@ func (nodo *ListaImg) Mostrar() {
 	fmt.Printf(formato, "Imagen", "Capas")
 	println("-----------------------")
 	for actual != nil {
-		fmt.Printf(formato, actual.imagen.Nombre, strconv.Itoa(actual.imagen.Capas))
+		fmt.Printf(formato, actual.imagen.Nombre, actual.imagen.Capas)
 		actual = actual.siguiente
 	}
 	fmt.Println()
