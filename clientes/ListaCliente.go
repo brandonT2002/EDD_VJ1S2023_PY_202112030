@@ -25,9 +25,10 @@ func (nodo *ListaCliente) Insertar(cliente *Cliente) {
 func (nodo *ListaCliente) Mostrar() {
 	actual := nodo.primero
 	contador := 0
-	formato := "%-10s %-25s\n"
+	formato := "  ║ %-10s %-20s║\n"
+	println("  ╔════════════════════════════════╗")
 	fmt.Printf(formato, "ID", "Nombre")
-	println("------------------------------")
+	println("  ╠════════════════════════════════╣")
 	for actual != nil {
 		fmt.Printf(formato, actual.cliente.Id, actual.cliente.Nombre)
 		contador++
@@ -36,5 +37,5 @@ func (nodo *ListaCliente) Mostrar() {
 		}
 		actual = actual.siguiente
 	}
-	fmt.Println()
+	println("  ╚════════════════════════════════╝")
 }
