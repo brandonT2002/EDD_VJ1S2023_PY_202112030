@@ -2,12 +2,13 @@ package paneladmin
 
 import (
 	"fmt"
+	"paquete/clientes"
 	"paquete/consola"
 	"paquete/empleados"
 	"paquete/imagenes"
 )
 
-func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg) {
+func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente) {
 	opcion := 0
 	for opcion != 6 {
 		opciones(admin)
@@ -19,8 +20,7 @@ func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg) 
 		case 2:
 			leerImagenes(lImg)
 		case 3:
-			fmt.Println()
-			fmt.Println("  Hasta pronto")
+			leerClientes(lCl)
 		case 4:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -47,6 +47,12 @@ func leerImagenes(lImg *imagenes.ListaImg) {
 	imagenes.LeerCSV(lImg)
 
 	lImg.Mostrar()
+}
+
+func leerClientes(lCl *clientes.ListaCliente) {
+	clientes.LeerCSV(lCl)
+
+	lCl.Mostrar()
 }
 
 func opciones(admin string) {
