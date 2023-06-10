@@ -25,12 +25,13 @@ func (nodo *ListaImg) Insertar(imagen *Imagen) {
 
 func (nodo *ListaImg) Mostrar() {
 	actual := nodo.primero
-	formato := "%-15s %-10s\n"
+	formato := "  ║ %-17s %-10s║\n"
+	println("  ╔═════════════════════════════╗")
 	fmt.Printf(formato, "Imagen", "Capas")
-	println("-----------------------")
+	println("  ╠═════════════════════════════╣")
 	for actual != nil {
 		fmt.Printf(formato, actual.imagen.Nombre, actual.imagen.Capas)
 		actual = actual.siguiente
 	}
-	fmt.Println()
+	println("  ╚═════════════════════════════╝")
 }
