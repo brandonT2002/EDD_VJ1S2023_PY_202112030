@@ -22,7 +22,7 @@ func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, 
 		case 3:
 			leerClientes(lCl)
 		case 4:
-			leerClientesCola(cCl)
+			leerClientesCola(cCl, lCl)
 		case 5:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -54,8 +54,9 @@ func leerClientes(lCl *clientes.ListaCliente) {
 	lCl.Mostrar()
 }
 
-func leerClientesCola(cCl *clientes.ColaCliente) {
-	clientes.LeerCSV1(cCl)
+func leerClientesCola(cCl *clientes.ColaCliente, lCl *clientes.ListaCliente) {
+	clientes.LeerCSV1(cCl, lCl)
+	lCl.Mostrar()
 	cCl.Mostrar()
 }
 

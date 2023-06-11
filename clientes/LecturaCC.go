@@ -11,7 +11,7 @@ import (
 	"github.com/fatih/color"
 )
 
-func LeerCSV1(cola *ColaCliente) {
+func LeerCSV1(cola *ColaCliente, lista *ListaCliente) {
 	file, err := os.Open("ArchivosEntrada/clientes_cola.csv")
 
 	if err != nil {
@@ -38,8 +38,11 @@ func LeerCSV1(cola *ColaCliente) {
 		}
 		if linea[0] == "x" || linea[0] == "X" {
 			id := generarID()
-			cola.Insertar(&Cliente{Id: id, Nombre: linea[1]})
+			cl := &Cliente{Id: id, Nombre: linea[1]}
+			cola.Insertar(cl)
+			lista.Insertar(cl)
 		}
+		cola.Insertar(&Cliente{Id: linea[0], Nombre: linea[1]})
 	}
 	color.Green("\n  Archivo cargado exitosamente")
 }
