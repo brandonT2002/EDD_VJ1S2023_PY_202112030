@@ -22,10 +22,15 @@ func (c *ColaCliente) Insertar(cliente *Cliente) {
 
 func (c *ColaCliente) Mostrar() {
 	actual := c.primero
+	formato := "  ║ %-10s %-20s║\n"
+	println("  ╔════════════════════════════════╗")
+	fmt.Printf(formato, "ID", "Nombre")
+	println("  ╠════════════════════════════════╣")
 	for actual != nil {
-		fmt.Println("-> ", actual.cliente.Id, actual.cliente.Nombre)
+		fmt.Printf(formato, actual.cliente.Id, actual.cliente.Nombre)
 		actual = actual.siguiente
 	}
+	println("  ╚════════════════════════════════╝")
 }
 
 /*

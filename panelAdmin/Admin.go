@@ -56,8 +56,10 @@ func leerClientes(lCl *clientes.ListaCliente) {
 
 func leerClientesCola(cCl *clientes.ColaCliente, lCl *clientes.ListaCliente) {
 	clientes.LeerCSV1(cCl, lCl)
-	lCl.Mostrar()
+	fmt.Println("  -- COLA --")
 	cCl.Mostrar()
+	fmt.Println("  -- CLIENTES --")
+	lCl.Mostrar()
 }
 
 func opciones(admin string) {
