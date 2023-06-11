@@ -44,14 +44,16 @@ func Opciones() {
 func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
 	var usuario string
 	var pass string
+	admin := "br"
+	passA := "1"
 	fmt.Println()
 	fmt.Print("  -> 👨 Usuario: ")
 	fmt.Scanln(&usuario)
 	fmt.Print("  -> 🔒 Contraseña: ")
 	fmt.Scanln(&pass)
-	if usuario == "admin" && pass == "123" {
+	if usuario == admin && pass == passA {
 		consola.LimpiarConsola()
-		paneladmin.MenuAdmin("PAKO", lEmp, lImg, lCl, cCl)
+		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl)
 	} else {
 		consola.LimpiarConsola()
 		panelusuario.MenuUsuario("F")
