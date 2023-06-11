@@ -10,21 +10,21 @@ type ListaImg struct {
 	longitud int
 }
 
-func (nodo *ListaImg) Insertar(imagen *Imagen) {
-	if nodo.primero != nil {
-		nodo.ultimo.siguiente = &Nodo{imagen: imagen}
-		nodo.ultimo.siguiente.anterior = nodo.ultimo
-		nodo.ultimo = nodo.ultimo.siguiente
-		nodo.longitud++
+func (l *ListaImg) Insertar(imagen *Imagen) {
+	if l.primero != nil {
+		l.ultimo.siguiente = &Nodo{imagen: imagen}
+		l.ultimo.siguiente.anterior = l.ultimo
+		l.ultimo = l.ultimo.siguiente
+		l.longitud++
 		return
 	}
-	nodo.primero = &Nodo{imagen: imagen}
-	nodo.ultimo = nodo.primero
-	nodo.longitud++
+	l.primero = &Nodo{imagen: imagen}
+	l.ultimo = l.primero
+	l.longitud++
 }
 
-func (nodo *ListaImg) Mostrar() {
-	actual := nodo.primero
+func (l *ListaImg) Mostrar() {
+	actual := l.primero
 	formato := "  ║ %-17s %-10s║\n"
 	println("  ╔═════════════════════════════╗")
 	fmt.Printf(formato, "Imagen", "Capas")

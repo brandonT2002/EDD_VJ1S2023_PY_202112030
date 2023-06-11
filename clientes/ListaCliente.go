@@ -8,22 +8,22 @@ type ListaCliente struct {
 	longitud int
 }
 
-func (nodo *ListaCliente) Insertar(cliente *Cliente) {
-	if nodo.primero != nil {
-		nodo.ultimo.siguiente = &Nodo{cliente: cliente}
-		nodo.ultimo = nodo.ultimo.siguiente
-		nodo.ultimo.siguiente = nodo.primero
-		nodo.longitud++
+func (l *ListaCliente) Insertar(cliente *Cliente) {
+	if l.primero != nil {
+		l.ultimo.siguiente = &Nodo{cliente: cliente}
+		l.ultimo = l.ultimo.siguiente
+		l.ultimo.siguiente = l.primero
+		l.longitud++
 		return
 	}
-	nodo.primero = &Nodo{cliente: cliente}
-	nodo.ultimo = nodo.primero
-	nodo.ultimo.siguiente = nodo.primero
-	nodo.longitud++
+	l.primero = &Nodo{cliente: cliente}
+	l.ultimo = l.primero
+	l.ultimo.siguiente = l.primero
+	l.longitud++
 }
 
-func (nodo *ListaCliente) Mostrar() {
-	actual := nodo.primero
+func (l *ListaCliente) Mostrar() {
+	actual := l.primero
 	contador := 0
 	formato := "  ║ %-10s %-20s║\n"
 	println("  ╔════════════════════════════════╗")
@@ -32,7 +32,7 @@ func (nodo *ListaCliente) Mostrar() {
 	for actual != nil {
 		fmt.Printf(formato, actual.cliente.Id, actual.cliente.Nombre)
 		contador++
-		if contador == nodo.longitud {
+		if contador == l.longitud {
 			break
 		}
 		actual = actual.siguiente
