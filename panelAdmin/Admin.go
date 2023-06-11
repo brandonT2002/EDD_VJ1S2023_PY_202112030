@@ -8,7 +8,7 @@ import (
 	"paquete/imagenes"
 )
 
-func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente) {
+func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
 	opcion := 0
 	for opcion != 6 {
 		opciones(admin)
@@ -22,8 +22,7 @@ func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, 
 		case 3:
 			leerClientes(lCl)
 		case 4:
-			fmt.Println()
-			fmt.Println("  Hasta pronto")
+			leerClientesCola(cCl)
 		case 5:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -53,6 +52,11 @@ func leerClientes(lCl *clientes.ListaCliente) {
 	clientes.LeerCSV(lCl)
 
 	lCl.Mostrar()
+}
+
+func leerClientesCola(cCl *clientes.ColaCliente) {
+	clientes.LeerCSV1(cCl)
+	cCl.Mostrar()
 }
 
 func opciones(admin string) {
