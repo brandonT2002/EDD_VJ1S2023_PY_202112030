@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
+	"paquete/clientes"
 	"paquete/consola"
+	"paquete/empleados"
+	"paquete/imagenes"
 	paneladmin "paquete/panelAdmin"
 	panelusuario "paquete/panelUsuario"
 )
 
-func Menu() {
+func Menu(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
 	opcion := 0
 	for opcion != 2 {
 		Opciones()
@@ -15,7 +18,7 @@ func Menu() {
 
 		switch opcion {
 		case 1:
-			IniciarSesion()
+			IniciarSesion(lEmp, lImg, lCl, cCl)
 		case 2:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -38,17 +41,19 @@ func Opciones() {
 	fmt.Print("  Opción: ")
 }
 
-func IniciarSesion() {
+func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
 	var usuario string
 	var pass string
+	admin := "br"
+	passA := "1"
 	fmt.Println()
 	fmt.Print("  -> 👨 Usuario: ")
 	fmt.Scanln(&usuario)
 	fmt.Print("  -> 🔒 Contraseña: ")
 	fmt.Scanln(&pass)
-	if usuario == "admin" && pass == "123" {
+	if usuario == admin && pass == passA {
 		consola.LimpiarConsola()
-		paneladmin.MenuAdmin("PAKO")
+		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl)
 	} else {
 		consola.LimpiarConsola()
 		panelusuario.MenuUsuario("F")
@@ -56,8 +61,14 @@ func IniciarSesion() {
 }
 
 func main() {
+	lEmp := &empleados.ListaEmp{}
+	lImg := &imagenes.ListaImg{}
+	lCl := &clientes.ListaCliente{}
+	cCl := &clientes.ColaCliente{}
+
 	consola.LimpiarConsola()
-	Menu()
+	Menu(lEmp, lImg, lCl, cCl)
+
 	/*
 		l1 := imagenes.ListaImg{}
 		l1.Insertar(&imagenes.Imagen{Nombre: "bmo", Capas: 3})

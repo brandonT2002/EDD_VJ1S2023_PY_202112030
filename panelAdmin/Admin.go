@@ -2,10 +2,13 @@ package paneladmin
 
 import (
 	"fmt"
+	"paquete/clientes"
 	"paquete/consola"
+	"paquete/empleados"
+	"paquete/imagenes"
 )
 
-func MenuAdmin(admin string) {
+func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
 	opcion := 0
 	for opcion != 6 {
 		opciones(admin)
@@ -13,16 +16,13 @@ func MenuAdmin(admin string) {
 
 		switch opcion {
 		case 1:
-			fmt.Print("  Algo")
+			leerEmpleados(lEmp)
 		case 2:
-			fmt.Println()
-			fmt.Println("  Hasta pronto")
+			leerImagenes(lImg)
 		case 3:
-			fmt.Println()
-			fmt.Println("  Hasta pronto")
+			leerClientes(lCl)
 		case 4:
-			fmt.Println()
-			fmt.Println("  Hasta pronto")
+			leerClientesCola(cCl, lCl)
 		case 5:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -34,6 +34,32 @@ func MenuAdmin(admin string) {
 			fmt.Println("  Opción incorrecta")
 		}
 	}
+}
+
+func leerEmpleados(lEmp *empleados.ListaEmp) {
+	empleados.LeerCSV(lEmp)
+
+	lEmp.Mostrar()
+}
+
+func leerImagenes(lImg *imagenes.ListaImg) {
+	imagenes.LeerCSV(lImg)
+
+	lImg.Mostrar()
+}
+
+func leerClientes(lCl *clientes.ListaCliente) {
+	clientes.LeerCSV(lCl)
+
+	lCl.Mostrar()
+}
+
+func leerClientesCola(cCl *clientes.ColaCliente, lCl *clientes.ListaCliente) {
+	clientes.LeerCSV1(cCl, lCl)
+	fmt.Println("  -- COLA --")
+	cCl.Mostrar()
+	fmt.Println("  -- CLIENTES --")
+	lCl.Mostrar()
 }
 
 func opciones(admin string) {
