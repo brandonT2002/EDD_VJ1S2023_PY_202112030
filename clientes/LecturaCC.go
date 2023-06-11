@@ -2,6 +2,7 @@ package clientes
 
 import (
 	"encoding/csv"
+	"fmt"
 	"io"
 	"math/rand"
 	"os"
@@ -37,12 +38,19 @@ func LeerCSV1(cola *ColaCliente, lista *ListaCliente) {
 			continue
 		}
 		if linea[0] == "x" || linea[0] == "X" {
-			id := generarID()
-			cl := &Cliente{Id: id, Nombre: linea[1]}
-			cola.Insertar(cl)
-			lista.Insertar(cl)
+			for {
+				id := generarID()
+				if !lista.existe(id) {
+					fmt.Println("ID: ", id)
+					cliente := &Cliente{Id: id, Nombre: linea[1]}
+					lista.Insertar(cliente)
+					cola.Insertar(cliente)
+					break
+				}
+			}
+		} else {
+			cola.Insertar(&Cliente{Id: linea[0], Nombre: linea[1]})
 		}
-		cola.Insertar(&Cliente{Id: linea[0], Nombre: linea[1]})
 	}
 	color.Green("\n  Archivo cargado exitosamente")
 }
