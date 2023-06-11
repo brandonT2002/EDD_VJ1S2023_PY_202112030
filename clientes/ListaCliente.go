@@ -9,6 +9,9 @@ type ListaCliente struct {
 }
 
 func (l *ListaCliente) Insertar(cliente *Cliente) {
+	if l.existe(cliente.Id) {
+		return
+	}
 	if l.primero != nil {
 		l.ultimo.siguiente = &Nodo{cliente: cliente}
 		l.ultimo = l.ultimo.siguiente
@@ -20,6 +23,22 @@ func (l *ListaCliente) Insertar(cliente *Cliente) {
 	l.ultimo = l.primero
 	l.ultimo.siguiente = l.primero
 	l.longitud++
+}
+
+func (l *ListaCliente) existe(id string) bool {
+	actual := l.primero
+	contador := 0
+	for actual != nil {
+		if contador == l.longitud {
+			break
+		}
+		if actual.cliente.Id == id {
+			return true
+		}
+		actual = actual.siguiente
+		contador++
+	}
+	return false
 }
 
 func (l *ListaCliente) Mostrar() {
