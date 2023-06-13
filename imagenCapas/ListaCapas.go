@@ -28,7 +28,7 @@ func (this *ListaCapas) Insertar(capa *MatrizDispersa) {
 	this.longitud++
 }
 
-func (this *ListaCapas) GenerarImg(ancho, alto, anchoPx, altoPx int, nombre string) {
+func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, nombre string) {
 	css := `body {
 	background: #333333;
 	height: 100vh;

@@ -68,4 +68,5 @@ func main() {
 
 	consola.LimpiarConsola()
 	Menu(lEmp, lImg, lCl, cCl)
+
 }

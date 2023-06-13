@@ -300,7 +300,7 @@ func generarGrafo(nombreArchivo, dot string) {
 		return
 	}
 
-	fmt.Println("Se ha escrito el nuevo contenido en el archivo.")
+	// fmt.Println("Se ha escrito el nuevo contenido en el archivo.")
 }
 
 func generarImg() {

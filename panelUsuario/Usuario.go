@@ -7,7 +7,6 @@ import (
 	"os"
 	"paquete/consola"
 	imagencapas "paquete/imagenCapas"
-	"sort"
 	"strconv"
 	"strings"
 
@@ -57,11 +56,45 @@ func leerArchivos(nombre string) []ArchivoCapa {
 		})
 	}
 
-	sort.Slice(archivoCapa, func(i, j int) bool {
-		return archivoCapa[i].Capa < archivoCapa[j].Capa
-	})
+	// sort.Slice(archivoCapa, func(i, j int) bool {
+	// 	return archivoCapa[i].Capa < archivoCapa[j].Capa
+	// })
 
 	return archivoCapa
+}
+
+func leerConfig(carpeta, nombre string) []int {
+	file, err := os.Open("./csv/" + carpeta + "/" + nombre)
+
+	if err != nil {
+		color.Red("\n  Error, no se pudo abrir el archivo")
+		return nil
+	}
+	defer file.Close()
+
+	lectura := csv.NewReader(file)
+	lectura.Comma = ','
+	encabezado := true
+
+	var config []int
+	for {
+		linea, err := lectura.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			color.Yellow("\n  No se pudo leer la linea del csv")
+			continue
+		}
+		if encabezado {
+			encabezado = false
+			continue
+		}
+		// fmt.Println("  -> ", linea[1])
+		valor, _ := strconv.Atoi(linea[1])
+		config = append(config, valor)
+	}
+	return config
 }
 
 func generarImagen(img string) {
@@ -72,8 +105,10 @@ func generarImagen(img string) {
 		nombre = strings.TrimSuffix(fl.Archivo, ".csv")
 		if fl.Archivo != "config.csv" {
 			imagen.Insertar(imagencapas.LeerCSV("./csv/"+img+"/"+fl.Archivo, nombre))
+			continue
 		}
-		imagen.GenerarImg(19, 17, 30, 30, img)
+		config := leerConfig(img, fl.Archivo)
+		imagen.GenerarImg(config[0], config[1], config[2], config[3], img)
 	}
 }
 
