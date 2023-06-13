@@ -166,20 +166,6 @@ func (nodo *MatrizDispersa) agregarColumna(columna int, nodoI *NodoInterno) {
 	}
 }
 
-func (nodo *MatrizDispersa) imprimir() {
-	actualF := nodo.accesoF.primero
-	for actualF != nil {
-		actualC := actualF.acceso
-		m := ""
-		for actualC != nil {
-			m += actualC.color.R + "-" + actualC.color.R + "-" + actualC.color.R
-			actualC = actualC.derecha
-		}
-		fmt.Println(m)
-		actualF = actualF.siguiente
-	}
-}
-
 func (nodo *MatrizDispersa) dot() string {
 	dot := "digraph T{\n\tnode[shape=box fontname=\"Arial\" fillcolor=\"white\" style=filled];"
 	dot += "\n\tRoot[label = \"Capa 0\", group=\"0\"];"
