@@ -8,9 +8,10 @@ import (
 	"paquete/imagenes"
 	paneladmin "paquete/panelAdmin"
 	panelusuario "paquete/panelUsuario"
+	"paquete/pedidos"
 )
 
-func Menu(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
+func Menu(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
 	opcion := 0
 	for opcion != 2 {
 		Opciones()
@@ -18,7 +19,7 @@ func Menu(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.Lista
 
 		switch opcion {
 		case 1:
-			IniciarSesion(lEmp, lImg, lCl, cCl)
+			IniciarSesion(lEmp, lImg, lCl, cCl, pCl)
 		case 2:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -41,7 +42,8 @@ func Opciones() {
 	fmt.Print("  Opción: ")
 }
 
-func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
+func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
+	emp := &empleados.Empleado{"3060", "pako", "Desarrollador", "123"}
 	var usuario string
 	var pass string
 	admin := "br"
@@ -54,9 +56,11 @@ func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clien
 	if usuario == admin && pass == passA {
 		consola.LimpiarConsola()
 		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl)
-	} else {
+	} else if usuario == emp.Nombre && pass == emp.Contrasena {
 		consola.LimpiarConsola()
-		panelusuario.MenuUsuario("F", lImg)
+		panelusuario.MenuUsuario(emp, lImg, cCl, pCl)
+	} else {
+		fmt.Println("  \nVerifique sus credenciales")
 	}
 }
 
@@ -65,8 +69,9 @@ func main() {
 	lImg := &imagenes.ListaImg{}
 	lCl := &clientes.ListaCliente{}
 	cCl := &clientes.ColaCliente{}
+	pCl := &pedidos.Pila{}
 
 	consola.LimpiarConsola()
-	Menu(lEmp, lImg, lCl, cCl)
+	Menu(lEmp, lImg, lCl, cCl, pCl)
 
 }

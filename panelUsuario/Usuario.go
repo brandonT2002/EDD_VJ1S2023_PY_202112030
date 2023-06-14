@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"paquete/clientes"
 	"paquete/consola"
+	"paquete/empleados"
 	imagencapas "paquete/imagenCapas"
 	"paquete/imagenes"
+	"paquete/pedidos"
 	"strconv"
 	"strings"
 
@@ -121,11 +124,12 @@ func generarImagen(img string) {
 	}
 }
 
-func MenuUsuario(usuario string, lImg *imagenes.ListaImg) {
+func MenuUsuario(usuario *empleados.Empleado, lImg *imagenes.ListaImg, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
 	opcion := 0
 	img := ""
+
 	for opcion != 3 {
-		opciones(usuario)
+		opciones(usuario.Nombre)
 		fmt.Scanln(&opcion)
 
 		switch opcion {
@@ -135,7 +139,7 @@ func MenuUsuario(usuario string, lImg *imagenes.ListaImg) {
 			fmt.Scanln(&img)
 			generarImagen(img)
 		case 2:
-			fmt.Println("  Añgp")
+			pedido(usuario.Id, cCl, pCl, lImg)
 		case 3:
 			fmt.Println()
 			consola.LimpiarConsola()
@@ -144,6 +148,43 @@ func MenuUsuario(usuario string, lImg *imagenes.ListaImg) {
 			fmt.Println("  Opción incorrecta")
 		}
 	}
+}
+
+func pedido(idEmp string, cCl *clientes.ColaCliente, pCl *pedidos.Pila, lImg *imagenes.ListaImg) {
+	idCliente := ""
+	imagen := ""
+
+	fmt.Println("\n  -- CLIENTES EN COLA --")
+	cCl.Mostrar()
+
+	if cCl.Primero.Cliente.Id == "X" || cCl.Primero.Cliente.Id == "x" {
+		fmt.Println("algo")
+	} else {
+		for {
+			fmt.Print("\n  ID Cliente: ")
+			fmt.Scanln(&idCliente)
+			if cCl.Primero.Cliente.Id == idCliente {
+				break
+			}
+			color.Yellow("  Verifique el ID")
+		}
+	}
+	fmt.Printf("\n  ID Empleado: %s\n", idEmp)
+	fmt.Println("\n  -- IMAGENES EXISTENTES --")
+	lImg.Mostrar()
+	for {
+		fmt.Print("\n  Imagen: ")
+		fmt.Scanln(&imagen)
+		if lImg.Buscar(imagen) {
+			break
+		}
+		color.Yellow("  Verifique el nombre de la imagen")
+	}
+	pCl.Insertar(&pedidos.Pedido{IdCliente: idCliente, IdEmpleado: idEmp, Imagen: imagen})
+	cCl.Eliminar()
+	fmt.Println("\n  -- PEDIDOS --")
+	pCl.Mostrar()
+
 }
 
 func opciones(usuario string) {
