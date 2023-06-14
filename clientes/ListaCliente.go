@@ -1,6 +1,9 @@
 package clientes
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type ListaCliente struct {
 	primero  *Nodo
@@ -32,11 +35,19 @@ func (l *ListaCliente) existe(id string) bool {
 		if contador == l.longitud {
 			break
 		}
-		if actual.cliente.Id == id {
+		if actual.cliente.Id == id && l.esNumero(id) {
 			return true
 		}
 		actual = actual.siguiente
 		contador++
+	}
+	return false
+}
+
+func (l *ListaCliente) esNumero(id string) bool {
+	_, err := strconv.Atoi(id)
+	if err == nil {
+		return true
 	}
 	return false
 }

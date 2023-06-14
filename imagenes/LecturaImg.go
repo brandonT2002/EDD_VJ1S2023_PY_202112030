@@ -9,7 +9,7 @@ import (
 )
 
 func LeerCSV(lista *ListaImg) {
-	file, err := os.Open("ArchivosEntrada/imagenes.csv")
+	file, err := os.Open("csv/imagenes.csv")
 
 	if err != nil {
 		color.Red("\n  Error, no se pudo abrir el archivo")

@@ -9,7 +9,7 @@ import (
 )
 
 func LeerCSV(lista *ListaCliente) {
-	file, err := os.Open("ArchivosEntrada/clientes_registrados.csv")
+	file, err := os.Open("csv/clientes_registrados.csv")
 
 	if err != nil {
 		color.Red("\n  Error, no se pudo abrir el archivo")
