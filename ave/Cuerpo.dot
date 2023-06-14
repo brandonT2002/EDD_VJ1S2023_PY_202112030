@@ -1,0 +1,269 @@
+digraph T{
+	node[shape=box fontname="Arial" fillcolor="white" style=filled];
+	Root[label = "Capa 0", group="0"];
+	F2[group="0" fillcolor="plum"];
+	F3[group="0" fillcolor="plum"];
+	F4[group="0" fillcolor="plum"];
+	F5[group="0" fillcolor="plum"];
+	F6[group="0" fillcolor="plum"];
+	F7[group="0" fillcolor="plum"];
+	F8[group="0" fillcolor="plum"];
+	F9[group="0" fillcolor="plum"];
+	F10[group="0" fillcolor="plum"];
+	F11[group="0" fillcolor="plum"];
+	F12[group="0" fillcolor="plum"];
+	F13[group="0" fillcolor="plum"];
+	C2[group=2 fillcolor="powderblue"];
+	C3[group=3 fillcolor="powderblue"];
+	C4[group=4 fillcolor="powderblue"];
+	C5[group=5 fillcolor="powderblue"];
+	C6[group=6 fillcolor="powderblue"];
+	C7[group=7 fillcolor="powderblue"];
+	C8[group=8 fillcolor="powderblue"];
+	C9[group=9 fillcolor="powderblue"];
+	C10[group=10 fillcolor="powderblue"];
+	C11[group=11 fillcolor="powderblue"];
+	C12[group=12 fillcolor="powderblue"];
+	C13[group=13 fillcolor="powderblue"];
+	C14[group=14 fillcolor="powderblue"];
+	C15[group=15 fillcolor="powderblue"];
+	N10_2[group=2 label="0-77-153"];
+	N11_2[group=2 label="0-77-153"];
+	N12_2[group=2 label="0-77-153"];
+	N6_3[group=3 label="0-77-148"];
+	N7_3[group=3 label="0-77-149"];
+	N8_3[group=3 label="0-77-150"];
+	N9_3[group=3 label="0-77-151"];
+	N10_3[group=3 label="0-77-152"];
+	N11_3[group=3 label="0-77-153"];
+	N4_4[group=4 label="0-77-152"];
+	N5_4[group=4 label="0-77-153"];
+	N6_4[group=4 label="153-206-255"];
+	N7_4[group=4 label="153-206-255"];
+	N8_4[group=4 label="153-206-255"];
+	N9_4[group=4 label="153-206-255"];
+	N10_4[group=4 label="153-206-255"];
+	N11_4[group=4 label="153-206-255"];
+	N12_4[group=4 label="255-255-255"];
+	N13_4[group=4 label="255-255-255"];
+	N3_5[group=5 label="0-77-153"];
+	N4_5[group=5 label="153-206-255"];
+	N5_5[group=5 label="153-206-255"];
+	N6_5[group=5 label="153-206-255"];
+	N7_5[group=5 label="153-206-255"];
+	N8_5[group=5 label="153-206-255"];
+	N9_5[group=5 label="153-206-255"];
+	N10_5[group=5 label="153-206-255"];
+	N11_5[group=5 label="255-255-255"];
+	N12_5[group=5 label="255-255-256"];
+	N13_5[group=5 label="255-255-256"];
+	N3_6[group=6 label="0-77-154"];
+	N4_6[group=6 label="153-206-256"];
+	N5_6[group=6 label="153-206-256"];
+	N6_6[group=6 label="153-206-256"];
+	N7_6[group=6 label="255-255-255"];
+	N9_6[group=6 label="153-206-264"];
+	N10_6[group=6 label="153-206-264"];
+	N11_6[group=6 label="255-255-255"];
+	N12_6[group=6 label="255-255-257"];
+	N13_6[group=6 label="255-255-257"];
+	N2_7[group=7 label="0-77-153"];
+	N3_7[group=7 label="0-77-155"];
+	N4_7[group=7 label="153-206-257"];
+	N5_7[group=7 label="153-206-257"];
+	N6_7[group=7 label="153-206-257"];
+	N10_7[group=7 label="153-206-264"];
+	N11_7[group=7 label="255-255-255"];
+	N12_7[group=7 label="255-255-258"];
+	N13_7[group=7 label="255-255-258"];
+	N2_8[group=8 label="0-77-153"];
+	N3_8[group=8 label="0-77-156"];
+	N4_8[group=8 label="153-206-258"];
+	N5_8[group=8 label="153-206-258"];
+	N6_8[group=8 label="153-206-258"];
+	N11_8[group=8 label="255-255-255"];
+	N12_8[group=8 label="255-255-259"];
+	N13_8[group=8 label="255-255-259"];
+	N2_9[group=9 label="0-77-153"];
+	N3_9[group=9 label="0-77-157"];
+	N4_9[group=9 label="153-206-259"];
+	N5_9[group=9 label="153-206-259"];
+	N6_9[group=9 label="153-206-259"];
+	N11_9[group=9 label="255-255-255"];
+	N12_9[group=9 label="255-255-260"];
+	N13_9[group=9 label="255-255-260"];
+	N2_10[group=10 label="0-77-153"];
+	N3_10[group=10 label="0-77-158"];
+	N4_10[group=10 label="153-206-260"];
+	N5_10[group=10 label="153-206-260"];
+	N6_10[group=10 label="153-206-260"];
+	N7_10[group=10 label="255-255-255"];
+	N10_10[group=10 label="153-206-264"];
+	N11_10[group=10 label="255-255-255"];
+	N12_10[group=10 label="255-255-261"];
+	N13_10[group=10 label="255-255-261"];
+	N3_11[group=11 label="0-77-159"];
+	N4_11[group=11 label="153-206-261"];
+	N5_11[group=11 label="153-206-261"];
+	N6_11[group=11 label="153-206-261"];
+	N9_11[group=11 label="153-206-264"];
+	N10_11[group=11 label="153-206-264"];
+	N11_11[group=11 label="255-255-255"];
+	N12_11[group=11 label="255-255-262"];
+	N13_11[group=11 label="255-255-262"];
+	N3_12[group=12 label="0-77-153"];
+	N4_12[group=12 label="153-206-262"];
+	N5_12[group=12 label="153-206-262"];
+	N6_12[group=12 label="153-206-262"];
+	N7_12[group=12 label="153-206-263"];
+	N8_12[group=12 label="153-206-264"];
+	N9_12[group=12 label="153-206-265"];
+	N10_12[group=12 label="153-206-266"];
+	N11_12[group=12 label="255-255-255"];
+	N12_12[group=12 label="255-255-263"];
+	N13_12[group=12 label="255-255-263"];
+	N4_13[group=13 label="0-77-153"];
+	N5_13[group=13 label="0-77-153"];
+	N6_13[group=13 label="153-206-263"];
+	N7_13[group=13 label="153-206-264"];
+	N8_13[group=13 label="153-206-265"];
+	N9_13[group=13 label="153-206-266"];
+	N10_13[group=13 label="153-206-267"];
+	N11_13[group=13 label="153-206-268"];
+	N12_13[group=13 label="255-255-264"];
+	N13_13[group=13 label="255-255-264"];
+	N6_14[group=14 label="0-77-153"];
+	N7_14[group=14 label="0-77-153"];
+	N8_14[group=14 label="0-77-153"];
+	N9_14[group=14 label="0-77-153"];
+	N10_14[group=14 label="0-77-153"];
+	N11_14[group=14 label="0-77-153"];
+	N10_15[group=15 label="0-77-153"];
+	N11_15[group=15 label="0-77-153"];
+	N12_15[group=15 label="0-77-153"];
+	subgraph columnHeader {
+		rank = same;
+		Root -> C2 -> C3 -> C4 -> C5 -> C6 -> C7 -> C8 -> C9 -> C10 -> C11 -> C12 -> C13 -> C14 -> C15;
+		Root -> C2 -> C3 -> C4 -> C5 -> C6 -> C7 -> C8 -> C9 -> C10 -> C11 -> C12 -> C13 -> C14 -> C15[dir=back];
+	}
+	subgraph row2 {
+		rank = same;
+		F2 -> N2_7 -> N2_8 -> N2_9 -> N2_10;
+		F2 -> N2_7 -> N2_8 -> N2_9 -> N2_10[dir=back];
+	}
+	subgraph row3 {
+		rank = same;
+		F3 -> N3_5 -> N3_6 -> N3_7 -> N3_8 -> N3_9 -> N3_10 -> N3_11 -> N3_12;
+		F3 -> N3_5 -> N3_6 -> N3_7 -> N3_8 -> N3_9 -> N3_10 -> N3_11 -> N3_12[dir=back];
+	}
+	subgraph row4 {
+		rank = same;
+		F4 -> N4_4 -> N4_5 -> N4_6 -> N4_7 -> N4_8 -> N4_9 -> N4_10 -> N4_11 -> N4_12 -> N4_13;
+		F4 -> N4_4 -> N4_5 -> N4_6 -> N4_7 -> N4_8 -> N4_9 -> N4_10 -> N4_11 -> N4_12 -> N4_13[dir=back];
+	}
+	subgraph row5 {
+		rank = same;
+		F5 -> N5_4 -> N5_5 -> N5_6 -> N5_7 -> N5_8 -> N5_9 -> N5_10 -> N5_11 -> N5_12 -> N5_13;
+		F5 -> N5_4 -> N5_5 -> N5_6 -> N5_7 -> N5_8 -> N5_9 -> N5_10 -> N5_11 -> N5_12 -> N5_13[dir=back];
+	}
+	subgraph row6 {
+		rank = same;
+		F6 -> N6_3 -> N6_4 -> N6_5 -> N6_6 -> N6_7 -> N6_8 -> N6_9 -> N6_10 -> N6_11 -> N6_12 -> N6_13 -> N6_14;
+		F6 -> N6_3 -> N6_4 -> N6_5 -> N6_6 -> N6_7 -> N6_8 -> N6_9 -> N6_10 -> N6_11 -> N6_12 -> N6_13 -> N6_14[dir=back];
+	}
+	subgraph row7 {
+		rank = same;
+		F7 -> N7_3 -> N7_4 -> N7_5 -> N7_6 -> N7_10 -> N7_12 -> N7_13 -> N7_14;
+		F7 -> N7_3 -> N7_4 -> N7_5 -> N7_6 -> N7_10 -> N7_12 -> N7_13 -> N7_14[dir=back];
+	}
+	subgraph row8 {
+		rank = same;
+		F8 -> N8_3 -> N8_4 -> N8_5 -> N8_12 -> N8_13 -> N8_14;
+		F8 -> N8_3 -> N8_4 -> N8_5 -> N8_12 -> N8_13 -> N8_14[dir=back];
+	}
+	subgraph row9 {
+		rank = same;
+		F9 -> N9_3 -> N9_4 -> N9_5 -> N9_6 -> N9_11 -> N9_12 -> N9_13 -> N9_14;
+		F9 -> N9_3 -> N9_4 -> N9_5 -> N9_6 -> N9_11 -> N9_12 -> N9_13 -> N9_14[dir=back];
+	}
+	subgraph row10 {
+		rank = same;
+		F10 -> N10_2 -> N10_3 -> N10_4 -> N10_5 -> N10_6 -> N10_7 -> N10_10 -> N10_11 -> N10_12 -> N10_13 -> N10_14 -> N10_15;
+		F10 -> N10_2 -> N10_3 -> N10_4 -> N10_5 -> N10_6 -> N10_7 -> N10_10 -> N10_11 -> N10_12 -> N10_13 -> N10_14 -> N10_15[dir=back];
+	}
+	subgraph row11 {
+		rank = same;
+		F11 -> N11_2 -> N11_3 -> N11_4 -> N11_5 -> N11_6 -> N11_7 -> N11_8 -> N11_9 -> N11_10 -> N11_11 -> N11_12 -> N11_13 -> N11_14 -> N11_15;
+		F11 -> N11_2 -> N11_3 -> N11_4 -> N11_5 -> N11_6 -> N11_7 -> N11_8 -> N11_9 -> N11_10 -> N11_11 -> N11_12 -> N11_13 -> N11_14 -> N11_15[dir=back];
+	}
+	subgraph row12 {
+		rank = same;
+		F12 -> N12_2 -> N12_4 -> N12_5 -> N12_6 -> N12_7 -> N12_8 -> N12_9 -> N12_10 -> N12_11 -> N12_12 -> N12_13 -> N12_15;
+		F12 -> N12_2 -> N12_4 -> N12_5 -> N12_6 -> N12_7 -> N12_8 -> N12_9 -> N12_10 -> N12_11 -> N12_12 -> N12_13 -> N12_15[dir=back];
+	}
+	subgraph row13 {
+		rank = same;
+		F13 -> N13_4 -> N13_5 -> N13_6 -> N13_7 -> N13_8 -> N13_9 -> N13_10 -> N13_11 -> N13_12 -> N13_13;
+		F13 -> N13_4 -> N13_5 -> N13_6 -> N13_7 -> N13_8 -> N13_9 -> N13_10 -> N13_11 -> N13_12 -> N13_13[dir=back];
+	}
+	subgraph rowHeader {
+		Root -> F2 -> F3 -> F4 -> F5 -> F6 -> F7 -> F8 -> F9 -> F10 -> F11 -> F12 -> F13;
+		Root -> F2 -> F3 -> F4 -> F5 -> F6 -> F7 -> F8 -> F9 -> F10 -> F11 -> F12 -> F13[dir=back];
+	}
+	subgraph column2 {
+		C2 -> N10_2 -> N11_2 -> N12_2;
+		C2 -> N10_2 -> N11_2 -> N12_2[dir=back];
+	}
+	subgraph column3 {
+		C3 -> N6_3 -> N7_3 -> N8_3 -> N9_3 -> N10_3 -> N11_3;
+		C3 -> N6_3 -> N7_3 -> N8_3 -> N9_3 -> N10_3 -> N11_3[dir=back];
+	}
+	subgraph column4 {
+		C4 -> N4_4 -> N5_4 -> N6_4 -> N7_4 -> N8_4 -> N9_4 -> N10_4 -> N11_4 -> N12_4 -> N13_4;
+		C4 -> N4_4 -> N5_4 -> N6_4 -> N7_4 -> N8_4 -> N9_4 -> N10_4 -> N11_4 -> N12_4 -> N13_4[dir=back];
+	}
+	subgraph column5 {
+		C5 -> N3_5 -> N4_5 -> N5_5 -> N6_5 -> N7_5 -> N8_5 -> N9_5 -> N10_5 -> N11_5 -> N12_5 -> N13_5;
+		C5 -> N3_5 -> N4_5 -> N5_5 -> N6_5 -> N7_5 -> N8_5 -> N9_5 -> N10_5 -> N11_5 -> N12_5 -> N13_5[dir=back];
+	}
+	subgraph column6 {
+		C6 -> N3_6 -> N4_6 -> N5_6 -> N6_6 -> N7_6 -> N9_6 -> N10_6 -> N11_6 -> N12_6 -> N13_6;
+		C6 -> N3_6 -> N4_6 -> N5_6 -> N6_6 -> N7_6 -> N9_6 -> N10_6 -> N11_6 -> N12_6 -> N13_6[dir=back];
+	}
+	subgraph column7 {
+		C7 -> N2_7 -> N3_7 -> N4_7 -> N5_7 -> N6_7 -> N10_7 -> N11_7 -> N12_7 -> N13_7;
+		C7 -> N2_7 -> N3_7 -> N4_7 -> N5_7 -> N6_7 -> N10_7 -> N11_7 -> N12_7 -> N13_7[dir=back];
+	}
+	subgraph column8 {
+		C8 -> N2_8 -> N3_8 -> N4_8 -> N5_8 -> N6_8 -> N11_8 -> N12_8 -> N13_8;
+		C8 -> N2_8 -> N3_8 -> N4_8 -> N5_8 -> N6_8 -> N11_8 -> N12_8 -> N13_8[dir=back];
+	}
+	subgraph column9 {
+		C9 -> N2_9 -> N3_9 -> N4_9 -> N5_9 -> N6_9 -> N11_9 -> N12_9 -> N13_9;
+		C9 -> N2_9 -> N3_9 -> N4_9 -> N5_9 -> N6_9 -> N11_9 -> N12_9 -> N13_9[dir=back];
+	}
+	subgraph column10 {
+		C10 -> N2_10 -> N3_10 -> N4_10 -> N5_10 -> N6_10 -> N7_10 -> N10_10 -> N11_10 -> N12_10 -> N13_10;
+		C10 -> N2_10 -> N3_10 -> N4_10 -> N5_10 -> N6_10 -> N7_10 -> N10_10 -> N11_10 -> N12_10 -> N13_10[dir=back];
+	}
+	subgraph column11 {
+		C11 -> N3_11 -> N4_11 -> N5_11 -> N6_11 -> N9_11 -> N10_11 -> N11_11 -> N12_11 -> N13_11;
+		C11 -> N3_11 -> N4_11 -> N5_11 -> N6_11 -> N9_11 -> N10_11 -> N11_11 -> N12_11 -> N13_11[dir=back];
+	}
+	subgraph column12 {
+		C12 -> N3_12 -> N4_12 -> N5_12 -> N6_12 -> N7_12 -> N8_12 -> N9_12 -> N10_12 -> N11_12 -> N12_12 -> N13_12;
+		C12 -> N3_12 -> N4_12 -> N5_12 -> N6_12 -> N7_12 -> N8_12 -> N9_12 -> N10_12 -> N11_12 -> N12_12 -> N13_12[dir=back];
+	}
+	subgraph column13 {
+		C13 -> N4_13 -> N5_13 -> N6_13 -> N7_13 -> N8_13 -> N9_13 -> N10_13 -> N11_13 -> N12_13 -> N13_13;
+		C13 -> N4_13 -> N5_13 -> N6_13 -> N7_13 -> N8_13 -> N9_13 -> N10_13 -> N11_13 -> N12_13 -> N13_13[dir=back];
+	}
+	subgraph column14 {
+		C14 -> N6_14 -> N7_14 -> N8_14 -> N9_14 -> N10_14 -> N11_14;
+		C14 -> N6_14 -> N7_14 -> N8_14 -> N9_14 -> N10_14 -> N11_14[dir=back];
+	}
+	subgraph column15 {
+		C15 -> N10_15 -> N11_15 -> N12_15;
+		C15 -> N10_15 -> N11_15 -> N12_15[dir=back];
+	}
+}
