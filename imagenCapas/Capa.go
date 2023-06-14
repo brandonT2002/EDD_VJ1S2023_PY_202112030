@@ -2,9 +2,7 @@ package imagencapas
 
 import (
 	"fmt"
-	"log"
 	"os"
-	"os/exec"
 	"strconv"
 )
 
@@ -78,6 +76,7 @@ func (nodo *ListaCabeza) existeNodo(indice int) bool {
 type MatrizDispersa struct {
 	accesoF *ListaCabeza
 	accesoC *ListaCabeza
+	nombre  string
 }
 
 func (nodo *MatrizDispersa) insertar(fila, columna int, color *Color) {
@@ -274,19 +273,17 @@ func (nodo *MatrizDispersa) ObtenerCSS(ancho int) string {
 	return css
 }
 
-func generarGrafo(nombreArchivo, dot string) {
-	nombreArchivo += ".dot"
-	nuevoContenido := dot
-
+func (nodo *MatrizDispersa) GenerarGrafo(carpeta string) {
+	fmt.Println("./" + carpeta + "/" + nodo.nombre + ".dot")
 	// Eliminar el archivo existente
-	err := os.Remove(nombreArchivo)
+	err := os.Remove("./" + carpeta + "/" + nodo.nombre + ".dot")
 	if err != nil && !os.IsNotExist(err) {
 		fmt.Println("Error al eliminar el archivo:", err)
 		return
 	}
 
 	// Crear un nuevo archivo
-	file, err := os.Create(nombreArchivo)
+	file, err := os.Create("./" + carpeta + "/" + nodo.nombre + ".dot")
 	if err != nil {
 		fmt.Println("Error al crear el archivo:", err)
 		return
@@ -294,30 +291,11 @@ func generarGrafo(nombreArchivo, dot string) {
 	defer file.Close()
 
 	// Escribir el nuevo contenido en el archivo
-	_, err = file.WriteString(nuevoContenido)
+	_, err = file.WriteString(nodo.dot())
 	if err != nil {
 		fmt.Println("Error al escribir en el archivo:", err)
 		return
 	}
 
 	// fmt.Println("Se ha escrito el nuevo contenido en el archivo.")
-}
-
-func generarImg() {
-	// Ruta del archivo .dot de entrada
-	inputFile := "grafo.dot"
-
-	// Ruta del archivo de imagen de salida
-	outputFile := "grafo.png"
-
-	// Comando para ejecutar Graphviz
-	cmd := exec.Command("dot", "-Tpng", "-o", outputFile, inputFile)
-
-	// Ejecutar el comando
-	err := cmd.Run()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	log.Println("Archivo de imagen generado:", outputFile)
 }

@@ -101,14 +101,22 @@ func generarImagen(img string) {
 	array := leerArchivos(img)
 	imagen := &imagencapas.ListaCapas{}
 	nombre := ""
+	// aquí se crea carpeta
+	ruta := "./" + img
+	err := os.Mkdir(ruta, os.ModePerm)
+	if err != nil {
+		fmt.Println("Error al crear la carpeta:", err)
+		return
+	}
+
 	for _, fl := range array {
 		nombre = strings.TrimSuffix(fl.Archivo, ".csv")
 		if fl.Archivo != "config.csv" {
-			imagen.Insertar(imagencapas.LeerCSV("./csv/"+img+"/"+fl.Archivo, nombre))
+			imagen.Insertar(imagencapas.LeerCSV("./csv/"+img+"/"+fl.Archivo, img, nombre))
 			continue
 		}
 		config := leerConfig(img, fl.Archivo)
-		imagen.GenerarImg(config[0], config[1], config[2], config[3], img)
+		imagen.GenerarImg(config[0], config[1], config[2], config[3], ruta, img)
 	}
 }
 

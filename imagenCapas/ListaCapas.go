@@ -28,7 +28,7 @@ func (this *ListaCapas) Insertar(capa *MatrizDispersa) {
 	this.longitud++
 }
 
-func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, nombre string) {
+func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre string) {
 	css := `body {
 	background: #333333;
 	height: 100vh;
@@ -75,8 +75,14 @@ func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, nombre stri
 	</body>
 </html>`
 
+	actual = this.primero
+	for actual != nil {
+		actual.capa.GenerarGrafo(nombre)
+		actual = actual.siguiente
+	}
+
 	// Crear un nuevo archivo
-	file, err := os.Create(nombre + ".html")
+	file, err := os.Create(ruta + "/" + nombre + ".html")
 	if err != nil {
 		fmt.Println("Error al crear el archivo:", err)
 		return
@@ -91,7 +97,7 @@ func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, nombre stri
 	}
 
 	// Crear un nuevo archivo
-	file1, err := os.Create(nombre + ".css")
+	file1, err := os.Create(ruta + "/" + nombre + ".css")
 	if err != nil {
 		fmt.Println("Error al crear el archivo:", err)
 		return

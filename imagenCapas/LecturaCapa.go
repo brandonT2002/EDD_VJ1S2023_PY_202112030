@@ -9,7 +9,7 @@ import (
 	"github.com/fatih/color"
 )
 
-func LeerCSV(path, nombre string) *MatrizDispersa {
+func LeerCSV(path, carpeta, nombre string) *MatrizDispersa {
 	file, err := os.Open(path)
 	if err != nil {
 		color.Red("\n  Error, no se pudo abrir el archivo")
@@ -20,6 +20,7 @@ func LeerCSV(path, nombre string) *MatrizDispersa {
 	capa := &MatrizDispersa{
 		accesoF: &ListaCabeza{},
 		accesoC: &ListaCabeza{},
+		nombre:  nombre,
 	}
 	i := 0
 	for {
@@ -39,6 +40,5 @@ func LeerCSV(path, nombre string) *MatrizDispersa {
 		}
 		i++
 	}
-	generarGrafo(nombre, capa.dot())
 	return capa
 }
