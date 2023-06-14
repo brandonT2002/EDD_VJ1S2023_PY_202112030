@@ -56,7 +56,7 @@ func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clien
 		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl)
 	} else {
 		consola.LimpiarConsola()
-		panelusuario.MenuUsuario("F")
+		panelusuario.MenuUsuario("F", lImg)
 	}
 }
 

@@ -7,6 +7,7 @@ import (
 	"os"
 	"paquete/consola"
 	imagencapas "paquete/imagenCapas"
+	"paquete/imagenes"
 	"strconv"
 	"strings"
 
@@ -120,16 +121,17 @@ func generarImagen(img string) {
 	}
 }
 
-func MenuUsuario(usuario string) {
+func MenuUsuario(usuario string, lImg *imagenes.ListaImg) {
 	opcion := 0
+	img := ""
 	for opcion != 3 {
 		opciones(usuario)
 		fmt.Scanln(&opcion)
 
 		switch opcion {
 		case 1:
-			img := ""
-			fmt.Print("  Imagen: ")
+			lImg.Mostrar()
+			fmt.Print("\n  Imagen: ")
 			fmt.Scanln(&img)
 			generarImagen(img)
 		case 2:

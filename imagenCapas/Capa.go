@@ -274,7 +274,6 @@ func (nodo *MatrizDispersa) ObtenerCSS(ancho int) string {
 }
 
 func (nodo *MatrizDispersa) GenerarGrafo(carpeta string) {
-	fmt.Println("./" + carpeta + "/" + nodo.nombre + ".dot")
 	// Eliminar el archivo existente
 	err := os.Remove("./" + carpeta + "/" + nodo.nombre + ".dot")
 	if err != nil && !os.IsNotExist(err) {
