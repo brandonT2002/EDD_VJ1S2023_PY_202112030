@@ -13,16 +13,25 @@ func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, 
 	for opcion != 6 {
 		opciones(admin)
 		fmt.Scanln(&opcion)
+		archivo := ""
 
 		switch opcion {
 		case 1:
-			leerEmpleados(lEmp)
+			fmt.Print("\n  Nombre del archivo: ")
+			fmt.Scanln(&archivo)
+			leerEmpleados(lEmp, archivo)
 		case 2:
-			leerImagenes(lImg)
+			fmt.Print("\n  Nombre del archivo: ")
+			fmt.Scanln(&archivo)
+			leerImagenes(lImg, archivo)
 		case 3:
-			leerClientes(lCl)
+			fmt.Print("\n  Nombre del archivo: ")
+			fmt.Scanln(&archivo)
+			leerClientes(lCl, archivo)
 		case 4:
-			leerClientesCola(cCl, lCl)
+			fmt.Print("\n  Nombre del archivo: ")
+			fmt.Scanln(&archivo)
+			leerClientesCola(cCl, lCl, archivo)
 		case 5:
 			fmt.Println()
 			fmt.Println("  Hasta pronto")
@@ -36,29 +45,29 @@ func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, 
 	}
 }
 
-func leerEmpleados(lEmp *empleados.ListaEmp) {
-	empleados.LeerCSV(lEmp)
-
+func leerEmpleados(lEmp *empleados.ListaEmp, archivo string) {
+	empleados.LeerCSV(lEmp, archivo)
+	fmt.Println("  -- EMPLEADOS --")
 	lEmp.Mostrar()
 }
 
-func leerImagenes(lImg *imagenes.ListaImg) {
-	imagenes.LeerCSV(lImg)
-
+func leerImagenes(lImg *imagenes.ListaImg, archivo string) {
+	imagenes.LeerCSV(lImg, archivo)
+	fmt.Println("  -- IMAGENES --")
 	lImg.Mostrar()
 }
 
-func leerClientes(lCl *clientes.ListaCliente) {
-	clientes.LeerCSV(lCl)
-
+func leerClientes(lCl *clientes.ListaCliente, archivo string) {
+	clientes.LeerCSV(lCl, archivo)
+	fmt.Println("  -- CLIENTES --")
 	lCl.Mostrar()
 }
 
-func leerClientesCola(cCl *clientes.ColaCliente, lCl *clientes.ListaCliente) {
-	clientes.LeerCSV1(cCl, lCl)
-	fmt.Println("  -- COLA --")
+func leerClientesCola(cCl *clientes.ColaCliente, lCl *clientes.ListaCliente, archivo string) {
+	clientes.LeerCSV1(cCl, lCl, archivo)
+	fmt.Println("  -- CLIENTES EN COLA --")
 	cCl.Mostrar()
-	fmt.Println("  -- CLIENTES --")
+	fmt.Println("  -- CLIENTES EN EL SISTEMA --")
 	lCl.Mostrar()
 }
 

@@ -8,11 +8,11 @@ import (
 	"github.com/fatih/color"
 )
 
-func LeerCSV(lista *ListaImg) {
-	file, err := os.Open("csv/imagenes.csv")
+func LeerCSV(lista *ListaImg, archivo string) {
+	file, err := os.Open("csv/" + archivo + ".csv")
 
 	if err != nil {
-		color.Red("\n  Error, no se pudo abrir el archivo")
+		color.Red("\n  Error, no se pudo abrir el archivo\n\n")
 		return
 	}
 	defer file.Close()
@@ -26,7 +26,7 @@ func LeerCSV(lista *ListaImg) {
 			break
 		}
 		if err != nil {
-			color.Yellow("\n  No se pudo leer la linea del csv")
+			color.Yellow("\n  No se pudo leer la linea del csv\n\n")
 			continue
 		}
 		if encabezado {
@@ -35,5 +35,5 @@ func LeerCSV(lista *ListaImg) {
 		}
 		lista.Insertar(&Imagen{Nombre: linea[0], Capas: linea[1]})
 	}
-	color.Green("\n  Archivo cargado exitosamente")
+	color.Green("\n  Archivo cargado exitosamente\n\n")
 }
