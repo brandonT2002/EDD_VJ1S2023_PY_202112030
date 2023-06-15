@@ -1,13 +1,14 @@
 digraph G {
-fontname="Arial"label="Lista Simple - Empleados"
+fontname="Arial"
+label="Lista Simple - Empleados"
 labelloc = t
 rankdir=LR;
 node[shape="box" fontname="Arial"];
-nodo_0 [label="ID: Cristian Suy\nNombre: Cristian Suy"];
-nodo_1 [label="ID: Hector Jimenez\nNombre: Hector Jimenez"];
-nodo_2 [label="ID: Pablo Velasquez\nNombre: Pablo Velasquez"];
-nodo_3 [label="ID: Jaquelin Gomez\nNombre: Jaquelin Gomez"];
-nodo_4 [label="ID: Yadira Ruiz\nNombre: Yadira Ruiz"];
-nodo_5 [label="ID: Paula Fuentes\nNombre: Paula Fuentes"];
+nodo_0 [label="ID: 3475\nNombre: Cristian Suy"];
+nodo_1 [label="ID: 4564\nNombre: Hector Jimenez"];
+nodo_2 [label="ID: 1452\nNombre: Pablo Velasquez"];
+nodo_3 [label="ID: 1957\nNombre: Jaquelin Gomez"];
+nodo_4 [label="ID: 3340\nNombre: Yadira Ruiz"];
+nodo_5 [label="ID: 2576\nNombre: Paula Fuentes"];
 nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> null;
 }

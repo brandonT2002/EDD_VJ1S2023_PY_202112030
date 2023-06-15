@@ -4,7 +4,13 @@ label="Pila - Pedidos"
 labelloc=t
 stack [shape=none, margin=0, label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="2">
 <tr>
-<td width="125" height="50"><font point-size="15">ID Cliente: 1906<BR/>Imagen: ave</font></td>
+<td width="125" height="50"><font point-size="15">ID Cliente: 2480<BR/>Imagen: letra_r</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 6344<BR/>Imagen: ave</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 8843<BR/>Imagen: ave</font></td>
 </tr>
 <tr>
 <td width="125" height="50"><font point-size="15">ID Cliente: 4575<BR/>Imagen: ave</font></td>

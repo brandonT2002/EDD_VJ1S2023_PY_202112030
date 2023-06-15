@@ -5,4 +5,8 @@ rankdir=LR;
 node[shape="box" fontname="Arial"];
 null0 [label="null"]
 null1 [label="null"]
-null1}
+nodo_0 [label="letra_r"];
+nodo_1 [label="ave"];
+nodo_0 -> nodo_1 -> null0;
+null1 -> nodo_0 -> nodo_1[dir="back"] ;
+}

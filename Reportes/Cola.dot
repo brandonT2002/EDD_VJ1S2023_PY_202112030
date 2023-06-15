@@ -4,11 +4,7 @@ label="Cola - Clientes en Cola"
 labelloc = t
 rankdir=LR;
 node[shape="box" fontname="Arial"];
-nodo_0 [label="ID: 4575\nNombre: Cristian Suy"];
-nodo_1 [label="ID: X\nNombre: Hector Jimenez"];
-nodo_2 [label="ID: 6344\nNombre: Joel Guzman"];
-nodo_3 [label="ID: 2480\nNombre: Karen Garcia"];
-nodo_4 [label="ID: X\nNombre: Teodoro Mejia"];
-nodo_5 [label="ID: 5965\nNombre: Alejandra Perez"];
-nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5;
+nodo_0 [label="ID: X\nNombre: Teodoro Mejia"];
+nodo_1 [label="ID: 5965\nNombre: Alejandra Perez"];
+nodo_0 -> nodo_1;
 }
