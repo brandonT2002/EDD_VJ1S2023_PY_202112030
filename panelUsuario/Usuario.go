@@ -12,6 +12,7 @@ import (
 	imagencapas "paquete/imagenCapas"
 	"paquete/imagenes"
 	"paquete/pedidos"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -62,9 +63,14 @@ func leerArchivos(nombre string) []ArchivoCapa {
 		})
 	}
 
-	// sort.Slice(archivoCapa, func(i, j int) bool {
-	// 	return archivoCapa[i].Capa < archivoCapa[j].Capa
-	// })
+	sort.Slice(archivoCapa, func(i, j int) bool {
+		if archivoCapa[i].Capa == 0 {
+			return false
+		} else if archivoCapa[j].Capa == 0 {
+			return true
+		}
+		return archivoCapa[i].Capa < archivoCapa[j].Capa
+	})
 
 	return archivoCapa
 }
