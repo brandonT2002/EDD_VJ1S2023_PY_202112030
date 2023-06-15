@@ -184,41 +184,43 @@ func pedido(idEmp string, cCl *clientes.ColaCliente, pCl *pedidos.Pila, lImg *im
 	fmt.Println("\n  -- CLIENTES EN COLA --")
 	cCl.Mostrar()
 
-	if cCl.Primero.Cliente.Id == "X" || cCl.Primero.Cliente.Id == "x" {
-		fmt.Println("  Se detectó un nuevo cliente")
-		for {
-			idCliente = generarID()
-			if !lCl.Existe(idCliente) {
-				fmt.Println("  ID: ", idCliente)
-				lCl.GuardarId(cCl.Primero.Cliente.Nombre, idCliente)
-				break
+	if cCl.Primero != nil {
+		if cCl.Primero.Cliente.Id == "X" || cCl.Primero.Cliente.Id == "x" {
+			fmt.Println("  Se detectó un nuevo cliente")
+			for {
+				idCliente = generarID()
+				if !lCl.Existe(idCliente) {
+					fmt.Println("  ID: ", idCliente)
+					lCl.GuardarId(cCl.Primero.Cliente.Nombre, idCliente)
+					break
+				}
+			}
+		} else {
+			for {
+				fmt.Print("\n  ID Cliente: ")
+				fmt.Scanln(&idCliente)
+				if cCl.Primero.Cliente.Id == idCliente {
+					break
+				}
+				color.Yellow("  Verifique el ID")
 			}
 		}
-	} else {
+		fmt.Printf("\n  ID Empleado: %s\n", idEmp)
+		fmt.Println("\n  -- IMAGENES EXISTENTES --")
+		lImg.Mostrar()
 		for {
-			fmt.Print("\n  ID Cliente: ")
-			fmt.Scanln(&idCliente)
-			if cCl.Primero.Cliente.Id == idCliente {
+			fmt.Print("\n  Imagen: ")
+			fmt.Scanln(&imagen)
+			if lImg.Buscar(imagen) {
 				break
 			}
-			color.Yellow("  Verifique el ID")
+			color.Yellow("  Verifique el nombre de la imagen")
 		}
+		pCl.Insertar(&pedidos.Pedido{IdCliente: idCliente, IdEmpleado: idEmp, Imagen: imagen})
+		cCl.Eliminar()
+		fmt.Println("\n  -- PEDIDOS --")
+		pCl.Mostrar()
 	}
-	fmt.Printf("\n  ID Empleado: %s\n", idEmp)
-	fmt.Println("\n  -- IMAGENES EXISTENTES --")
-	lImg.Mostrar()
-	for {
-		fmt.Print("\n  Imagen: ")
-		fmt.Scanln(&imagen)
-		if lImg.Buscar(imagen) {
-			break
-		}
-		color.Yellow("  Verifique el nombre de la imagen")
-	}
-	pCl.Insertar(&pedidos.Pedido{IdCliente: idCliente, IdEmpleado: idEmp, Imagen: imagen})
-	cCl.Eliminar()
-	fmt.Println("\n  -- PEDIDOS --")
-	pCl.Mostrar()
 
 }
 
