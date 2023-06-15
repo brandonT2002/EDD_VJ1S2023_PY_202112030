@@ -12,7 +12,7 @@ type ListaCliente struct {
 }
 
 func (l *ListaCliente) Insertar(cliente *Cliente) {
-	if l.existe(cliente.Id) {
+	if l.Existe(cliente.Id) {
 		return
 	}
 	if l.primero != nil {
@@ -28,7 +28,7 @@ func (l *ListaCliente) Insertar(cliente *Cliente) {
 	l.longitud++
 }
 
-func (l *ListaCliente) existe(id string) bool {
+func (l *ListaCliente) Existe(id string) bool {
 	actual := l.primero
 	contador := 0
 	for actual != nil {
@@ -50,6 +50,17 @@ func (l *ListaCliente) esNumero(id string) bool {
 		return true
 	}
 	return false
+}
+
+func (l *ListaCliente) GuardarId(nombre, id string) {
+	actual := l.primero
+	for actual != nil {
+		if actual.Cliente.Nombre == nombre && (actual.Cliente.Id == "x" || actual.Cliente.Id == "X") {
+			actual.Cliente.Id = id
+			return
+		}
+		actual = actual.siguiente
+	}
 }
 
 func (l *ListaCliente) Mostrar() {

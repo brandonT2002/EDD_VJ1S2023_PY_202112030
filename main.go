@@ -58,7 +58,7 @@ func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clien
 		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl)
 	} else if usuario == emp.Nombre && pass == emp.Contrasena {
 		consola.LimpiarConsola()
-		panelusuario.MenuUsuario(emp, lImg, cCl, pCl)
+		panelusuario.MenuUsuario(emp, lImg, cCl, pCl, lCl)
 	} else {
 		fmt.Println("  \nVerifique sus credenciales")
 	}
