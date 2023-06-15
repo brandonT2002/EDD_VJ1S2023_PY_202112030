@@ -1,0 +1,119 @@
+digraph T{
+	node[shape=box fontname="Arial" fillcolor="white" style=filled];
+	edge[dir="both"];
+	Root[label = "Capa 0", group="0"];
+	F0[group="0" fillcolor="plum"];
+	F1[group="0" fillcolor="plum"];
+	F2[group="0" fillcolor="plum"];
+	F3[group="0" fillcolor="plum"];
+	F4[group="0" fillcolor="plum"];
+	F5[group="0" fillcolor="plum"];
+	C2[group="2" fillcolor="powderblue"];
+	C3[group="3" fillcolor="powderblue"];
+	C4[group="4" fillcolor="powderblue"];
+	C5[group="5" fillcolor="powderblue"];
+	C6[group="6" fillcolor="powderblue"];
+	C7[group="7" fillcolor="powderblue"];
+	C8[group="8" fillcolor="powderblue"];
+	C9[group="9" fillcolor="powderblue"];
+	C10[group="10" fillcolor="powderblue"];
+	C11[group="11" fillcolor="powderblue"];
+	C12[group="12" fillcolor="powderblue"];
+	N3_2[group="2" label="134-89-45"];
+	N4_2[group="2" label="134-89-45"];
+	N5_2[group="2" label="134-89-45"];
+	N1_3[group="3" label="255-51-0"];
+	N2_3[group="3" label="134-89-45"];
+	N5_3[group="3" label="134-89-45"];
+	N0_4[group="4" label="255-51-0"];
+	N1_4[group="4" label="255-51-0"];
+	N2_4[group="4" label="134-89-45"];
+	N3_4[group="4" label="134-89-45"];
+	N4_4[group="4" label="134-89-45"];
+	N0_5[group="5" label="255-51-0"];
+	N1_5[group="5" label="255-51-0"];
+	N2_5[group="5" label="134-89-45"];
+	N4_5[group="5" label="134-89-45"];
+	N0_6[group="6" label="255-51-0"];
+	N1_6[group="6" label="255-51-0"];
+	N0_7[group="7" label="255-51-0"];
+	N1_7[group="7" label="255-51-0"];
+	N0_8[group="8" label="255-51-0"];
+	N1_8[group="8" label="255-51-0"];
+	N0_9[group="9" label="255-51-0"];
+	N1_9[group="9" label="255-51-0"];
+	N2_9[group="9" label="0-0-0"];
+	N3_9[group="9" label="0-0-0"];
+	N5_9[group="9" label="0-0-0"];
+	N1_10[group="10" label="255-51-0"];
+	N4_10[group="10" label="0-0-0"];
+	N5_10[group="10" label="0-0-0"];
+	N1_11[group="11" label="255-51-0"];
+	N5_11[group="11" label="0-0-0"];
+	N1_12[group="12" label="255-51-0"];
+	N5_12[group="12" label="0-0-0"];
+	subgraph columnHeader {
+		rank = same;
+		Root -> C2 -> C3 -> C4 -> C5 -> C6 -> C7 -> C8 -> C9 -> C10 -> C11 -> C12;
+	}
+	subgraph row0 {
+		rank = same;
+		F0 -> N0_4 -> N0_5 -> N0_6 -> N0_7 -> N0_8 -> N0_9;
+	}
+	subgraph row1 {
+		rank = same;
+		F1 -> N1_3 -> N1_4 -> N1_5 -> N1_6 -> N1_7 -> N1_8 -> N1_9 -> N1_10 -> N1_11 -> N1_12;
+	}
+	subgraph row2 {
+		rank = same;
+		F2 -> N2_3 -> N2_4 -> N2_5 -> N2_9;
+	}
+	subgraph row3 {
+		rank = same;
+		F3 -> N3_2 -> N3_4 -> N3_9;
+	}
+	subgraph row4 {
+		rank = same;
+		F4 -> N4_2 -> N4_4 -> N4_5 -> N4_10;
+	}
+	subgraph row5 {
+		rank = same;
+		F5 -> N5_2 -> N5_3 -> N5_9 -> N5_10 -> N5_11 -> N5_12;
+	}
+	subgraph rowHeader {
+		Root -> F0 -> F1 -> F2 -> F3 -> F4 -> F5;
+	}
+	subgraph column2 {
+		C2 -> N3_2 -> N4_2 -> N5_2;
+	}
+	subgraph column3 {
+		C3 -> N1_3 -> N2_3 -> N5_3;
+	}
+	subgraph column4 {
+		C4 -> N0_4 -> N1_4 -> N2_4 -> N3_4 -> N4_4;
+	}
+	subgraph column5 {
+		C5 -> N0_5 -> N1_5 -> N2_5 -> N4_5;
+	}
+	subgraph column6 {
+		C6 -> N0_6 -> N1_6;
+	}
+	subgraph column7 {
+		C7 -> N0_7 -> N1_7;
+	}
+	subgraph column8 {
+		C8 -> N0_8 -> N1_8;
+	}
+	subgraph column9 {
+		C9 -> N0_9 -> N1_9 -> N2_9 -> N3_9 -> N5_9;
+	}
+	subgraph column10 {
+		C10 -> N1_10 -> N4_10 -> N5_10;
+	}
+	subgraph column11 {
+		C11 -> N1_11 -> N5_11;
+	}
+	subgraph column12 {
+		C12 -> N1_12 -> N5_12;
+	}
+}

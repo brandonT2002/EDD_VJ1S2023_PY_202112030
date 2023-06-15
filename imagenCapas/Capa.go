@@ -167,6 +167,7 @@ func (nodo *MatrizDispersa) agregarColumna(columna int, nodoI *NodoInterno) {
 
 func (nodo *MatrizDispersa) dot() string {
 	dot := "digraph T{\n\tnode[shape=box fontname=\"Arial\" fillcolor=\"white\" style=filled];"
+	dot += "\n\tedge[dir=\"both\"];"
 	dot += "\n\tRoot[label = \"Capa 0\", group=\"0\"];"
 
 	actualF := nodo.accesoF.primero
@@ -177,7 +178,7 @@ func (nodo *MatrizDispersa) dot() string {
 
 	actualC := nodo.accesoC.primero
 	for actualC != nil {
-		dot += "\n\tC" + strconv.Itoa(actualC.indice) + "[group=" + strconv.Itoa(actualC.indice) + " fillcolor=\"powderblue\"];"
+		dot += "\n\tC" + strconv.Itoa(actualC.indice) + "[group=\"" + strconv.Itoa(actualC.indice) + "\" fillcolor=\"powderblue\"];"
 		actualC = actualC.siguiente
 	}
 
@@ -185,7 +186,7 @@ func (nodo *MatrizDispersa) dot() string {
 	for actualC != nil {
 		actualF := actualC.acceso
 		for actualF != nil {
-			dot += "\n\tN" + strconv.Itoa(actualF.fila) + "_" + strconv.Itoa(actualF.columna) + "[group=" + strconv.Itoa(actualF.columna) + " label=\"" + actualF.color.R + "-" + actualF.color.G + "-" + actualF.color.B + "\"];"
+			dot += "\n\tN" + strconv.Itoa(actualF.fila) + "_" + strconv.Itoa(actualF.columna) + "[group=\"" + strconv.Itoa(actualF.columna) + "\" label=\"" + actualF.color.R + "-" + actualF.color.G + "-" + actualF.color.B + "\"];"
 			actualF = actualF.abajo
 		}
 		actualC = actualC.siguiente
@@ -201,7 +202,7 @@ func (nodo *MatrizDispersa) dot() string {
 			enlace += " -> "
 		}
 	}
-	dot += enlace + ";" + enlace + "[dir=back];\n\t}"
+	dot += enlace + ";\n\t}"
 
 	actualF = nodo.accesoF.primero
 	for actualF != nil {
@@ -219,7 +220,7 @@ func (nodo *MatrizDispersa) dot() string {
 				enlace += " -> "
 			}
 		}
-		dot += enlace + ";" + enlace + "[dir=back];\n\t}"
+		dot += enlace + ";\n\t}"
 		actualF = actualF.siguiente
 	}
 
@@ -233,7 +234,7 @@ func (nodo *MatrizDispersa) dot() string {
 			enlace += " -> "
 		}
 	}
-	dot += enlace + ";" + enlace + "[dir=back];\n\t}"
+	dot += enlace + ";\n\t}"
 
 	actualC = nodo.accesoC.primero
 	for actualC != nil {
@@ -251,7 +252,7 @@ func (nodo *MatrizDispersa) dot() string {
 				enlace += " -> "
 			}
 		}
-		dot += enlace + ";" + enlace + "[dir=back];\n\t}"
+		dot += enlace + ";\n\t}"
 		actualC = actualC.siguiente
 	}
 	dot += "\n}"

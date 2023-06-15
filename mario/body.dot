@@ -1,0 +1,283 @@
+digraph T{
+	node[shape=box fontname="Arial" fillcolor="white" style=filled];
+	edge[dir="both"];
+	Root[label = "Capa 0", group="0"];
+	F1[group="0" fillcolor="plum"];
+	F2[group="0" fillcolor="plum"];
+	F3[group="0" fillcolor="plum"];
+	F4[group="0" fillcolor="plum"];
+	F5[group="0" fillcolor="plum"];
+	F6[group="0" fillcolor="plum"];
+	F7[group="0" fillcolor="plum"];
+	F8[group="0" fillcolor="plum"];
+	F9[group="0" fillcolor="plum"];
+	F10[group="0" fillcolor="plum"];
+	F11[group="0" fillcolor="plum"];
+	F12[group="0" fillcolor="plum"];
+	F13[group="0" fillcolor="plum"];
+	F14[group="0" fillcolor="plum"];
+	F15[group="0" fillcolor="plum"];
+	C1[group="1" fillcolor="powderblue"];
+	C2[group="2" fillcolor="powderblue"];
+	C3[group="3" fillcolor="powderblue"];
+	C4[group="4" fillcolor="powderblue"];
+	C5[group="5" fillcolor="powderblue"];
+	C6[group="6" fillcolor="powderblue"];
+	C7[group="7" fillcolor="powderblue"];
+	C8[group="8" fillcolor="powderblue"];
+	C9[group="9" fillcolor="powderblue"];
+	C10[group="10" fillcolor="powderblue"];
+	C11[group="11" fillcolor="powderblue"];
+	C12[group="12" fillcolor="powderblue"];
+	C13[group="13" fillcolor="powderblue"];
+	N9_1[group="1" label="255-209-204"];
+	N10_1[group="1" label="255-209-204"];
+	N11_1[group="1" label="255-209-204"];
+	N12_1[group="1" label="255-209-204"];
+	N15_1[group="1" label="255-209-204"];
+	N3_2[group="2" label="255-209-204"];
+	N4_2[group="2" label="255-209-204"];
+	N5_2[group="2" label="255-209-204"];
+	N8_2[group="2" label="255-209-204"];
+	N9_2[group="2" label="255-209-204"];
+	N10_2[group="2" label="255-209-204"];
+	N11_2[group="2" label="255-209-204"];
+	N12_2[group="2" label="255-209-204"];
+	N14_2[group="2" label="255-209-204"];
+	N15_2[group="2" label="255-209-204"];
+	N1_3[group="3" label="255-209-204"];
+	N2_3[group="3" label="255-209-204"];
+	N3_3[group="3" label="255-209-204"];
+	N4_3[group="3" label="255-209-204"];
+	N5_3[group="3" label="255-209-204"];
+	N7_3[group="3" label="255-209-204"];
+	N8_3[group="3" label="255-209-204"];
+	N9_3[group="3" label="255-209-204"];
+	N10_3[group="3" label="255-209-204"];
+	N11_3[group="3" label="255-209-204"];
+	N12_3[group="3" label="255-209-204"];
+	N13_3[group="3" label="255-209-204"];
+	N14_3[group="3" label="255-209-204"];
+	N15_3[group="3" label="255-209-204"];
+	N1_4[group="4" label="255-209-204"];
+	N2_4[group="4" label="255-209-204"];
+	N3_4[group="4" label="255-209-204"];
+	N4_4[group="4" label="255-209-204"];
+	N5_4[group="4" label="255-209-204"];
+	N6_4[group="4" label="255-209-204"];
+	N7_4[group="4" label="255-209-204"];
+	N8_4[group="4" label="255-209-204"];
+	N9_4[group="4" label="255-209-204"];
+	N10_4[group="4" label="255-209-204"];
+	N11_4[group="4" label="255-209-204"];
+	N12_4[group="4" label="255-209-204"];
+	N13_4[group="4" label="255-209-204"];
+	N14_4[group="4" label="255-209-204"];
+	N15_4[group="4" label="255-209-204"];
+	N1_5[group="5" label="255-209-204"];
+	N2_5[group="5" label="255-209-204"];
+	N3_5[group="5" label="255-209-204"];
+	N4_5[group="5" label="255-209-204"];
+	N5_5[group="5" label="255-209-204"];
+	N6_5[group="5" label="255-209-204"];
+	N7_5[group="5" label="255-209-204"];
+	N8_5[group="5" label="255-209-204"];
+	N9_5[group="5" label="255-209-204"];
+	N10_5[group="5" label="255-209-204"];
+	N11_5[group="5" label="255-209-204"];
+	N12_5[group="5" label="255-209-204"];
+	N13_5[group="5" label="255-209-204"];
+	N1_6[group="6" label="255-209-204"];
+	N2_6[group="6" label="255-209-204"];
+	N3_6[group="6" label="255-209-204"];
+	N4_6[group="6" label="255-209-204"];
+	N5_6[group="6" label="255-209-204"];
+	N6_6[group="6" label="255-209-204"];
+	N7_6[group="6" label="255-209-204"];
+	N8_6[group="6" label="255-209-204"];
+	N9_6[group="6" label="255-209-204"];
+	N10_6[group="6" label="255-209-204"];
+	N11_6[group="6" label="255-209-204"];
+	N12_6[group="6" label="255-209-204"];
+	N1_7[group="7" label="255-209-204"];
+	N2_7[group="7" label="255-209-204"];
+	N3_7[group="7" label="255-209-204"];
+	N4_7[group="7" label="255-209-204"];
+	N5_7[group="7" label="255-209-204"];
+	N6_7[group="7" label="255-209-204"];
+	N7_7[group="7" label="255-209-204"];
+	N8_7[group="7" label="255-209-204"];
+	N9_7[group="7" label="255-209-204"];
+	N10_7[group="7" label="255-209-204"];
+	N11_7[group="7" label="255-209-204"];
+	N12_7[group="7" label="255-209-204"];
+	N1_8[group="8" label="255-209-204"];
+	N2_8[group="8" label="255-209-204"];
+	N3_8[group="8" label="255-209-204"];
+	N4_8[group="8" label="255-209-204"];
+	N5_8[group="8" label="255-209-204"];
+	N6_8[group="8" label="255-209-204"];
+	N7_8[group="8" label="255-209-204"];
+	N8_8[group="8" label="255-209-204"];
+	N9_8[group="8" label="255-209-204"];
+	N10_8[group="8" label="255-209-204"];
+	N11_8[group="8" label="255-209-204"];
+	N12_8[group="8" label="255-209-204"];
+	N13_8[group="8" label="255-209-204"];
+	N1_9[group="9" label="255-209-204"];
+	N2_9[group="9" label="255-209-204"];
+	N3_9[group="9" label="255-209-204"];
+	N4_9[group="9" label="255-209-204"];
+	N5_9[group="9" label="255-209-204"];
+	N6_9[group="9" label="255-209-204"];
+	N7_9[group="9" label="255-209-204"];
+	N8_9[group="9" label="255-209-204"];
+	N9_9[group="9" label="255-209-204"];
+	N10_9[group="9" label="255-209-204"];
+	N11_9[group="9" label="255-209-204"];
+	N12_9[group="9" label="255-209-204"];
+	N13_9[group="9" label="255-209-204"];
+	N14_9[group="9" label="255-209-204"];
+	N15_9[group="9" label="255-209-204"];
+	N1_10[group="10" label="255-209-204"];
+	N2_10[group="10" label="255-209-204"];
+	N3_10[group="10" label="255-209-204"];
+	N4_10[group="10" label="255-209-204"];
+	N5_10[group="10" label="255-209-204"];
+	N6_10[group="10" label="255-209-204"];
+	N8_10[group="10" label="255-209-204"];
+	N9_10[group="10" label="255-209-204"];
+	N10_10[group="10" label="255-209-204"];
+	N11_10[group="10" label="255-209-204"];
+	N12_10[group="10" label="255-209-204"];
+	N13_10[group="10" label="255-209-204"];
+	N14_10[group="10" label="255-209-204"];
+	N15_10[group="10" label="255-209-204"];
+	N3_11[group="11" label="255-209-204"];
+	N4_11[group="11" label="255-209-204"];
+	N5_11[group="11" label="255-209-204"];
+	N6_11[group="11" label="255-209-204"];
+	N8_11[group="11" label="255-209-204"];
+	N9_11[group="11" label="255-209-204"];
+	N10_11[group="11" label="255-209-204"];
+	N11_11[group="11" label="255-209-204"];
+	N12_11[group="11" label="255-209-204"];
+	N14_11[group="11" label="255-209-204"];
+	N15_11[group="11" label="255-209-204"];
+	N3_12[group="12" label="255-209-204"];
+	N4_12[group="12" label="255-209-204"];
+	N5_12[group="12" label="255-209-204"];
+	N8_12[group="12" label="255-209-204"];
+	N9_12[group="12" label="255-209-204"];
+	N10_12[group="12" label="255-209-204"];
+	N11_12[group="12" label="255-209-204"];
+	N12_12[group="12" label="255-209-204"];
+	N15_12[group="12" label="255-209-204"];
+	N4_13[group="13" label="255-209-204"];
+	subgraph columnHeader {
+		rank = same;
+		Root -> C1 -> C2 -> C3 -> C4 -> C5 -> C6 -> C7 -> C8 -> C9 -> C10 -> C11 -> C12 -> C13;
+	}
+	subgraph row1 {
+		rank = same;
+		F1 -> N1_3 -> N1_4 -> N1_5 -> N1_6 -> N1_7 -> N1_8 -> N1_9 -> N1_10;
+	}
+	subgraph row2 {
+		rank = same;
+		F2 -> N2_3 -> N2_4 -> N2_5 -> N2_6 -> N2_7 -> N2_8 -> N2_9 -> N2_10;
+	}
+	subgraph row3 {
+		rank = same;
+		F3 -> N3_2 -> N3_3 -> N3_4 -> N3_5 -> N3_6 -> N3_7 -> N3_8 -> N3_9 -> N3_10 -> N3_11 -> N3_12;
+	}
+	subgraph row4 {
+		rank = same;
+		F4 -> N4_2 -> N4_3 -> N4_4 -> N4_5 -> N4_6 -> N4_7 -> N4_8 -> N4_9 -> N4_10 -> N4_11 -> N4_12 -> N4_13;
+	}
+	subgraph row5 {
+		rank = same;
+		F5 -> N5_2 -> N5_3 -> N5_4 -> N5_5 -> N5_6 -> N5_7 -> N5_8 -> N5_9 -> N5_10 -> N5_11 -> N5_12;
+	}
+	subgraph row6 {
+		rank = same;
+		F6 -> N6_4 -> N6_5 -> N6_6 -> N6_7 -> N6_8 -> N6_9 -> N6_10 -> N6_11;
+	}
+	subgraph row7 {
+		rank = same;
+		F7 -> N7_3 -> N7_4 -> N7_5 -> N7_6 -> N7_7 -> N7_8 -> N7_9;
+	}
+	subgraph row8 {
+		rank = same;
+		F8 -> N8_2 -> N8_3 -> N8_4 -> N8_5 -> N8_6 -> N8_7 -> N8_8 -> N8_9 -> N8_10 -> N8_11 -> N8_12;
+	}
+	subgraph row9 {
+		rank = same;
+		F9 -> N9_1 -> N9_2 -> N9_3 -> N9_4 -> N9_5 -> N9_6 -> N9_7 -> N9_8 -> N9_9 -> N9_10 -> N9_11 -> N9_12;
+	}
+	subgraph row10 {
+		rank = same;
+		F10 -> N10_1 -> N10_2 -> N10_3 -> N10_4 -> N10_5 -> N10_6 -> N10_7 -> N10_8 -> N10_9 -> N10_10 -> N10_11 -> N10_12;
+	}
+	subgraph row11 {
+		rank = same;
+		F11 -> N11_1 -> N11_2 -> N11_3 -> N11_4 -> N11_5 -> N11_6 -> N11_7 -> N11_8 -> N11_9 -> N11_10 -> N11_11 -> N11_12;
+	}
+	subgraph row12 {
+		rank = same;
+		F12 -> N12_1 -> N12_2 -> N12_3 -> N12_4 -> N12_5 -> N12_6 -> N12_7 -> N12_8 -> N12_9 -> N12_10 -> N12_11 -> N12_12;
+	}
+	subgraph row13 {
+		rank = same;
+		F13 -> N13_3 -> N13_4 -> N13_5 -> N13_8 -> N13_9 -> N13_10;
+	}
+	subgraph row14 {
+		rank = same;
+		F14 -> N14_2 -> N14_3 -> N14_4 -> N14_9 -> N14_10 -> N14_11;
+	}
+	subgraph row15 {
+		rank = same;
+		F15 -> N15_1 -> N15_2 -> N15_3 -> N15_4 -> N15_9 -> N15_10 -> N15_11 -> N15_12;
+	}
+	subgraph rowHeader {
+		Root -> F1 -> F2 -> F3 -> F4 -> F5 -> F6 -> F7 -> F8 -> F9 -> F10 -> F11 -> F12 -> F13 -> F14 -> F15;
+	}
+	subgraph column1 {
+		C1 -> N9_1 -> N10_1 -> N11_1 -> N12_1 -> N15_1;
+	}
+	subgraph column2 {
+		C2 -> N3_2 -> N4_2 -> N5_2 -> N8_2 -> N9_2 -> N10_2 -> N11_2 -> N12_2 -> N14_2 -> N15_2;
+	}
+	subgraph column3 {
+		C3 -> N1_3 -> N2_3 -> N3_3 -> N4_3 -> N5_3 -> N7_3 -> N8_3 -> N9_3 -> N10_3 -> N11_3 -> N12_3 -> N13_3 -> N14_3 -> N15_3;
+	}
+	subgraph column4 {
+		C4 -> N1_4 -> N2_4 -> N3_4 -> N4_4 -> N5_4 -> N6_4 -> N7_4 -> N8_4 -> N9_4 -> N10_4 -> N11_4 -> N12_4 -> N13_4 -> N14_4 -> N15_4;
+	}
+	subgraph column5 {
+		C5 -> N1_5 -> N2_5 -> N3_5 -> N4_5 -> N5_5 -> N6_5 -> N7_5 -> N8_5 -> N9_5 -> N10_5 -> N11_5 -> N12_5 -> N13_5;
+	}
+	subgraph column6 {
+		C6 -> N1_6 -> N2_6 -> N3_6 -> N4_6 -> N5_6 -> N6_6 -> N7_6 -> N8_6 -> N9_6 -> N10_6 -> N11_6 -> N12_6;
+	}
+	subgraph column7 {
+		C7 -> N1_7 -> N2_7 -> N3_7 -> N4_7 -> N5_7 -> N6_7 -> N7_7 -> N8_7 -> N9_7 -> N10_7 -> N11_7 -> N12_7;
+	}
+	subgraph column8 {
+		C8 -> N1_8 -> N2_8 -> N3_8 -> N4_8 -> N5_8 -> N6_8 -> N7_8 -> N8_8 -> N9_8 -> N10_8 -> N11_8 -> N12_8 -> N13_8;
+	}
+	subgraph column9 {
+		C9 -> N1_9 -> N2_9 -> N3_9 -> N4_9 -> N5_9 -> N6_9 -> N7_9 -> N8_9 -> N9_9 -> N10_9 -> N11_9 -> N12_9 -> N13_9 -> N14_9 -> N15_9;
+	}
+	subgraph column10 {
+		C10 -> N1_10 -> N2_10 -> N3_10 -> N4_10 -> N5_10 -> N6_10 -> N8_10 -> N9_10 -> N10_10 -> N11_10 -> N12_10 -> N13_10 -> N14_10 -> N15_10;
+	}
+	subgraph column11 {
+		C11 -> N3_11 -> N4_11 -> N5_11 -> N6_11 -> N8_11 -> N9_11 -> N10_11 -> N11_11 -> N12_11 -> N14_11 -> N15_11;
+	}
+	subgraph column12 {
+		C12 -> N3_12 -> N4_12 -> N5_12 -> N8_12 -> N9_12 -> N10_12 -> N11_12 -> N12_12 -> N15_12;
+	}
+	subgraph column13 {
+		C13 -> N4_13;
+	}
+}
