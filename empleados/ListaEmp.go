@@ -37,7 +37,7 @@ func (nodo *ListaEmp) Reporte() {
 	actual := nodo.primero
 	contador := 0
 	for actual != nil {
-		dot += "nodo_" + strconv.Itoa(contador) + " [label=\"" + actual.empleado.Nombre + "\"];\n"
+		dot += "nodo_" + strconv.Itoa(contador) + " [label=\"ID: " + actual.empleado.Id + "\\nNombre: " + actual.empleado.Nombre + "\"];\n"
 		contador++
 		actual = actual.siguiente
 	}

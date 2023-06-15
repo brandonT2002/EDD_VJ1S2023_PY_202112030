@@ -69,7 +69,7 @@ func (l *ListaCliente) GuardarId(nombre, id string) {
 func (nodo *ListaCliente) Reporte() {
 	dot := "digraph G {\n"
 	dot += "fontname=\"Arial\""
-	dot += "label=\"Lista Circular\"\n"
+	dot += "label=\"Lista Circular - Clientes Registrados\"\n"
 	dot += "labelloc = t\n"
 	dot += "rankdir=LR;\n"
 	dot += "node[shape=\"box\" fontname=\"Arial\"];\n"
@@ -77,7 +77,7 @@ func (nodo *ListaCliente) Reporte() {
 	actual := nodo.primero
 	contador := 0
 	for actual != nil {
-		dot += "nodo_" + strconv.Itoa(contador) + " [label=\"" + actual.Cliente.Nombre + "\"];\n"
+		dot += "nodo_" + strconv.Itoa(contador) + " [label=\"ID: " + actual.Cliente.Id + "\\nNombre" + actual.Cliente.Nombre + "\"];\n"
 		contador++
 		if contador == nodo.longitud {
 			break

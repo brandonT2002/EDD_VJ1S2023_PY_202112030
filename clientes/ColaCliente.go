@@ -42,14 +42,3 @@ func (c *ColaCliente) Mostrar() {
 	}
 	println("  ╚════════════════════════════════╝")
 }
-
-/*
-func (l *Cola) eliminar() interface{} {
-	if l.primero != nil {
-		// temporal := l.primero.cliente
-		l.primero = l.primero.siguiente
-		l.longitud--
-	}
-	return nil
-}
-*/
