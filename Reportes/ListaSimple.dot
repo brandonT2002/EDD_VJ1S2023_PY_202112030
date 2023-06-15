@@ -1,0 +1,13 @@
+digraph G {
+label="Lista Simple"
+labelloc = t
+rankdir=LR;
+node[shape="box"];
+nodo_0 [label="Cristian Suy"];
+nodo_1 [label="Hector Jimenez"];
+nodo_2 [label="Pablo Velasquez"];
+nodo_3 [label="Jaquelin Gomez"];
+nodo_4 [label="Yadira Ruiz"];
+nodo_5 [label="Paula Fuentes"];
+nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> null;
+}
