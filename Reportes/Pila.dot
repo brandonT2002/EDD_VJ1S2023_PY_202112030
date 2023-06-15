@@ -1,0 +1,13 @@
+digraph G {
+fontname="Arial"
+label="Pila - Pedidos"
+labelloc=t
+stack [shape=none, margin=0, label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="2">
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 1906<BR/>Imagen: ave</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 4575<BR/>Imagen: ave</font></td>
+</tr>
+</TABLE>>];
+}

@@ -55,7 +55,7 @@ func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clien
 	fmt.Scanln(&pass)
 	if usuario == admin && pass == passA {
 		consola.LimpiarConsola()
-		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl)
+		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl, pCl)
 	} else if usuario == emp.Nombre && pass == emp.Contrasena {
 		consola.LimpiarConsola()
 		panelusuario.MenuUsuario(emp, lImg, cCl, pCl, lCl)

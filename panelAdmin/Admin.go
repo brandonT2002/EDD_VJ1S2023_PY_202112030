@@ -6,9 +6,10 @@ import (
 	"paquete/consola"
 	"paquete/empleados"
 	"paquete/imagenes"
+	"paquete/pedidos"
 )
 
-func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
+func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
 	opcion := 0
 	archivo := ""
 	for opcion != 6 {
@@ -33,7 +34,7 @@ func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, 
 			fmt.Scanln(&archivo)
 			leerClientesCola(cCl, lCl, archivo)
 		case 5:
-			reportes(lImg, lEmp, lCl, cCl)
+			reportes(lImg, lEmp, lCl, cCl, pCl)
 		case 6:
 			fmt.Println()
 			consola.LimpiarConsola()
@@ -74,10 +75,10 @@ func leerClientesCola(cCl *clientes.ColaCliente, lCl *clientes.ListaCliente, arc
 	lCl.Mostrar()
 }
 
-func reportes(lImg *imagenes.ListaImg, lEmp *empleados.ListaEmp, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente) {
+func reportes(lImg *imagenes.ListaImg, lEmp *empleados.ListaEmp, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
 	consola.LimpiarConsola()
 	opcion := 0
-	for opcion != 6 {
+	for opcion != 7 {
 		_reportes()
 		fmt.Scanln(&opcion)
 
@@ -95,7 +96,8 @@ func reportes(lImg *imagenes.ListaImg, lEmp *empleados.ListaEmp, lCl *clientes.L
 			cCl.Reporte()
 			consola.LimpiarConsola()
 		case 5:
-			fmt.Print("\n  Nombre del archivo: ")
+			pCl.Reporte()
+			consola.LimpiarConsola()
 		case 6:
 			fmt.Println()
 			consola.LimpiarConsola()
