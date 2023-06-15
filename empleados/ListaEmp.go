@@ -28,7 +28,7 @@ func (l *ListaEmp) Insertar(empleado *Empleado) {
 
 func (nodo *ListaEmp) Reporte() {
 	dot := "digraph G {\n"
-	dot += "fontname=\"Arial\""
+	dot += "fontname=\"Arial\"\n"
 	dot += "label=\"Lista Simple - Empleados\"\n"
 	dot += "labelloc = t\n"
 	dot += "rankdir=LR;\n"
