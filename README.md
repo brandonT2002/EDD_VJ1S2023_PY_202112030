@@ -15,9 +15,7 @@ Aplicar los conocimientos del curso Estructuras de Datos en el desarrollo de las
 
 ## 📌 **Manual de Usuario**
 
-### Administrador
-
-#### 1. **Panel de Administrador**
+### 1. **Administrador**
 
 1. Inicio de Sesión
 
@@ -69,7 +67,8 @@ Esta sección cuenta con sub menú, en el que se detalla cada uno de los reporte
 * [Matriz Dispersa](./deadpool/cuerpo.pdf)
 * [Reporte JSon](./Reportes/ReporteJSON.json)
 
-#### 2. **Panel de Usuario**
+
+### 2. **Empleado**
 
 1. Inicio de Sesión
 
