@@ -28,10 +28,11 @@ func (l *ListaEmp) Insertar(empleado *Empleado) {
 
 func (nodo *ListaEmp) Reporte() {
 	dot := "digraph G {\n"
-	dot += "label=\"Lista Simple\"\n"
+	dot += "fontname=\"Arial\""
+	dot += "label=\"Lista Simple - Empleados\"\n"
 	dot += "labelloc = t\n"
 	dot += "rankdir=LR;\n"
-	dot += "node[shape=\"box\"];\n"
+	dot += "node[shape=\"box\" fontname=\"Arial\"];\n"
 
 	actual := nodo.primero
 	contador := 0

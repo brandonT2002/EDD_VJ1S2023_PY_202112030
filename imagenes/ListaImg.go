@@ -40,7 +40,8 @@ func (l *ListaImg) Buscar(imagen string) bool {
 
 func (nodo *ListaImg) Reporte() {
 	dot := "digraph G {\n"
-	dot += "label=\"Lista Doble\"\n"
+	dot += "fontname=\"Arial\""
+	dot += "label=\"Lista Doble - Imagenes\"\n"
 	dot += "labelloc = t\n"
 	dot += "rankdir=LR;\n"
 	dot += "node[shape=\"box\" fontname=\"Arial\"];\n"

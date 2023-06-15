@@ -33,7 +33,7 @@ func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, 
 			fmt.Scanln(&archivo)
 			leerClientesCola(cCl, lCl, archivo)
 		case 5:
-			reportes(lImg, lEmp)
+			reportes(lImg, lEmp, lCl)
 		case 6:
 			fmt.Println()
 			consola.LimpiarConsola()
@@ -74,7 +74,7 @@ func leerClientesCola(cCl *clientes.ColaCliente, lCl *clientes.ListaCliente, arc
 	lCl.Mostrar()
 }
 
-func reportes(lImg *imagenes.ListaImg, lEmp *empleados.ListaEmp) {
+func reportes(lImg *imagenes.ListaImg, lEmp *empleados.ListaEmp, lCl *clientes.ListaCliente) {
 	consola.LimpiarConsola()
 	opcion := 0
 	for opcion != 6 {
@@ -89,7 +89,7 @@ func reportes(lImg *imagenes.ListaImg, lEmp *empleados.ListaEmp) {
 			lEmp.Reporte()
 			consola.LimpiarConsola()
 		case 3:
-			fmt.Print("\n  Nombre del archivo: ")
+			lCl.Reporte()
 		case 4:
 			fmt.Print("\n  Nombre del archivo: ")
 		case 5:
