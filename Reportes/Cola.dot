@@ -1,0 +1,10 @@
+digraph G {
+fontname="Arial"
+label="Cola - Clientes en Cola"
+labelloc = t
+rankdir=LR;
+node[shape="box" fontname="Arial"];
+nodo_0 [label="ID: X\nNombre: Teodoro Mejia"];
+nodo_1 [label="ID: 5965\nNombre: Alejandra Perez"];
+nodo_0 -> nodo_1;
+}
