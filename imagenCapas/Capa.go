@@ -2,7 +2,9 @@ package imagencapas
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"os/exec"
 	"strconv"
 )
 
@@ -297,5 +299,22 @@ func (nodo *MatrizDispersa) GenerarGrafo(carpeta string) {
 		return
 	}
 
-	// fmt.Println("Se ha escrito el nuevo contenido en el archivo.")
+	generarImg(carpeta, nodo.nombre)
+}
+
+func generarImg(carpeta, nombre string) {
+	// Ruta del archivo .dot de entrada
+	inputFile := "./" + carpeta + "/" + nombre + ".dot"
+
+	// Ruta del archivo de imagen de salida
+	outputFile := "./" + carpeta + "/" + nombre + ".pdf"
+
+	// Comando para ejecutar Graphviz
+	cmd := exec.Command("dot", "-Tpdf", "-o", outputFile, inputFile)
+
+	// Ejecutar el comando
+	err := cmd.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
