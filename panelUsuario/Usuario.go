@@ -4,12 +4,17 @@ import (
 	"encoding/csv"
 	"fmt"
 	"io"
+	"math/rand"
 	"os"
+	"paquete/clientes"
 	"paquete/consola"
+	"paquete/empleados"
 	imagencapas "paquete/imagenCapas"
 	"paquete/imagenes"
+	"paquete/pedidos"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/fatih/color"
 )
@@ -121,11 +126,12 @@ func generarImagen(img string) {
 	}
 }
 
-func MenuUsuario(usuario string, lImg *imagenes.ListaImg) {
+func MenuUsuario(usuario *empleados.Empleado, lImg *imagenes.ListaImg, cCl *clientes.ColaCliente, pCl *pedidos.Pila, lCl *clientes.ListaCliente) {
 	opcion := 0
 	img := ""
+
 	for opcion != 3 {
-		opciones(usuario)
+		opciones(usuario.Nombre)
 		fmt.Scanln(&opcion)
 
 		switch opcion {
@@ -135,7 +141,7 @@ func MenuUsuario(usuario string, lImg *imagenes.ListaImg) {
 			fmt.Scanln(&img)
 			generarImagen(img)
 		case 2:
-			fmt.Println("  Añgp")
+			pedido(usuario.Id, cCl, pCl, lImg, lCl)
 		case 3:
 			fmt.Println()
 			consola.LimpiarConsola()
@@ -144,6 +150,61 @@ func MenuUsuario(usuario string, lImg *imagenes.ListaImg) {
 			fmt.Println("  Opción incorrecta")
 		}
 	}
+}
+
+func pedido(idEmp string, cCl *clientes.ColaCliente, pCl *pedidos.Pila, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente) {
+	idCliente := ""
+	imagen := ""
+
+	fmt.Println("\n  -- CLIENTES EN COLA --")
+	cCl.Mostrar()
+
+	if cCl.Primero.Cliente.Id == "X" || cCl.Primero.Cliente.Id == "x" {
+		fmt.Println("  Se detectó un nuevo cliente")
+		for {
+			idCliente = generarID()
+			if !lCl.Existe(idCliente) {
+				fmt.Println("  ID: ", idCliente)
+				lCl.GuardarId(cCl.Primero.Cliente.Nombre, idCliente)
+				break
+			}
+		}
+	} else {
+		for {
+			fmt.Print("\n  ID Cliente: ")
+			fmt.Scanln(&idCliente)
+			if cCl.Primero.Cliente.Id == idCliente {
+				break
+			}
+			color.Yellow("  Verifique el ID")
+		}
+	}
+	fmt.Printf("\n  ID Empleado: %s\n", idEmp)
+	fmt.Println("\n  -- IMAGENES EXISTENTES --")
+	lImg.Mostrar()
+	for {
+		fmt.Print("\n  Imagen: ")
+		fmt.Scanln(&imagen)
+		if lImg.Buscar(imagen) {
+			break
+		}
+		color.Yellow("  Verifique el nombre de la imagen")
+	}
+	pCl.Insertar(&pedidos.Pedido{IdCliente: idCliente, IdEmpleado: idEmp, Imagen: imagen})
+	cCl.Eliminar()
+	fmt.Println("\n  -- PEDIDOS --")
+	pCl.Mostrar()
+
+}
+
+func generarID() string {
+	seed := time.Now().UnixNano()
+	rng := rand.New(rand.NewSource(seed))
+
+	numero := rng.Intn(9000) + 1000
+
+	id := strconv.Itoa(numero)
+	return id
 }
 
 func opciones(usuario string) {

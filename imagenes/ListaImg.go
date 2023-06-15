@@ -23,6 +23,17 @@ func (l *ListaImg) Insertar(imagen *Imagen) {
 	l.longitud++
 }
 
+func (l *ListaImg) Buscar(imagen string) bool {
+	actual := l.primero
+	for actual != nil {
+		if actual.imagen.Nombre == imagen {
+			return true
+		}
+		actual = actual.siguiente
+	}
+	return false
+}
+
 func (l *ListaImg) Mostrar() {
 	actual := l.primero
 	formato := "  ║ %-17s %-10s║\n"

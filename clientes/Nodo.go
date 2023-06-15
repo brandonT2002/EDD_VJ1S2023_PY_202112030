@@ -1,6 +1,6 @@
 package clientes
 
 type Nodo struct {
-	cliente   *Cliente
+	Cliente   *Cliente
 	siguiente *Nodo
 }

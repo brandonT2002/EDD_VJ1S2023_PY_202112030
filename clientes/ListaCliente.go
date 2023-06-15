@@ -12,30 +12,30 @@ type ListaCliente struct {
 }
 
 func (l *ListaCliente) Insertar(cliente *Cliente) {
-	if l.existe(cliente.Id) {
+	if l.Existe(cliente.Id) {
 		return
 	}
 	if l.primero != nil {
-		l.ultimo.siguiente = &Nodo{cliente: cliente}
+		l.ultimo.siguiente = &Nodo{Cliente: cliente}
 		l.ultimo = l.ultimo.siguiente
 		l.ultimo.siguiente = l.primero
 		l.longitud++
 		return
 	}
-	l.primero = &Nodo{cliente: cliente}
+	l.primero = &Nodo{Cliente: cliente}
 	l.ultimo = l.primero
 	l.ultimo.siguiente = l.primero
 	l.longitud++
 }
 
-func (l *ListaCliente) existe(id string) bool {
+func (l *ListaCliente) Existe(id string) bool {
 	actual := l.primero
 	contador := 0
 	for actual != nil {
 		if contador == l.longitud {
 			break
 		}
-		if actual.cliente.Id == id && l.esNumero(id) {
+		if actual.Cliente.Id == id && l.esNumero(id) {
 			return true
 		}
 		actual = actual.siguiente
@@ -52,6 +52,17 @@ func (l *ListaCliente) esNumero(id string) bool {
 	return false
 }
 
+func (l *ListaCliente) GuardarId(nombre, id string) {
+	actual := l.primero
+	for actual != nil {
+		if actual.Cliente.Nombre == nombre && (actual.Cliente.Id == "x" || actual.Cliente.Id == "X") {
+			actual.Cliente.Id = id
+			return
+		}
+		actual = actual.siguiente
+	}
+}
+
 func (l *ListaCliente) Mostrar() {
 	actual := l.primero
 	contador := 0
@@ -60,7 +71,7 @@ func (l *ListaCliente) Mostrar() {
 	fmt.Printf(formato, "ID", "Nombre")
 	println("  ╠════════════════════════════════╣")
 	for actual != nil {
-		fmt.Printf(formato, actual.cliente.Id, actual.cliente.Nombre)
+		fmt.Printf(formato, actual.Cliente.Id, actual.Cliente.Nombre)
 		contador++
 		if contador == l.longitud {
 			break
