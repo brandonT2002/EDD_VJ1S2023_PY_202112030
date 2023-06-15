@@ -26,6 +26,17 @@ func (l *ListaEmp) Insertar(empleado *Empleado) {
 	l.longitud++
 }
 
+func (l *ListaEmp) Buscar(id, pass string) *Empleado {
+	actual := l.primero
+	for actual != nil {
+		if actual.empleado.Id == id && actual.empleado.Contrasena == pass {
+			return actual.empleado
+		}
+		actual = actual.siguiente
+	}
+	return nil
+}
+
 func (nodo *ListaEmp) Reporte() {
 	dot := "digraph G {\n"
 	dot += "fontname=\"Arial\"\n"

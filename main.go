@@ -43,7 +43,7 @@ func Opciones() {
 }
 
 func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
-	emp := &empleados.Empleado{"3060", "pako", "Desarrollador", "123"}
+	// emp := &empleados.Empleado{"3060", "pako", "Desarrollador", "123"}
 	var usuario string
 	var pass string
 	admin := "br"
@@ -53,14 +53,15 @@ func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clien
 	fmt.Scanln(&usuario)
 	fmt.Print("  -> 🔒 Contraseña: ")
 	fmt.Scanln(&pass)
+	emp := lEmp.Buscar(usuario, pass)
 	if usuario == admin && pass == passA {
 		consola.LimpiarConsola()
 		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl, pCl)
-	} else if usuario == emp.Nombre && pass == emp.Contrasena {
+	} else if emp != nil {
 		consola.LimpiarConsola()
 		panelusuario.MenuUsuario(emp, lImg, cCl, pCl, lCl)
 	} else {
-		fmt.Println("  \nVerifique sus credenciales")
+		fmt.Println("\n  Verifique sus credenciales")
 	}
 }
 
