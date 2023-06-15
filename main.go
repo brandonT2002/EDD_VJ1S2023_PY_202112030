@@ -46,8 +46,8 @@ func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clien
 	// emp := &empleados.Empleado{"3060", "pako", "Desarrollador", "123"}
 	var usuario string
 	var pass string
-	admin := "br"
-	passA := "1"
+	admin := "ADMIN_202112030"
+	passA := "Admin"
 	fmt.Println()
 	fmt.Print("  -> 👨 Usuario: ")
 	fmt.Scanln(&usuario)
