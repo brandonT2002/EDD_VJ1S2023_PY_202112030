@@ -2,6 +2,11 @@
 
 Brandon Andy Jefferson Tejaxún Pichiyá - 202112030
 
+1. [Objetivos](#🎯-objetivos)
+2. [Manual de Usuario](#📌-manual-de-usuario)
+3. [Manual Técnico](#📌-manual-de-técnico)
+
+
 ## 🎯 **Objetivos**
 
 ### **General**
