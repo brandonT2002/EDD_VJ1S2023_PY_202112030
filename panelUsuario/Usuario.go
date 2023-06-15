@@ -79,7 +79,7 @@ func leerConfig(carpeta, nombre string) []int {
 	file, err := os.Open("./csv/" + carpeta + "/" + nombre)
 
 	if err != nil {
-		color.Red("\n  Error, no se pudo abrir el archivo")
+		color.Red("\n  Error, no se pudo abrir el archivo\n\n")
 		return nil
 	}
 	defer file.Close()
@@ -88,24 +88,43 @@ func leerConfig(carpeta, nombre string) []int {
 	lectura.Comma = ','
 	encabezado := true
 
-	var config []int
+	ordenValores := []string{"pixel_width", "image_width", "pixel_height", "image_height"}
+
+	valores := make(map[string]int)
+
 	for {
 		linea, err := lectura.Read()
 		if err == io.EOF {
 			break
 		}
 		if err != nil {
-			color.Yellow("\n  No se pudo leer la linea del csv")
+			color.Yellow("\n  No se pudo leer la linea del csv\n\n")
 			continue
 		}
 		if encabezado {
 			encabezado = false
 			continue
 		}
-		// fmt.Println("  -> ", linea[1])
-		valor, _ := strconv.Atoi(linea[1])
-		config = append(config, valor)
+
+		nombre := linea[0]
+		valor, err := strconv.Atoi(linea[1])
+		if err != nil {
+			color.Yellow("\n  No se pudo convertir el valor a entero\n\n")
+			continue
+		}
+		valores[nombre] = valor
 	}
+
+	var config []int
+	for _, nombre := range ordenValores {
+		valor, ok := valores[nombre]
+		if ok {
+			config = append(config, valor)
+		} else {
+			color.Yellow("\n  No se encontró el valor para\n\n", nombre)
+		}
+	}
+
 	return config
 }
 
@@ -113,7 +132,7 @@ func generarImagen(img string) {
 	array := leerArchivos(img)
 	imagen := &imagencapas.ListaCapas{}
 	nombre := ""
-	// aquí se crea carpeta
+	// crear carpeta
 	ruta := "./" + img
 	err := os.Mkdir(ruta, os.ModePerm)
 	if err != nil {
