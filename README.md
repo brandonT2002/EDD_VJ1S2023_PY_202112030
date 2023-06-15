@@ -45,9 +45,10 @@ Brandon Andy Jefferson Tejaxún Pichiyá - 202112030
 6. Reportes
 
     Esta sección cuenta con sub menú, en el que se detalla cada uno de los reportes al que es posible acceder, para ello debe ingresar la opción que desee visualizar.
-    <p align="center">
-        <img src="img/14.png" width="XXXpx">
-    </p>
+    
+<p align="center">
+    <img src="img/14.png" width="XXXpx">
+</p>
 
 *  [Lista Doble](./Reportes/ListaDoble.pdf)
 *  [Lista Simple](./Reportes/ListaSimple.pdf)
