@@ -1,6 +1,7 @@
 package pedidos
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -22,7 +23,10 @@ func (p *Pila) Insertar(pedido *Pedido) {
 }
 
 func (nodo *Pila) Reporte() {
-	dot := "digraph G {\nfontname=\"Arial\"\nlabel=\"Pila - Pedidos\"\nlabelloc=t\nstack [shape=none, margin=0, label=<<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"2\">\n"
+	dot := "digraph G {\n"
+	dot += "fontname=\"Arial\"\n"
+	dot += "label=\"Pila - Pedidos\"\n"
+	dot += "labelloc=t\nstack [shape=none, margin=0, label=<<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"2\">\n"
 
 	actual := nodo.ultimo
 	for actual != nil {
@@ -32,7 +36,7 @@ func (nodo *Pila) Reporte() {
 		actual = actual.anterior
 	}
 	dot += "</TABLE>>];\n"
-	dot += "}"
+	dot += "}\n"
 
 	generarGrafo(dot)
 	generarImg()
@@ -79,6 +83,20 @@ func generarImg() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func (p *Pila) Json() ([]byte, error) {
+	actual := p.ultimo
+	var pedidos []map[string]interface{}
+	for actual != nil {
+		pedido := map[string]interface{}{
+			"IdCliente": actual.pedido.IdCliente,
+			"Imagen":    actual.pedido.Imagen,
+		}
+		pedidos = append(pedidos, pedido)
+		actual = actual.anterior
+	}
+	return json.MarshalIndent(pedidos, "", "	")
 }
 
 func (p *Pila) Mostrar() {

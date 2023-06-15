@@ -2,11 +2,14 @@ package paneladmin
 
 import (
 	"fmt"
+	"io/ioutil"
 	"paquete/clientes"
 	"paquete/consola"
 	"paquete/empleados"
 	"paquete/imagenes"
 	"paquete/pedidos"
+
+	"github.com/fatih/color"
 )
 
 func MenuAdmin(admin string, lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
@@ -102,6 +105,20 @@ func reportes(lImg *imagenes.ListaImg, lEmp *empleados.ListaEmp, lCl *clientes.L
 			fmt.Println()
 			consola.LimpiarConsola()
 		case 7:
+			jsonD, err := pCl.Json()
+			if err != nil {
+				color.Red("\n  Error al convertir el archivo JSON\n\n")
+				return
+			}
+
+			err = ioutil.WriteFile("./Reportes/ReporteJSON.json", jsonD, 0644)
+			if err != nil {
+				color.Red("\n  Error al escribir en el archivo\n\n")
+				return
+			}
+
+			consola.LimpiarConsola()
+		case 8:
 			consola.LimpiarConsola()
 			return
 		default:
@@ -115,13 +132,14 @@ func _reportes() {
 	fmt.Println()
 	fmt.Println("  ╔════════════════════════════════════════════════════╗")
 	fmt.Println("  ║                                                    ║")
-	fmt.Println("  ║        1. Lista Doble - Imagenes                   ║")
-	fmt.Println("  ║        2. Lista Simple - Empleados                 ║")
-	fmt.Println("  ║        3. Lista Circular - Clientes                ║")
-	fmt.Println("  ║        4. Cola - Clientes en Cola                  ║")
-	fmt.Println("  ║        5. Pila - Pedidos                           ║")
-	fmt.Println("  ║        6. Matriz Dispersa - Capas de Imagen        ║")
-	fmt.Println("  ║        7. Regresar                                 ║")
+	fmt.Println("  ║                  1. Lista Doble                    ║")
+	fmt.Println("  ║                  2. Lista Simple                   ║")
+	fmt.Println("  ║                  3. Lista Circular                 ║")
+	fmt.Println("  ║                  4. Cola                           ║")
+	fmt.Println("  ║                  5. Pila                           ║")
+	fmt.Println("  ║                  6. Matriz Dispersa                ║")
+	fmt.Println("  ║                  7. Reporte JSON                   ║")
+	fmt.Println("  ║                  8. Regresar                       ║")
 	fmt.Println("  ║                                                    ║")
 	fmt.Println("  ╚════════════════════════════════════════════════════╝")
 	fmt.Print("  Opción: ")
