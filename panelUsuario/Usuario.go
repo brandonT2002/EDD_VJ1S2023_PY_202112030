@@ -161,6 +161,7 @@ func MenuUsuario(usuario *empleados.Empleado, lImg *imagenes.ListaImg, cCl *clie
 
 		switch opcion {
 		case 1:
+			consola.LimpiarConsola()
 			lImg.Mostrar()
 			fmt.Print("\n  Imagen: ")
 			fmt.Scanln(&img)
@@ -178,6 +179,7 @@ func MenuUsuario(usuario *empleados.Empleado, lImg *imagenes.ListaImg, cCl *clie
 }
 
 func pedido(idEmp string, cCl *clientes.ColaCliente, pCl *pedidos.Pila, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente) {
+	consola.LimpiarConsola()
 	idCliente := ""
 	imagen := ""
 
