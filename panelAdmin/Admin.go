@@ -214,6 +214,7 @@ func reporte(img string, capa int) {
 			}
 		}
 	}
+	color.Yellow("\n  La capa no existe")
 }
 
 func _reportes() {

@@ -22,7 +22,6 @@ func Menu(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.Lista
 			IniciarSesion(lEmp, lImg, lCl, cCl, pCl)
 		case 2:
 			fmt.Println()
-			fmt.Println("  Hasta pronto")
 		default:
 			fmt.Println()
 			fmt.Println("  Opción incorrecta")
