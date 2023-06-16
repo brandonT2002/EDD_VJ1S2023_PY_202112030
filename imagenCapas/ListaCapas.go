@@ -75,12 +75,6 @@ func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombr
 	</body>
 </html>`
 
-	actual = this.primero
-	for actual != nil {
-		actual.capa.GenerarGrafo(nombre)
-		actual = actual.siguiente
-	}
-
 	// Crear un nuevo archivo
 	file, err := os.Create(ruta + "/" + nombre + ".html")
 	if err != nil {
