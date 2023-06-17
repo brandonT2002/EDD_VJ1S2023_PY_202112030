@@ -65,7 +65,7 @@ Esta sección cuenta con sub menú, en el que se detalla cada uno de los reporte
 * [Lista Circular](./Reportes/ListaCircular.pdf)
 * [Cola](./Reportes/Cola.pdf)
 * [Pila](./Reportes/Pila.pdf)
-* [Matriz Dispersa](./deadpool/cuerpo.pdf)
+* [Matriz Dispersa](./Reportes/capa0.pdf)
 * [Reporte JSon](./Reportes/ReporteJSON.json)
 
 

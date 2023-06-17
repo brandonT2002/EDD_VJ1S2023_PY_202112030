@@ -4,7 +4,7 @@ label="Lista Simple - Empleados"
 labelloc = t
 rankdir=LR;
 node[shape="box" fontname="Arial"];
-nodo_0 [label="ID: 3475\nNombre: Cristian Suy"];
+nodo_0 [label="ID: 123\nNombre: Cristian Suy"];
 nodo_1 [label="ID: 4564\nNombre: Hector Jimenez"];
 nodo_2 [label="ID: 1452\nNombre: Pablo Velasquez"];
 nodo_3 [label="ID: 1957\nNombre: Jaquelin Gomez"];
