@@ -3,5 +3,5 @@ fontname="Arial"
 label="Pila - Pedidos"
 labelloc=t
 stack [shape=none, margin=0, label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="2">
-</TABLE>>];
+<tr><td></td></tr></TABLE>>];
 }

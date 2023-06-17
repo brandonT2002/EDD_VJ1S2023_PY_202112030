@@ -29,6 +29,9 @@ func (nodo *Pila) Reporte() {
 	dot += "labelloc=t\nstack [shape=none, margin=0, label=<<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\" CELLPADDING=\"2\">\n"
 
 	actual := nodo.ultimo
+	if actual == nil {
+		dot += "<tr><td></td></tr>"
+	}
 	for actual != nil {
 		dot += "<tr>\n"
 		dot += "<td width=\"125\" height=\"50\"><font point-size=\"15\">ID Cliente: " + actual.pedido.IdCliente + "<BR/>Imagen: " + actual.pedido.Imagen + "</font></td>\n"

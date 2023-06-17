@@ -3,13 +3,4 @@ fontname="Arial"label="Lista Circular - Clientes Registrados"
 labelloc = t
 rankdir=LR;
 node[shape="box" fontname="Arial"];
-nodo_0 [label="ID: 4575\nNombreCristian Suy"];
-nodo_1 [label="ID: 1596\nNombreKarla Mejia"];
-nodo_2 [label="ID: 6344\nNombreJoel Guzman"];
-nodo_3 [label="ID: 2480\nNombreKaren Garcia"];
-nodo_4 [label="ID: 3696\nNombreJaime Rosales"];
-nodo_5 [label="ID: 5965\nNombreAlejandra Perez"];
-nodo_6 [label="ID: 8843\nNombreHector Jimenez"];
-nodo_7 [label="ID: X\nNombreTeodoro Mejia"];
-nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> nodo_6 -> nodo_7 -> nodo_0;
 }
