@@ -207,7 +207,7 @@ func reporte(img string, capa int) {
 			color.Yellow("\n  La capa 0 está reservado para las configuraciones")
 			break
 		}
-		if fl.Archivo != "config.csv" {
+		if fl.Capa != 0 {
 			if fl.Capa == capa {
 				imagencapas.LeerCSV("./csv/"+img+"/"+fl.Archivo, img, nombre).GenerarGrafo("Reportes")
 				break

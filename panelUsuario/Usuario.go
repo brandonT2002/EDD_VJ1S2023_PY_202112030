@@ -142,7 +142,7 @@ func generarImagen(img string) {
 
 	for _, fl := range array {
 		nombre = strings.TrimSuffix(fl.Archivo, ".csv")
-		if fl.Archivo != "config.csv" {
+		if fl.Capa != 0 {
 			imagen.Insertar(imagencapas.LeerCSV("./csv/"+img+"/"+fl.Archivo, img, nombre))
 			continue
 		}
