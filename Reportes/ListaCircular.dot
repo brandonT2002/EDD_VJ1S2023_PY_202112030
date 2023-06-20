@@ -3,13 +3,26 @@ fontname="Arial"label="Lista Circular - Clientes Registrados"
 labelloc = t
 rankdir=LR;
 node[shape="box" fontname="Arial"];
-nodo_0 [label="ID: 4575\nNombreCristian Suy"];
-nodo_1 [label="ID: 1596\nNombreKarla Mejia"];
-nodo_2 [label="ID: 6344\nNombreJoel Guzman"];
-nodo_3 [label="ID: 2480\nNombreKaren Garcia"];
-nodo_4 [label="ID: 3696\nNombreJaime Rosales"];
-nodo_5 [label="ID: 5965\nNombreAlejandra Perez"];
-nodo_6 [label="ID: 2547\nNombreHector Jimenez"];
-nodo_7 [label="ID: X\nNombreTeodoro Mejia"];
-nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> nodo_6 -> nodo_7 -> nodo_0;
+nodo_0 [label="ID: 4565\nNombreCristian Suy"];
+nodo_1 [label="ID: 5578\nNombreKarla Mejia"];
+nodo_2 [label="ID: 4378\nNombreJoel Guzman"];
+nodo_3 [label="ID: 5261\nNombreKaren Garcia"];
+nodo_4 [label="ID: 5231\nNombreJaime Rosales"];
+nodo_5 [label="ID: 5324\nNombreAlejandra Perez"];
+nodo_6 [label="ID: 4131\nNombreJose Mendez"];
+nodo_7 [label="ID: 5175\nNombreGerardo Mendez"];
+nodo_8 [label="ID: 4204\nNombrePedro Hernandez"];
+nodo_9 [label="ID: 5064\nNombreMaria Tux"];
+nodo_10 [label="ID: 5313\nNombreTeodoro Rodriguez"];
+nodo_11 [label="ID: 5030\nNombreLeonardo Xocoy"];
+nodo_12 [label="ID: 5407\nNombreAlberto Mejia"];
+nodo_13 [label="ID: 4983\nNombreBenito Perez"];
+nodo_14 [label="ID: 5654\nNombreJose Requeda"];
+nodo_15 [label="ID: 4825\nNombreJordi Urrutia"];
+nodo_16 [label="ID: 4262\nNombreLeopoldo Ruiz"];
+nodo_17 [label="ID: X\nNombreHector Jimenez"];
+nodo_18 [label="ID: X\nNombreTeodoro Mejia"];
+nodo_19 [label="ID: X\nNombreMaria Jimenez"];
+nodo_20 [label="ID: X\nNombreRicardo Echeverria"];
+nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> nodo_6 -> nodo_7 -> nodo_8 -> nodo_9 -> nodo_10 -> nodo_11 -> nodo_12 -> nodo_13 -> nodo_14 -> nodo_15 -> nodo_16 -> nodo_17 -> nodo_18 -> nodo_19 -> nodo_20 -> nodo_0;
 }

@@ -4,7 +4,37 @@ label="Pila - Pedidos"
 labelloc=t
 stack [shape=none, margin=0, label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="2">
 <tr>
-<td width="125" height="50"><font point-size="15">ID Cliente: 2547<BR/>Imagen: corrin</font></td>
+<td width="125" height="50"><font point-size="15">ID Cliente: 4983<BR/>Imagen: ironman</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 3507<BR/>Imagen: tux</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 5407<BR/>Imagen: bmo</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 5030<BR/>Imagen: corrin</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 3296<BR/>Imagen: hora_de_aventura</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 5313<BR/>Imagen: letra_r</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 5965<BR/>Imagen: deadpool</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 9142<BR/>Imagen: mario</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 2480<BR/>Imagen: hulk</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 6344<BR/>Imagen: corrin</font></td>
+</tr>
+<tr>
+<td width="125" height="50"><font point-size="15">ID Cliente: 7562<BR/>Imagen: tux</font></td>
 </tr>
 <tr>
 <td width="125" height="50"><font point-size="15">ID Cliente: 4575<BR/>Imagen: ave</font></td>

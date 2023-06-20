@@ -7,7 +7,14 @@ null0 [label="null"]
 null1 [label="null"]
 nodo_0 [label="letra_r"];
 nodo_1 [label="ave"];
-nodo_2 [label="corrin"];
-nodo_0 -> nodo_1 -> nodo_2 -> null0;
-null1 -> nodo_0 -> nodo_1 -> nodo_2[dir="back"] ;
+nodo_2 [label="bmo"];
+nodo_3 [label="corrin"];
+nodo_4 [label="deadpool"];
+nodo_5 [label="hora_de_aventura"];
+nodo_6 [label="hulk"];
+nodo_7 [label="ironman"];
+nodo_8 [label="mario"];
+nodo_9 [label="tux"];
+nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> nodo_6 -> nodo_7 -> nodo_8 -> nodo_9 -> null0;
+null1 -> nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> nodo_6 -> nodo_7 -> nodo_8 -> nodo_9[dir="back"] ;
 }

@@ -4,11 +4,28 @@ label="Lista Simple - Empleados"
 labelloc = t
 rankdir=LR;
 node[shape="box" fontname="Arial"];
-nodo_0 [label="ID: 123\nNombre: Cristian Suy"];
-nodo_1 [label="ID: 4564\nNombre: Hector Jimenez"];
-nodo_2 [label="ID: 1452\nNombre: Pablo Velasquez"];
-nodo_3 [label="ID: 1957\nNombre: Jaquelin Gomez"];
-nodo_4 [label="ID: 3340\nNombre: Yadira Ruiz"];
-nodo_5 [label="ID: 2576\nNombre: Paula Fuentes"];
-nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> null;
+nodo_0 [label="ID: 5385\nNombre: Cristian Suy"];
+nodo_1 [label="ID: 5236\nNombre: Hector Jimenez"];
+nodo_2 [label="ID: 5224\nNombre: Pablo Velasquez"];
+nodo_3 [label="ID: 5370\nNombre: Jaquelin Gomez"];
+nodo_4 [label="ID: 4712\nNombre: Yadira Ruiz"];
+nodo_5 [label="ID: 4269\nNombre: Paula Fuentes"];
+nodo_6 [label="ID: 4820\nNombre: Jose Menendez"];
+nodo_7 [label="ID: 4630\nNombre: Leonardo Xocoy"];
+nodo_8 [label="ID: 5229\nNombre: Alberto Mejia"];
+nodo_9 [label="ID: 5052\nNombre: Benito Perez"];
+nodo_10 [label="ID: 5325\nNombre: Jose Requeda"];
+nodo_11 [label="ID: 4696\nNombre: Jordi Urrutia"];
+nodo_12 [label="ID: 4242\nNombre: Leopoldo Ruiz"];
+nodo_13 [label="ID: 5513\nNombre: Gerardo Mendez"];
+nodo_14 [label="ID: 4469\nNombre: Pedro Hernandez"];
+nodo_15 [label="ID: 4364\nNombre: Maria Tux"];
+nodo_16 [label="ID: 4989\nNombre: Teodoro Rodriguez"];
+nodo_17 [label="ID: \nNombre: "];
+nodo_18 [label="ID: \nNombre: "];
+nodo_19 [label="ID: \nNombre: "];
+nodo_20 [label="ID: \nNombre: "];
+nodo_21 [label="ID: \nNombre: "];
+nodo_22 [label="ID: \nNombre: "];
+nodo_0 -> nodo_1 -> nodo_2 -> nodo_3 -> nodo_4 -> nodo_5 -> nodo_6 -> nodo_7 -> nodo_8 -> nodo_9 -> nodo_10 -> nodo_11 -> nodo_12 -> nodo_13 -> nodo_14 -> nodo_15 -> nodo_16 -> nodo_17 -> nodo_18 -> nodo_19 -> nodo_20 -> nodo_21 -> nodo_22 -> null;
 }
