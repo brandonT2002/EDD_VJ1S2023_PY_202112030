@@ -1,6 +1,8 @@
 package pedidos
 
 type Nodo struct {
-	pedido   *Pedido
-	anterior *Nodo
+	pedido *Pedido
+	altura int
+	izq    *Nodo
+	der    *Nodo
 }
