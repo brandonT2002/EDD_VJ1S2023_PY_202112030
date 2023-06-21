@@ -1,77 +1,81 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"paquete/clientes"
-	"paquete/consola"
-	"paquete/empleados"
-	"paquete/imagenes"
-	paneladmin "paquete/panelAdmin"
-	panelusuario "paquete/panelUsuario"
-	"paquete/pedidos"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 )
 
-func Menu(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
-	opcion := 0
-	for opcion != 2 {
-		Opciones()
-		fmt.Scanln(&opcion)
-
-		switch opcion {
-		case 1:
-			IniciarSesion(lEmp, lImg, lCl, cCl, pCl)
-		case 2:
-			fmt.Println()
-		default:
-			fmt.Println()
-			fmt.Println("  Opción incorrecta")
-		}
-	}
+type Usuario struct {
+	Usuario    string `json:"usuario"`
+	Contrasena string `json:"contrasena"`
 }
 
-func Opciones() {
-	fmt.Println()
-	fmt.Println("  ╔════════════════════════════════════════════════════╗")
-	fmt.Println("  ║                                                    ║")
-	fmt.Println("  ║                       LOGIN                        ║")
-	fmt.Println("  ║                1. Iniciar Sesion                   ║")
-	fmt.Println("  ║                2. Salir del Sistema                ║")
-	fmt.Println("  ║                                                    ║")
-	fmt.Println("  ╚════════════════════════════════════════════════════╝")
-	fmt.Print("  Opción: ")
-}
-
-func IniciarSesion(lEmp *empleados.ListaEmp, lImg *imagenes.ListaImg, lCl *clientes.ListaCliente, cCl *clientes.ColaCliente, pCl *pedidos.Pila) {
-	// emp := &empleados.Empleado{"3060", "pako", "Desarrollador", "123"}
-	var usuario string
-	var pass string
-	admin := "ADMIN_202112030"
-	passA := "Admin"
-	fmt.Println()
-	fmt.Print("  -> 👨 Usuario: ")
-	fmt.Scanln(&usuario)
-	fmt.Print("  -> 🔒 Contraseña: ")
-	fmt.Scanln(&pass)
-	emp := lEmp.Buscar(usuario, pass)
-	if usuario == admin && pass == passA {
-		consola.LimpiarConsola()
-		paneladmin.MenuAdmin(admin, lEmp, lImg, lCl, cCl, pCl)
-	} else if emp != nil {
-		consola.LimpiarConsola()
-		panelusuario.MenuUsuario(emp, lImg, cCl, pCl, lCl)
-	} else {
-		fmt.Println("\n  Verifique sus credenciales")
-	}
+var empleados = []Usuario{
+	{Usuario: "Brandon", Contrasena: "123"},
+	{Usuario: "Alice", Contrasena: "456"},
+	{Usuario: "Bob", Contrasena: "789"},
 }
 
 func main() {
-	lEmp := &empleados.ListaEmp{}
-	lImg := &imagenes.ListaImg{}
-	lCl := &clientes.ListaCliente{}
-	cCl := &clientes.ColaCliente{}
-	pCl := &pedidos.Pila{}
+	r := mux.NewRouter()
+	r.HandleFunc("/", Raiz).Methods("GET")
+	r.HandleFunc("/login", Login).Methods("POST", "OPTIONS")
 
-	consola.LimpiarConsola()
-	Menu(lEmp, lImg, lCl, cCl, pCl)
+	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "POST", "OPTIONS"})
 
+	fmt.Println("Servidor iniciado en http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", handlers.CORS(headersOk, originsOk, methodsOk)(r)))
+}
+
+func Raiz(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	fmt.Fprintln(w, "API en go")
+}
+
+func Login(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var usuario Usuario
+	err := json.NewDecoder(r.Body).Decode(&usuario)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	fmt.Println("Nombre:", usuario.Usuario)
+	fmt.Println("Contraseña:", usuario.Contrasena)
+
+	// Verificar si el usuario existe en la lista de usuarios registrados
+	existe := false
+	for _, u := range empleados {
+		if u.Usuario == usuario.Usuario && u.Contrasena == usuario.Contrasena {
+			existe = true
+			break
+		}
+	}
+
+	if existe {
+		response := struct {
+			Message string `json:"message"`
+		}{
+			Message: "Datos de inicio de sesión válidos",
+		}
+		json.NewEncoder(w).Encode(response)
+	} else {
+		response := struct {
+			Error string `json:"error"`
+		}{
+			Error: "Credenciales inválidas",
+		}
+		w.WriteHeader(http.StatusUnauthorized)
+		json.NewEncoder(w).Encode(response)
+	}
 }
