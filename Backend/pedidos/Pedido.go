@@ -1,6 +1,6 @@
 package pedidos
 
 type Pedido struct {
-	IdCliente string
+	IdCliente int
 	Imagen    string
 }

@@ -1,5 +1,7 @@
 package pedidos
 
+import "strconv"
+
 type ArbolAVL struct {
 	raiz *Nodo
 }
@@ -79,4 +81,29 @@ func (a *ArbolAVL) rotarDobleIzq(nodo *Nodo) *Nodo {
 func (a *ArbolAVL) rotarDobleDer(nodo *Nodo) *Nodo {
 	nodo.der = a.rotarIzq(nodo.der)
 	return a.rotarDer(nodo)
+}
+
+func (a *ArbolAVL) Dot() string {
+	dot := "digraph Tree{\n\tnode [shape = record];"
+	dot += a.dot1(a.raiz)
+	dot += "\n}"
+	return dot
+}
+
+func (a *ArbolAVL) dot1(nodo *Nodo) string {
+	dot := ""
+	if nodo.izq == nil && nodo.der == nil {
+		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C3>" + strconv.Itoa(nodo.pedido.IdCliente) + "\"];"
+	} else {
+		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C0> | <C3>" + strconv.Itoa(nodo.pedido.IdCliente) + " | <C1>\"];"
+	}
+	if nodo.izq != nil {
+		dot += a.dot1(nodo.izq)
+		dot += "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + ":C0 -> node_" + strconv.Itoa(nodo.izq.pedido.IdCliente) + ":C3;"
+	}
+	if nodo.der != nil {
+		dot += a.dot1(nodo.der)
+		dot += "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + ":C1 -> node_" + strconv.Itoa(nodo.der.pedido.IdCliente) + ":C3;"
+	}
+	return dot
 }
