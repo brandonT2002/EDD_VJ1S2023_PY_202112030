@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Inicio de Sesión</title>
+</head>
+<body>
+    <h1>Bienvenido </h1>
+    <div class="contenedor-form">
+        <div class="input-container">
+            <input id="usuario" class="input" type="text" min="0" placeholder=" " />
+            <div class="cut cut-short"></div>
+            <label for="usuario" class="placeholder">Usuario</label>
+        </div>
+        <div class="input-container">
+            <input id="contrasena" class="input" type="password" min="0" placeholder=" " />
+            <div class="cut cut-short"></div>
+            <label for="contrasena" class="placeholder">Contraseña</label>
+        </div>
+        <button onclick="login()">Iniciar sesión</button>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+</html>
