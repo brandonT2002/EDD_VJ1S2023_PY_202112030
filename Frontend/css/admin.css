@@ -177,6 +177,14 @@ h2{
     width: 40rem;
     height: 37rem;
     text-align: center;
+    cursor: pointer;
+}
+
+.card{
+    transition: transform .3s;
+}
+.card:hover{
+    transform: scale(1.10);
 }
 
 .card__title {
