@@ -13,3 +13,14 @@ document.getElementById("card1").addEventListener("click", function () {
     // Hacer clic en el elemento de entrada de archivo
     fileInput.click();
 });
+
+document.getElementById("card2").addEventListener("click", function () {
+    var fileInput = document.createElement("input");
+    fileInput.type = "file";
+
+    fileInput.addEventListener("change", function (event) {
+        var selectedFile = event.target.files[0];
+        console.log("Archivo seleccionado:", selectedFile);
+    });
+    fileInput.click();
+});
