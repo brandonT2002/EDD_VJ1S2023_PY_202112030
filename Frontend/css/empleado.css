@@ -161,7 +161,7 @@ h2 {
 .bienvenido {
     margin-top: 10rem;
     text-align: center;
-    font-size: 3.6rem;
+    font-size: 3.5rem;
     margin-bottom: 2rem;
     font-weight: 100;
 }
@@ -176,7 +176,7 @@ h2 {
     color: white;
     padding: 2rem;
     border-radius: 1rem;
-    width: 40rem;
+    width: 30rem;
     height: 37rem;
     text-align: center;
     cursor: pointer;
@@ -214,15 +214,11 @@ h2 {
 }
 
 .card:nth-child(1) {
-    background: linear-gradient(to bottom right, #E03E34, #E27755);
+    background: linear-gradient(to bottom right, #1A2841, #7B3127);
 }
 
 .card:nth-child(2) {
-    background: linear-gradient(to bottom right, #2EDEB0, #27CBCF);
-}
-
-.card:nth-child(3) {
-    background: linear-gradient(to bottom right, #29CBF4, #5085D1);
+    background: linear-gradient(to bottom right, #059A6A, #00E578);
 }
 
 @media (max-width: 767px) {
