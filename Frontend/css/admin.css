@@ -60,7 +60,8 @@ h4 {
 h1 {
     font-size: 4rem;
 }
-h2{
+
+h2 {
     font-size: 3.5rem;
 }
 
@@ -180,10 +181,11 @@ h2{
     cursor: pointer;
 }
 
-.card{
+.card {
     transition: transform .3s;
 }
-.card:hover{
+
+.card:hover {
     transform: scale(1.10);
 }
 
@@ -220,4 +222,21 @@ h2{
 
 .card:nth-child(3) {
     background: linear-gradient(to bottom right, #29CBF4, #5085D1);
+}
+
+@media (max-width: 767px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        margin-bottom: 2.5rem;
+    }
+
+    .card__title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
 }
