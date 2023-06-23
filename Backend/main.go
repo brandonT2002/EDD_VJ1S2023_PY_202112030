@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"paquete/empleados"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
@@ -10,10 +13,17 @@ type Usuario struct {
 	Contrasena string
 }
 
+type Empleado struct {
+	Empleados string
+}
+
 var admin = "123"
 var passA = "123"
+var LEmp *empleados.ListaEmp
 
 func main() {
+	LEmp = &empleados.ListaEmp{}
+
 	app := fiber.New()
 	app.Use(cors.New())
 
@@ -24,8 +34,27 @@ func main() {
 	})
 
 	app.Post("/login", Login)
+	app.Post("/empleado", cargarEmpleados)
 
 	app.Listen(":8080")
+}
+
+func cargarEmpleados(c *fiber.Ctx) error {
+	var emp Empleado
+	err := c.BodyParser(&emp)
+	if err != nil {
+		return err
+	}
+	// fmt.Println(emp.Empleados)
+	resultado := empleados.LeerCSV(LEmp, emp.Empleados)
+	if resultado != "ok" {
+		return fmt.Errorf("error al cargar empleados")
+	}
+	LEmp.Mostrar()
+	return c.JSON(&fiber.Map{
+		"msg": "ok",
+	})
+
 }
 
 func Login(c *fiber.Ctx) error {

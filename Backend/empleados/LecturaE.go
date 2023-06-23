@@ -3,21 +3,13 @@ package empleados
 import (
 	"encoding/csv"
 	"io"
-	"os"
+	"strings"
 
 	"github.com/fatih/color"
 )
 
-func LeerCSV(lista *ListaEmp, archivo string) {
-	file, err := os.Open("csv/" + archivo + ".csv")
-
-	if err != nil {
-		color.Red("\n  Error, no se pudo abrir el archivo\n\n")
-		return
-	}
-	defer file.Close()
-
-	lectura := csv.NewReader(file)
+func LeerCSV(lista *ListaEmp, contenido string) string {
+	lectura := csv.NewReader(strings.NewReader(contenido))
 	lectura.Comma = ','
 	encabezado := true
 	for {
@@ -33,7 +25,8 @@ func LeerCSV(lista *ListaEmp, archivo string) {
 			encabezado = false
 			continue
 		}
-		lista.Insertar(&Empleado{Id: linea[0], Nombre: linea[1], Cargo: linea[2], Contrasena: linea[3]})
+		emp := &Empleado{Id: linea[0], Nombre: linea[1], Cargo: linea[2], Contrasena: linea[3]}
+		lista.Insertar(emp)
 	}
-	color.Green("\n  Archivo cargado exitosamente\n\n")
+	return "ok"
 }
