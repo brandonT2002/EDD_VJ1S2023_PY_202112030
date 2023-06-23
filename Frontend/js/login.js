@@ -21,11 +21,12 @@ function iniciarSesion() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.msg === 'ok') {
-                // sessionStorage.setItem('sesionActiva','true')
+            if (data.msg === 'admin') {
+                sessionStorage.setItem('sesionActiva','true')
                 window.location.href = 'Admin.html'
-            } else {
-                alert('Credenciales inválidas');
+            } else if (data.msg === 'emp') {
+                sessionStorage.setItem('sesionActiva','true')
+                window.location.href = 'Empleado.html'
             }
         })
         .catch(error => {

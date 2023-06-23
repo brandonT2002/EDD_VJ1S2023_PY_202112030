@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"paquete/empleados"
 
 	"github.com/gofiber/fiber/v2"
@@ -45,7 +44,7 @@ func cargarEmpleados(c *fiber.Ctx) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(emp)
+
 	resultado := empleados.LeerCSV(LEmp, emp.Credenciales)
 	if resultado != "ok" {
 		return c.JSON(&fiber.Map{
@@ -62,9 +61,15 @@ func cargarEmpleados(c *fiber.Ctx) error {
 func Login(c *fiber.Ctx) error {
 	var usuario Usuario
 	c.BodyParser(&usuario)
+	emp := LEmp.Buscar(usuario.Usuario, usuario.Contrasena)
+
 	if usuario.Usuario == admin && usuario.Contrasena == passA {
 		return c.JSON(&fiber.Map{
-			"msg": "ok",
+			"msg": "admin",
+		})
+	} else if emp != nil {
+		return c.JSON(&fiber.Map{
+			"msg": "emp",
 		})
 	}
 	return c.JSON(&fiber.Map{
