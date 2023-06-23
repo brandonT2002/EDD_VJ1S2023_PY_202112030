@@ -22,7 +22,7 @@ function iniciarSesion() {
         .then(response => response.json())
         .then(data => {
             if (data.msg === 'ok') {
-                sessionStorage.setItem('sesionActiva','true')
+                // sessionStorage.setItem('sesionActiva','true')
                 window.location.href = 'Admin.html'
             } else {
                 alert('Credenciales inválidas');
