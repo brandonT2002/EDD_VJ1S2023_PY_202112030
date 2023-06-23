@@ -15,7 +15,7 @@ func LeerCSV(lista *ListaEmp, contenido string) string {
 	for {
 		linea, err := lectura.Read()
 		if err == io.EOF {
-			break
+			return "ok"
 		}
 		if err != nil {
 			color.Yellow("\n  No se pudo leer la linea del csv\n\n")
@@ -29,5 +29,4 @@ func LeerCSV(lista *ListaEmp, contenido string) string {
 			lista.Insertar(&Empleado{Id: linea[0], Nombre: linea[1], Cargo: linea[2], Contrasena: linea[3]})
 		}
 	}
-	return "ok"
 }

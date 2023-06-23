@@ -14,7 +14,7 @@ type Usuario struct {
 }
 
 type Empleado struct {
-	Empleados string
+	Credenciales string
 }
 
 var admin = "123"
@@ -45,10 +45,12 @@ func cargarEmpleados(c *fiber.Ctx) error {
 	if err != nil {
 		return err
 	}
-	// fmt.Println(emp.Empleados)
-	resultado := empleados.LeerCSV(LEmp, emp.Empleados)
+	fmt.Println(emp)
+	resultado := empleados.LeerCSV(LEmp, emp.Credenciales)
 	if resultado != "ok" {
-		return fmt.Errorf("error al cargar empleados")
+		return c.JSON(&fiber.Map{
+			"msg": "no",
+		})
 	}
 	LEmp.Mostrar()
 	return c.JSON(&fiber.Map{
