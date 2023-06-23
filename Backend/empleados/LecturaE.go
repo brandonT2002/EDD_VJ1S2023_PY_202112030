@@ -25,8 +25,9 @@ func LeerCSV(lista *ListaEmp, contenido string) string {
 			encabezado = false
 			continue
 		}
-		emp := &Empleado{Id: linea[0], Nombre: linea[1], Cargo: linea[2], Contrasena: linea[3]}
-		lista.Insertar(emp)
+		if strings.ReplaceAll(linea[0], " ", "") != "" || strings.ReplaceAll(linea[1], " ", "") != "" || strings.ReplaceAll(linea[2], " ", "") != "" || strings.ReplaceAll(linea[3], " ", "") != "" {
+			lista.Insertar(&Empleado{Id: linea[0], Nombre: linea[1], Cargo: linea[2], Contrasena: linea[3]})
+		}
 	}
 	return "ok"
 }
