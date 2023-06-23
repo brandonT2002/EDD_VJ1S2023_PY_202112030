@@ -4,15 +4,15 @@ function login() {
     let usuario = document.getElementById('usuario').value;
     let contrasena = document.getElementById('contrasena').value;
 
-    if (usuario.replace(' ','') == '' || contrasena.replace(' ','') == ''){
+    if (usuario.replace(' ','') === '' || contrasena.replace(' ','') === ''){
         alert('Todos los campos son obligatorios')
-    } else{
+    } else {
         var loginData = {
-            usuario: usuario,
-            contrasena: contrasena
+            Usuario: usuario,
+            Contrasena: contrasena
         };
-    
-        fetch(api+'login', {
+
+        fetch(`${api}login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -21,10 +21,10 @@ function login() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.message) {
-                alert(data.message);
-            } else if (data.error) {
-                alert(data.error);
+            if (data.msg === 'ok') {
+                alert('Login exitoso');
+            } else {
+                alert('Credenciales inválidas');
             }
         })
         .catch(error => {

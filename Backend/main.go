@@ -1,84 +1,42 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"log"
-	"net/http"
-
-	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 type Usuario struct {
-	Usuario    string `json:"usuario"`
-	Contrasena string `json:"contrasena"`
+	Usuario    string
+	Contrasena string
 }
 
 var admin = "123"
 var passA = "123"
 
-// var admin = []Usuario{
-// 	{Usuario: "132", Contrasena: "123"},
-// }
-
 func main() {
-	r := mux.NewRouter()
-	r.HandleFunc("/", Raiz).Methods("GET")
-	r.HandleFunc("/login", Login).Methods("POST", "OPTIONS")
+	app := fiber.New()
+	app.Use(cors.New())
 
-	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"})
-	originsOk := handlers.AllowedOrigins([]string{"*"})
-	methodsOk := handlers.AllowedMethods([]string{"GET", "POST", "OPTIONS"})
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.JSON(&fiber.Map{
+			"msg": "api en go",
+		})
+	})
 
-	fmt.Println("Servidor iniciado en http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", handlers.CORS(headersOk, originsOk, methodsOk)(r)))
+	app.Post("/login", Login)
+
+	app.Listen(":8080")
 }
 
-func Raiz(w http.ResponseWriter, req *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
-	fmt.Fprintln(w, "API en go")
-}
-
-func Login(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
+func Login(c *fiber.Ctx) error {
 	var usuario Usuario
-	err := json.NewDecoder(r.Body).Decode(&usuario)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-
-	fmt.Println("Nombre:", usuario.Usuario)
-	fmt.Println("Contraseña:", usuario.Contrasena)
-
-	// Verificar si el usuario existe en la lista de usuarios registrados
-	existe := false
+	c.BodyParser(&usuario)
 	if usuario.Usuario == admin && usuario.Contrasena == passA {
-		existe = true
+		return c.JSON(&fiber.Map{
+			"msg": "ok",
+		})
 	}
-	// existe := false
-	// if u.Usuario == usuario.Usuario && u.Contrasena == usuario.Contrasena {
-	// 	existe = true
-	// 	break
-	// }
-
-	if existe {
-		response := struct {
-			Message string `json:"message"`
-		}{
-			Message: "Datos de inicio de sesión válidos",
-		}
-		json.NewEncoder(w).Encode(response)
-	} else {
-		response := struct {
-			Error string `json:"error"`
-		}{
-			Error: "Credenciales inválidas",
-		}
-		w.WriteHeader(http.StatusUnauthorized)
-		json.NewEncoder(w).Encode(response)
-	}
+	return c.JSON(&fiber.Map{
+		"msg": "no",
+	})
 }
