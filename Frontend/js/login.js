@@ -23,6 +23,7 @@ function login() {
         .then(data => {
             if (data.msg === 'ok') {
                 alert('Login exitoso');
+                window.location.href = 'Admin.html'
             } else {
                 alert('Credenciales inválidas');
             }
