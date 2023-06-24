@@ -1,5 +1,6 @@
 api = 'http://localhost:8080'
 
+/*
 window.addEventListener('load',function(){
     if(!this.sessionStorage.getItem('sesionActiva')){
         this.window.location.href = 'index.html'
@@ -10,6 +11,7 @@ function cerrarSesion() {
     sessionStorage.removeItem('sesionActiva')
     window.location.href = "index.html";
 }
+*/
 
 document.getElementById("card1").addEventListener("click", function () {
     var fileInput = document.createElement("input");
@@ -20,13 +22,30 @@ document.getElementById("card1").addEventListener("click", function () {
         var fileReader = new FileReader();
         fileReader.onload = function (e) {
             var fileContent = e.target.result;
-            try {
-                var pedidosJson = JSON.parse(fileContent)
-                console.log(pedidosJson)
-            }
-            catch (error) {
-                console.error('Error al parsear JSON:', error)
-            }
+
+            var pedido = {
+                Pedidos: fileContent
+            };
+
+            fetch(`${api}/pedidos`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(pedido)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.msg === 'ok'){
+                    alert('Archivo cargado exitosamente')
+                }else{
+                    alert('Ocurrio un error')
+                }
+            })
+            .catch(error => {
+                alert('Ocurrio un error en el servidor')
+            })
+
         };
         fileReader.readAsText(selectedFile)
     });

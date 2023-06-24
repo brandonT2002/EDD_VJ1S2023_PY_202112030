@@ -22,11 +22,11 @@ function iniciarSesion() {
         .then(response => response.json())
         .then(data => {
             if (data.msg === 'admin') {
-                sessionStorage.setItem('sesionActiva','true')
-                window.location.href = 'Admin.html'
+                // sessionStorage.setItem('sesionActiva','true')
+                // window.location.href = 'Admin.html'
             } else if (data.msg === 'emp') {
-                sessionStorage.setItem('sesionActiva','true')
-                window.location.href = 'Empleado.html'
+                // sessionStorage.setItem('sesionActiva','true')
+                // window.location.href = 'Empleado.html'
             }
         })
         .catch(error => {
