@@ -1,26 +1,91 @@
+api = 'http://localhost:8080'
+
+/*
+window.addEventListener('load',function(){
+    if(!this.sessionStorage.getItem('sesionActiva')){
+        this.window.location.href = 'index.html'
+    }
+})
+
+function cerrarSesion() {
+    sessionStorage.removeItem('sesionActiva')
+    window.location.href = "index.html";
+}
+*/
+
 document.getElementById("card1").addEventListener("click", function () {
-    // Obtener el elemento de entrada de archivo
     var fileInput = document.createElement("input");
     fileInput.type = "file";
 
-    // Escuchar cambios en el archivo seleccionado
     fileInput.addEventListener("change", function (event) {
         var selectedFile = event.target.files[0];
-        // Hacer algo con el archivo seleccionado (por ejemplo, cargarlo)
-        console.log("Archivo seleccionado:", selectedFile);
-    });
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+            var fileContent = e.target.result;
 
-    // Hacer clic en el elemento de entrada de archivo
+            var pedido = {
+                Pedidos: fileContent
+            };
+
+            fetch(`${api}/pedidos`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(pedido)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.msg === 'ok'){
+                    alert('Archivo cargado exitosamente')
+                }else{
+                    alert('Ocurrio un error')
+                }
+            })
+            .catch(error => {
+                alert('Ocurrio un error en el servidor')
+            })
+
+        };
+        fileReader.readAsText(selectedFile)
+    });
     fileInput.click();
 });
 
-document.getElementById("card2").addEventListener("click", function () {
+document.getElementById('card2').addEventListener('click', function () {
     var fileInput = document.createElement("input");
     fileInput.type = "file";
 
     fileInput.addEventListener("change", function (event) {
         var selectedFile = event.target.files[0];
-        console.log("Archivo seleccionado:", selectedFile);
+        var fileReader = new FileReader();
+        fileReader.onload = function (e) {
+            var fileContent = e.target.result;
+            var empleado = {
+                Credenciales: fileContent
+            };
+
+            fetch(`${api}/empleado`,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(empleado)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.msg === 'ok'){
+                    alert('Archivo cargado exitosamente')
+                }else{
+                    alert('Ocurrio un error')
+                }
+            })
+            .catch(error => {
+                alert('Ocurrio un error en el servidor')
+            })
+
+        };
+        fileReader.readAsText(selectedFile)
     });
     fileInput.click();
 });
