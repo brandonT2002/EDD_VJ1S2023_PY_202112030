@@ -1,18 +1,18 @@
-api = 'http://localhost:8080/'
+api = 'http://localhost:8080'
 
-function login() {
+function iniciarSesion() {
     let usuario = document.getElementById('usuario').value;
     let contrasena = document.getElementById('contrasena').value;
 
-    if (usuario.replace(' ','') == '' || contrasena.replace(' ','') == ''){
+    if (usuario.replace(' ','') === '' || contrasena.replace(' ','') === ''){
         alert('Todos los campos son obligatorios')
-    } else{
+    } else {
         var loginData = {
-            usuario: usuario,
-            contrasena: contrasena
+            Usuario: usuario,
+            Contrasena: contrasena
         };
-    
-        fetch(api+'login', {
+
+        fetch(`${api}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -21,10 +21,12 @@ function login() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.message) {
-                alert(data.message);
-            } else if (data.error) {
-                alert(data.error);
+            if (data.msg === 'admin') {
+                // sessionStorage.setItem('sesionActiva','true')
+                // window.location.href = 'Admin.html'
+            } else if (data.msg === 'emp') {
+                // sessionStorage.setItem('sesionActiva','true')
+                // window.location.href = 'Empleado.html'
             }
         })
         .catch(error => {
