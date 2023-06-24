@@ -30,19 +30,53 @@
         <h1 class="bienvenido">Bienvenido</h1>
         <div class="card-container">
             <div class="card_ child1" id="card1">
-                <h2 class="card__title">Aplicar Filtros</h2>
-                <div class="card__image">
-                    <img src="img/spider.png" alt="estrella">
-                </div>
+                <a href="#modal1">
+                    <h2 class="card__title">Aplicar Filtros</h2>
+                    <div class="card__image">
+                        <img src="img/spider.png" alt="spiderman">
+                    </div>
+                </a>
             </div>
 
             <div class="card_ child2" id="card2">
                 <h2 class="card__title">Factura</h2>
                 <div class="card__image">
-                    <img src="img/gameboy.png" alt="yoshi">
+                    <img src="img/gameboy.png" alt="gameboy">
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="modal1" class="modalmask">
+        <form action="" autocomplete="off">
+            <div class="modalbox movedown">
+                <a href="#close" title="Close" class="close">&times;</a>
+                <h2 class="center-text">Atender Pedido</h2>
+                <div class="container-fields">
+                    <div class="input-container">
+                        <input id="fecha" class="input" type="text" min="0" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="fecha" class="placeholder">Fecha</label>
+                    </div>
+                    <div class="input-container">
+                        <input id="empleado" class="input" type="text" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="empleado" class="placeholder">Empleado</>
+                    </div>
+                    <select name="compound" id="selectCompound" class="selectClientes" onchange="getMachinesC()">
+                        <option selected="selected" disabled="">Seleccione un Cliente</option>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                    <div class="input-container">
+                        <input id="pago" class="input" type="number" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="pago" class="placeholder">Pago (Bitcoins)</>
+                    </div>
+                </div>
+                <button type="button" class="submit" onclick="newElement()">Realizar Pago</button>
+            </div>
+        </form>
     </div>
     <script src="js/empleado.js"></script>
 </body>
