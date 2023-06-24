@@ -2,6 +2,7 @@ package main
 
 import (
 	"paquete/empleados"
+	"paquete/pedidos"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -16,12 +17,18 @@ type Empleado struct {
 	Credenciales string
 }
 
+type Pedido struct {
+	Pedidos string
+}
+
 var admin = "123"
 var passA = "123"
 var LEmp *empleados.ListaEmp
+var Arbol *pedidos.ArbolAVL
 
 func main() {
 	LEmp = &empleados.ListaEmp{}
+	Arbol = &pedidos.ArbolAVL{}
 
 	app := fiber.New()
 	app.Use(cors.New())
@@ -33,9 +40,28 @@ func main() {
 	})
 
 	app.Post("/login", Login)
+	app.Post("/pedidos", cargarPedidos)
 	app.Post("/empleado", cargarEmpleados)
 
 	app.Listen(":8080")
+}
+
+func cargarPedidos(c *fiber.Ctx) error {
+	var pedido Pedido
+	err := c.BodyParser(&pedido)
+	if err != nil {
+		return err
+	}
+
+	err = pedidos.LeerJSON(Arbol, pedido.Pedidos)
+	if err != nil {
+		return c.JSON(&fiber.Map{
+			"msg": "no",
+		})
+	}
+	return c.JSON(&fiber.Map{
+		"msg": "ok",
+	})
 }
 
 func cargarEmpleados(c *fiber.Ctx) error {
