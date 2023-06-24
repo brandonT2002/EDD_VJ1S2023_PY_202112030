@@ -128,3 +128,7 @@ h1{
     border: 1px;
     border-radius: 10px;
 }
+
+.contenedor-form button:active {
+    background-color: #06b;
+}
