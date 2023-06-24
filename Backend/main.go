@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"paquete/empleados"
 	"paquete/pedidos"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -17,8 +19,9 @@ type Empleado struct {
 	Credenciales string
 }
 
-type Pedido struct {
-	Pedidos string
+type PedidoJSON struct {
+	IdCliente string `json:"IdCliente"`
+	Imagen    string `json:"Imagen"`
 }
 
 var admin = "123"
@@ -47,18 +50,21 @@ func main() {
 }
 
 func cargarPedidos(c *fiber.Ctx) error {
-	var pedido Pedido
-	err := c.BodyParser(&pedido)
+	type PedidoRequest struct {
+		Pedidos []PedidoJSON `json:"Pedidos"`
+	}
+
+	var request PedidoRequest
+	err := c.BodyParser(&request)
 	if err != nil {
 		return err
 	}
 
-	err = pedidos.LeerJSON(Arbol, pedido.Pedidos)
-	if err != nil {
-		return c.JSON(&fiber.Map{
-			"msg": "no",
-		})
+	for _, pedido := range request.Pedidos {
+		id, _ := strconv.Atoi(pedido.IdCliente)
+		Arbol.Insertar(&pedidos.Pedido{IdCliente: id, Imagen: pedido.Imagen})
 	}
+	fmt.Println(Arbol.Dot())
 	return c.JSON(&fiber.Map{
 		"msg": "ok",
 	})

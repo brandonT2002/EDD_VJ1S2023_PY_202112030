@@ -23,9 +23,7 @@ document.getElementById("card1").addEventListener("click", function () {
         fileReader.onload = function (e) {
             var fileContent = e.target.result;
 
-            var pedido = {
-                Pedidos: fileContent
-            };
+            var pedido = JSON.parse(fileContent);
 
             fetch(`${api}/pedidos`,{
                 method: 'POST',
@@ -43,6 +41,7 @@ document.getElementById("card1").addEventListener("click", function () {
                 }
             })
             .catch(error => {
+                console.log(error)
                 alert('Ocurrio un error en el servidor')
             })
 
