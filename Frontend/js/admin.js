@@ -1,9 +1,12 @@
 api = 'http://localhost:8080'
 
-/*
 window.addEventListener('load',function(){
     if(!this.sessionStorage.getItem('sesionActiva')){
         this.window.location.href = 'index.html'
+    } else {
+        var nombreUsuario = this.sessionStorage.getItem('nombreUsuario')
+        var nombreElemento = this.document.getElementById('admin');
+        nombreElemento.textContent = 'Bienvenido ' + nombreUsuario
     }
 })
 
@@ -11,7 +14,6 @@ function cerrarSesion() {
     sessionStorage.removeItem('sesionActiva')
     window.location.href = "index.html";
 }
-*/
 
 document.getElementById("card1").addEventListener("click", function () {
     var fileInput = document.createElement("input");

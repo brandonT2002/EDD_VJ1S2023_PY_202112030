@@ -99,11 +99,13 @@ func Login(c *fiber.Ctx) error {
 
 	if usuario.Usuario == admin && usuario.Contrasena == passA {
 		return c.JSON(&fiber.Map{
-			"msg": "admin",
+			"msg":     "admin",
+			"usuario": admin,
 		})
 	} else if emp != nil {
 		return c.JSON(&fiber.Map{
-			"msg": "emp",
+			"msg":     "emp",
+			"usuario": emp,
 		})
 	}
 	return c.JSON(&fiber.Map{
