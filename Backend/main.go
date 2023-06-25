@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"paquete/empleados"
 	"paquete/pedidos"
 	"strconv"
@@ -28,10 +27,12 @@ var admin = "123"
 var passA = "123"
 var LEmp *empleados.ListaEmp
 var Arbol *pedidos.ArbolAVL
+var Cola *pedidos.ColaPedidos
 
 func main() {
 	LEmp = &empleados.ListaEmp{}
 	Arbol = &pedidos.ArbolAVL{}
+	Cola = &pedidos.ColaPedidos{}
 
 	app := fiber.New()
 	app.Use(cors.New())
@@ -64,7 +65,8 @@ func cargarPedidos(c *fiber.Ctx) error {
 		id, _ := strconv.Atoi(pedido.IdCliente)
 		Arbol.Insertar(&pedidos.Pedido{IdCliente: id, Imagen: pedido.Imagen})
 	}
-	fmt.Println(Arbol.Dot())
+	Arbol.Inorder(Cola)
+	Cola.Mostrar()
 	return c.JSON(&fiber.Map{
 		"msg": "ok",
 	})
