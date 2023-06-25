@@ -22,14 +22,13 @@ function iniciarSesion() {
         .then(response => response.json())
         .then(data => {
             if (data.msg === 'admin') {
-                alert('Bienvenido ' + data.usuario)
                 sessionStorage.setItem('sesionActiva', 'true')
                 sessionStorage.setItem('nombreUsuario',data.usuario)
                 window.location.href = 'Admin.html'
             } else if (data.msg === 'emp') {
-                alert('Bienvenido ' + data.usuario.Nombre)
-                // sessionStorage.setItem('sesionActiva','true')
-                // window.location.href = 'Empleado.html'
+                sessionStorage.setItem('sesionActiva','true')
+                sessionStorage.setItem('nombreUsuario',data.usuario.Nombre)
+                window.location.href = 'Empleado.html'
             } else {
                 alert('Credenciales inválidas')
             }
