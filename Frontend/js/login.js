@@ -28,6 +28,7 @@ function iniciarSesion() {
             } else if (data.msg === 'emp') {
                 sessionStorage.setItem('sesionActiva','true')
                 sessionStorage.setItem('nombreUsuario',data.usuario.Nombre)
+                sessionStorage.setItem('idUsuario',data.usuario.Id)
                 window.location.href = 'Empleado.html'
             } else {
                 alert('Credenciales inválidas')
