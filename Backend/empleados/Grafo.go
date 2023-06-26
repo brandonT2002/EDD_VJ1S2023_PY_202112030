@@ -6,7 +6,7 @@ type Grafo struct {
 	Principal *NodoMatrizA
 }
 
-func (g *Grafo) InsertarC(padre, hijo, filtro string) {
+func (g *Grafo) InsertarC(padre, hijo string, filtro string) {
 	nuevoNodo := &NodoMatrizA{valor: hijo}
 	if g.Principal != nil && padre == g.Principal.valor {
 		aux := g.Principal
@@ -47,17 +47,53 @@ func (g *Grafo) insertarF(padre string) {
 }
 
 func (g *Grafo) InsertarValores(envio *EnvioMatriz) {
+	fs := g.obtenerFiltros(envio.Filtros)
 	if g.Principal == nil {
 		g.insertarF(envio.Padre)
 		g.InsertarC(envio.Padre, envio.Imagen, "")
-		g.InsertarC(envio.Cliente, envio.Imagen, envio.Filtros)
+		g.InsertarC(envio.Cliente, envio.Imagen, fs)
 	} else {
 		g.InsertarC(envio.Padre, envio.Cliente, "")
-		g.InsertarC(envio.Cliente, envio.Imagen, envio.Filtros)
+		g.InsertarC(envio.Cliente, envio.Imagen, fs)
 	}
 }
 
-func (g *Grafo) Mjson() []EnvioMatriz {
+func (g *Grafo) obtenerFiltros(filtros *EnvioFiltros) string {
+	fs := ""
+	if filtros.N {
+		fs += "Negativo"
+	}
+	if filtros.G {
+		if fs != "" {
+			fs += " - "
+		}
+		fs += "Grises"
+	}
+	if filtros.EX {
+		if fs != "" {
+			fs += " - "
+		}
+		fs += "Espejo X"
+	}
+	if filtros.EY {
+		if fs != "" {
+			fs += " - "
+		}
+		fs += "Espejo Y"
+	}
+	if filtros.DE {
+		if fs != "" {
+			fs += " - "
+		}
+		fs += "Doble Espejo"
+	}
+	if fs == "" {
+		fs += "Sin Filtros"
+	}
+	return fs
+}
+
+func (g *Grafo) Mjson(filtros *EnvioFiltros) []EnvioMatriz {
 	var listaEnvios []EnvioMatriz
 
 	if g.Principal != nil {
@@ -66,7 +102,8 @@ func (g *Grafo) Mjson() []EnvioMatriz {
 
 		for aux != nil {
 			for aux1 != nil {
-				envio := &EnvioMatriz{Padre: g.Principal.valor, Cliente: aux.valor, Imagen: aux1.valor, Filtros: ""}
+
+				envio := &EnvioMatriz{Padre: g.Principal.valor, Cliente: aux.valor, Imagen: aux1.valor, Filtros: filtros}
 				listaEnvios = append(listaEnvios, *envio)
 				aux1 = aux1.Siguiente
 			}

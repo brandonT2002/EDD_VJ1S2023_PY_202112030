@@ -22,14 +22,14 @@ function iniciarSesion() {
         .then(response => response.json())
         .then(data => {
             if (data.msg === 'admin') {
-                // sessionStorage.setItem('sesionActiva', 'true')
-                // sessionStorage.setItem('nombreUsuario',data.usuario)
-                // window.location.href = 'Admin.html'
+                sessionStorage.setItem('sesionActiva', 'true')
+                sessionStorage.setItem('nombreUsuario',data.usuario)
+                window.location.href = 'Admin.html'
             } else if (data.msg === 'emp') {
-                // sessionStorage.setItem('sesionActiva','true')
-                // sessionStorage.setItem('nombreUsuario',data.usuario.Nombre)
-                // sessionStorage.setItem('idUsuario',data.usuario.Id)
-                // window.location.href = 'Empleado.html'
+                sessionStorage.setItem('sesionActiva','true')
+                sessionStorage.setItem('nombreUsuario',data.usuario.Nombre)
+                sessionStorage.setItem('idUsuario',data.usuario.Id)
+                window.location.href = 'Empleado.html'
             } else {
                 alert('Credenciales inválidas')
             }

@@ -37,8 +37,11 @@ function verPedidos() {
                 document.getElementById('colaPedidos').innerHTML = table
                 document.getElementById('idCliente').value = data[0].IdCliente
                 document.getElementById('idCliente').readOnly = true;
-            } 
-            document.getElementById('pagar').disabled = true
+
+                document.getElementById('imgCliente').value = data[0].Imagen
+                document.getElementById('imgCliente').readOnly = true;
+                
+            }
         })
         .catch(error => {
             console.log(error)
@@ -49,6 +52,7 @@ function vender() {
     var fecha = document.getElementById('fecha').value;
     var idEmp = document.getElementById('idEmp').value;
     var idCliente = document.getElementById('idCliente').value;
+    var imagen = document.getElementById('imgCliente').value
     var pago = document.getElementById('pago').value;
 
     var negativo = document.getElementById('negativo').checked;
@@ -63,12 +67,45 @@ function vender() {
         console.log('Fecha:', fecha);
         console.log('ID Empleado:', idEmp);
         console.log('ID Cliente:', idCliente);
+        console.log('Imagen:', imagen);
         console.log('Pago:', pago);
         console.log('Negativo:', negativo);
         console.log('Escala de grises:', escalaGrises);
         console.log('Espejo X:', espejoX);
         console.log('Espejo Y:', espejoY);
         console.log('Doble espejo:', dobleEspejo);
+
+        var filtros = {
+            N:negativo,
+            G:escalaGrises,
+            EX:espejoX,
+            EY: espejoY,
+            DE: dobleEspejo
+        }
+
+        var data = {
+            Padre:idEmp,
+            Cliente:idCliente,
+            Imagen:imagen,
+            Filtros:filtros
+        }
+
+        console.log(data)
+
+        fetch(`${api}/ventas`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.msg)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 }
 

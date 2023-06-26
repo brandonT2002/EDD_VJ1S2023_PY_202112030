@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"paquete/empleados"
 	"paquete/pedidos"
 	"strconv"
@@ -105,6 +106,7 @@ func registrarVentas(c *fiber.Ctx) error {
 	c.BodyParser(&nuevoNodo)
 	Emp.Grafo.InsertarValores(&nuevoNodo)
 	Cola.Eliminar()
+	fmt.Println(Emp.Grafo.Dot())
 	return c.JSON(&fiber.Map{
 		"msg": "Venta Registrada",
 	})
