@@ -1,7 +1,7 @@
 api = 'http://localhost:8080'
 
-window.addEventListener('load',function(){
-    if(!this.sessionStorage.getItem('sesionActiva')){
+window.addEventListener('load', function () {
+    if (!this.sessionStorage.getItem('sesionActiva')) {
         this.window.location.href = 'index.html'
     } else {
         var nombreUsuario = this.sessionStorage.getItem('nombreUsuario')
@@ -12,61 +12,93 @@ window.addEventListener('load',function(){
         var idElemento = this.document.getElementById('idEmp')
         idElemento.value = idUsuario;
         idElemento.readOnly = true;
-
     }
 })
 
-function verPedidos(){
+function cerrarSesion() {
+    sessionStorage.removeItem('sesionActiva')
+    window.location.href = "index.html";
+}
+
+function verPedidos() {
     fetch(`${api}/pedidos`)
-    .then(response => response.json())
-    .then(data => {
-        // console.log(data)
-        table = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th></tr>'
-        data.forEach((pedido,index) => {
-            table += `<tr>
-            <td>${index + 1}</td>
-            <td>${pedido.IdCliente}</td>
-            <td>${pedido.Imagen}</td>
-            </tr>`
+        .then(response => response.json())
+        .then(data => {
+            if (data.length != 0) {
+                // console.log(data)
+                table = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th></tr>'
+                data.forEach((pedido, index) => {
+                    table += `<tr>
+                <td>${index + 1}</td>
+                <td>${pedido.IdCliente}</td>
+                <td>${pedido.Imagen}</td>
+                </tr>`
+                })
+                document.getElementById('colaPedidos').innerHTML = table
+                document.getElementById('idCliente').value = data[0].IdCliente
+                document.getElementById('idCliente').readOnly = true;
+            } 
+            document.getElementById('pagar').disabled = true
         })
-        document.getElementById('colaPedidos').innerHTML = table
-    })
-    .catch(error => {
-        console.log(error)
-    })
+        .catch(error => {
+            console.log(error)
+        })
 }
 
-// Obtener la fecha actual automáticamente
-var fechaActual = new Date();
-var formatoFecha = obtenerFormatoFecha(fechaActual);
-var fecha = document.getElementById('fecha')
-fecha.value = formatoFecha;
-fecha.readOnly = true;
+function vender() {
+    var fecha = document.getElementById('fecha').value;
+    var idEmp = document.getElementById('idEmp').value;
+    var idCliente = document.getElementById('idCliente').value;
+    var pago = document.getElementById('pago').value;
 
-// Función para obtener la hora después de hacer clic en el botón
-function obtenerHora() {
-    var fechaHoraActual = new Date();
-    var formatoHora = obtenerFormatoHora(fechaHoraActual);
-    alert(formatoHora)
+    var negativo = document.getElementById('negativo').checked;
+    var escalaGrises = document.getElementById('escala-grises').checked;
+    var espejoX = document.getElementById('espejo-x').checked;
+    var espejoY = document.getElementById('espejo-y').checked;
+    var dobleEspejo = document.getElementById('doble-espejo').checked;
+
+    if (pago.replace(' ','') === ''){
+        alert('Ingrese un costo de imagen')
+    } else {
+        console.log('Fecha:', fecha);
+        console.log('ID Empleado:', idEmp);
+        console.log('ID Cliente:', idCliente);
+        console.log('Pago:', pago);
+        console.log('Negativo:', negativo);
+        console.log('Escala de grises:', escalaGrises);
+        console.log('Espejo X:', espejoX);
+        console.log('Espejo Y:', espejoY);
+        console.log('Doble espejo:', dobleEspejo);
+    }
 }
 
-// Función para obtener el formato de fecha DD-MM-YYYY
-function obtenerFormatoFecha(fecha) {
-    var dia = padZero(fecha.getDate());
-    var mes = padZero(fecha.getMonth() + 1); // Los meses van de 0 a 11, por lo que se suma 1
-    var anio = fecha.getFullYear();
-    return dia + '-' + mes + '-' + anio;
+function updateDateTime() {
+    var fechaActual = new Date();
+
+    var dia = fechaActual.getDate();
+    var mes = fechaActual.getMonth() + 1;
+    var anio = fechaActual.getFullYear();
+
+    var horas = fechaActual.getHours();
+    var minutos = fechaActual.getMinutes();
+    var segundos = fechaActual.getSeconds();
+
+    dia = padZero(dia);
+    mes = padZero(mes);
+    horas = padZero(horas);
+    minutos = padZero(minutos);
+    segundos = padZero(segundos);
+
+    var formatoFechaHora = dia + '-' + mes + '-' + anio + '   ' + horas + ':' + minutos + ':' + segundos;
+    document.getElementById('fecha').value = formatoFechaHora;
 }
 
-// Función para obtener el formato de hora HH:MM:SS
-function obtenerFormatoHora(fecha) {
-    var horas = padZero(fecha.getHours());
-    var minutos = padZero(fecha.getMinutes());
-    var segundos = padZero(fecha.getSeconds());
-    return horas + ':' + minutos + ':' + segundos;
-}
-
-// Función auxiliar para añadir un cero delante de los números menores de 10
 function padZero(numero) {
     return numero < 10 ? '0' + numero : numero;
 }
+
+// Update the date and time immediately
+updateDateTime();
+
+// Update the date and time every second (1000 milliseconds)
+setInterval(updateDateTime, 1000);

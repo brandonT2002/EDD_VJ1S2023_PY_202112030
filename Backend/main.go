@@ -25,6 +25,7 @@ type PedidoJSON struct {
 
 var admin = "123"
 var passA = "123"
+var Emp *empleados.Empleado
 var LEmp *empleados.ListaEmp
 var Arbol *pedidos.ArbolAVL
 var Cola *pedidos.ColaPedidos
@@ -47,6 +48,8 @@ func main() {
 	app.Post("/pedidos", cargarPedidos)
 	app.Get("/pedidos", verPedidos)
 	app.Post("/empleado", cargarEmpleados)
+	app.Post("/ventas", registrarVentas)
+	// app.Get("/ventas", verVentas)
 
 	app.Listen(":8080")
 }
@@ -97,20 +100,30 @@ func cargarEmpleados(c *fiber.Ctx) error {
 
 }
 
+func registrarVentas(c *fiber.Ctx) error {
+	var nuevoNodo empleados.EnvioMatriz
+	c.BodyParser(&nuevoNodo)
+	Emp.Grafo.InsertarValores(&nuevoNodo)
+	Cola.Eliminar()
+	return c.JSON(&fiber.Map{
+		"msg": "Venta Registrada",
+	})
+}
+
 func Login(c *fiber.Ctx) error {
 	var usuario Usuario
 	c.BodyParser(&usuario)
-	emp := LEmp.Buscar(usuario.Usuario, usuario.Contrasena)
+	Emp = LEmp.Buscar(usuario.Usuario, usuario.Contrasena)
 
 	if usuario.Usuario == admin && usuario.Contrasena == passA {
 		return c.JSON(&fiber.Map{
 			"msg":     "admin",
 			"usuario": admin,
 		})
-	} else if emp != nil {
+	} else if Emp != nil {
 		return c.JSON(&fiber.Map{
 			"msg":     "emp",
-			"usuario": emp,
+			"usuario": Emp,
 		})
 	}
 	return c.JSON(&fiber.Map{

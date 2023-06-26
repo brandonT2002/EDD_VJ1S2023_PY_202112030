@@ -5,4 +5,5 @@ type Empleado struct {
 	Nombre     string
 	Cargo      string
 	Contrasena string
+	Grafo      *Grafo
 }
