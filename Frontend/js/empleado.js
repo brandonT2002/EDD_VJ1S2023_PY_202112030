@@ -1,3 +1,5 @@
+api = 'http://localhost:8080'
+
 window.addEventListener('load',function(){
     if(!this.sessionStorage.getItem('sesionActiva')){
         this.window.location.href = 'index.html'
@@ -13,6 +15,26 @@ window.addEventListener('load',function(){
 
     }
 })
+
+function verPedidos(){
+    fetch(`${api}/pedidos`)
+    .then(response => response.json())
+    .then(data => {
+        // console.log(data)
+        table = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th></tr>'
+        data.forEach((pedido,index) => {
+            table += `<tr>
+            <td>${index + 1}</td>
+            <td>${pedido.IdCliente}</td>
+            <td>${pedido.Imagen}</td>
+            </tr>`
+        })
+        document.getElementById('colaPedidos').innerHTML = table
+    })
+    .catch(error => {
+        console.log(error)
+    })
+}
 
 // Obtener la fecha actual automáticamente
 var fechaActual = new Date();

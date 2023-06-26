@@ -63,11 +63,37 @@
                         <div class="cut cut-short"></div>
                         <label for="idEmp" class="placeholder">Empleado</>
                     </div>
-                    <select name="compound" id="selectCompound" class="selectClientes" onchange="getMachinesC()">
-                        <option selected="selected" disabled="">Seleccione un Cliente</option>
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
+                    <div class="input-container">
+                        <input id="idCliente" class="input" type="number" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="idCliente" class="placeholder">ID Cliente</>
+                    </div>
+
+                    <div class="filters">
+                        <h2 class="center-text">Filtros</h2>
+                        <div class="filter-option">
+                            <input id="negativo" type="checkbox" />
+                            <label for="negativo">Negativo</label>
+                        </div>
+                        <div class="filter-option">
+                            <input id="escala-grises" type="checkbox" />
+                            <label for="escala-grises">Escala de grises</label>
+                        </div>
+                        <div class="filter-option">
+                            <input id="espejo-x" type="checkbox" />
+                            <label for="espejo-x">Espejo x</label>
+                        </div>
+                        <div class="filter-option">
+                            <input id="espejo-y" type="checkbox" />
+                            <label for="espejo-y">Espejo y</label>
+                        </div>
+                        <div class="filter-option">
+                            <input id="doble-espejo" type="checkbox" />
+                            <label for="doble-espejo">Doble espejo</label>
+                        </div>
+                    </div>
+
+
                     <div class="input-container">
                         <input id="pago" class="input" type="number" placeholder=" " />
                         <div class="cut cut-short"></div>
@@ -78,7 +104,19 @@
             </div>
         </form>
     </div>
+
+    <div class="container container-table">
+        <h1 class="center-text">Pedidos en Cola</h1>
+        <table id="colaPedidos">
+            <tr>
+                <th id="noBooks" class="center-text">
+                    No hay elementos registrados
+                </th>
+            </tr>
+        </table>
+    </div>
     <script src="js/empleado.js"></script>
+    <script>verPedidos()</script>
 </body>
 
 </html>

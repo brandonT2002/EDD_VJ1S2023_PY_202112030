@@ -33,6 +33,16 @@ func (c *ColaPedidos) Eliminar() interface{} {
 	return nil
 }
 
+func (c *ColaPedidos) Cjson() []Pedido {
+	actual := c.Primero
+	var pedidos []Pedido
+	for actual != nil {
+		pedidos = append(pedidos, *actual.Pedido)
+		actual = actual.siguiente
+	}
+	return pedidos
+}
+
 func (c *ColaPedidos) Mostrar() {
 	actual := c.Primero
 	formato := "  ║ %-10s %-20s║\n"

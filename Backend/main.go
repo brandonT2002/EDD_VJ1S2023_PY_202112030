@@ -45,6 +45,7 @@ func main() {
 
 	app.Post("/login", Login)
 	app.Post("/pedidos", cargarPedidos)
+	app.Get("/pedidos", verPedidos)
 	app.Post("/empleado", cargarEmpleados)
 
 	app.Listen(":8080")
@@ -70,6 +71,10 @@ func cargarPedidos(c *fiber.Ctx) error {
 	return c.JSON(&fiber.Map{
 		"msg": "ok",
 	})
+}
+
+func verPedidos(c *fiber.Ctx) error {
+	return c.JSON(Cola.Cjson())
 }
 
 func cargarEmpleados(c *fiber.Ctx) error {
