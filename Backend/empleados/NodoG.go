@@ -20,3 +20,10 @@ type EnvioMatriz struct {
 	Imagen  string
 	Filtros *EnvioFiltros
 }
+
+type Solicitud struct {
+	Padre   string
+	Cliente string
+	Imagen  string
+	Filtros string
+}

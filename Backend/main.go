@@ -50,7 +50,7 @@ func main() {
 	app.Get("/pedidos", verPedidos)
 	app.Post("/empleado", cargarEmpleados)
 	app.Post("/ventas", registrarVentas)
-	// app.Get("/ventas", verVentas)
+	app.Get("/ventas", solicitudes)
 
 	app.Listen(":8080")
 }
@@ -106,10 +106,15 @@ func registrarVentas(c *fiber.Ctx) error {
 	c.BodyParser(&nuevoNodo)
 	Emp.Grafo.InsertarValores(&nuevoNodo)
 	Cola.Eliminar()
+	// Emp.Solicitudes.Insertar1(&empleados.Solicitud{IdCliente: datos.IdCliente, Imagen: datos.Imagen, Filtros: nuevoNodo.Filtros})
 	fmt.Println(Emp.Grafo.Dot())
 	return c.JSON(&fiber.Map{
 		"msg": "Venta Registrada",
 	})
+}
+
+func solicitudes(c *fiber.Ctx) error {
+	return c.JSON(Emp.Grafo.Mjson())
 }
 
 func Login(c *fiber.Ctx) error {

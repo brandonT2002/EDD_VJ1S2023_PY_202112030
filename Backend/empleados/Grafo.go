@@ -93,27 +93,37 @@ func (g *Grafo) obtenerFiltros(filtros *EnvioFiltros) string {
 	return fs
 }
 
-func (g *Grafo) Mjson(filtros *EnvioFiltros) []EnvioMatriz {
-	var listaEnvios []EnvioMatriz
+func (g *Grafo) Mjson() []Solicitud {
+	var solicitudes []Solicitud
+	x := 0
+	y := 1
 
-	if g.Principal != nil {
-		aux := g.Principal.Abajo
-		aux1 := aux
+	aux := g.Principal.Abajo
+	aux1 := aux
 
-		for aux != nil {
-			for aux1 != nil {
-
-				envio := &EnvioMatriz{Padre: g.Principal.valor, Cliente: aux.valor, Imagen: aux1.valor, Filtros: filtros}
-				listaEnvios = append(listaEnvios, *envio)
-				aux1 = aux1.Siguiente
+	for aux != nil {
+		sol := &Solicitud{}
+		for aux1 != nil {
+			if x == 0 {
+				sol.Cliente = aux1.valor
+			} else if x == 1 {
+				sol.Imagen = aux1.valor
+			} else {
+				sol.Filtros = aux1.valor
 			}
-			if aux != nil {
-				aux = aux.Abajo
-				aux1 = aux
-			}
+			aux1 = aux1.Siguiente
+			x++
 		}
+		if aux != nil {
+			aux = aux.Abajo
+			aux1 = aux
+		}
+		solicitudes = append(solicitudes, *sol)
+		x = 0
+		y++
 	}
-	return listaEnvios
+
+	return solicitudes
 }
 
 func (g *Grafo) matriz() string {
@@ -164,7 +174,6 @@ func (g *Grafo) matriz() string {
 func (g *Grafo) Dot() string {
 	dot := ""
 	if g.Principal != nil {
-		// dot += "graph grafoDirigido{ \n rankdir=LR; \n node [shape=box]; layout=neato; \n nodo00[label=\"" + g.Principal.valor + "\"]; \n"
 		dot += "graph grafoDirigido{\n"
 		dot += "rankdir=LR;\n"
 		dot += "node [shape=box];\n"

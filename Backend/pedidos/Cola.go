@@ -23,7 +23,7 @@ func (c *ColaPedidos) Insertar(cliente *Pedido) {
 	c.longitud++
 }
 
-func (c *ColaPedidos) Eliminar() interface{} {
+func (c *ColaPedidos) Eliminar() *Pedido {
 	if c.Primero != nil {
 		temporal := c.Primero.Pedido
 		c.Primero = c.Primero.siguiente

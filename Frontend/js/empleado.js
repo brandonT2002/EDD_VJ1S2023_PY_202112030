@@ -20,7 +20,35 @@ function cerrarSesion() {
     window.location.href = "index.html";
 }
 
-function verPedidos() {
+function pedidosCola() {
+    fetch(`${api}/pedidos`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length != 0) {
+                // console.log(data)
+                table = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th></tr>'
+                data.forEach((pedido, index) => {
+                    table += `<tr>
+                <td>${index + 1}</td>
+                <td>${pedido.IdCliente}</td>
+                <td>${pedido.Imagen}</td>
+                </tr>`
+                })
+                document.getElementById('colaPedidos').innerHTML = table
+                document.getElementById('idCliente').value = data[0].IdCliente
+                document.getElementById('idCliente').readOnly = true;
+
+                document.getElementById('imgCliente').value = data[0].Imagen
+                document.getElementById('imgCliente').readOnly = true;
+                
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+
+function pedidosFiltros() {
     fetch(`${api}/pedidos`)
         .then(response => response.json())
         .then(data => {
@@ -91,7 +119,7 @@ function vender() {
         .then(data => {
             alert(data.msg)
             limpiar()
-            verPedidos()
+            pedidosCola()
         })
         .catch(error => {
             console.log(error)
