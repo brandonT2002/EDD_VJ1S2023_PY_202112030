@@ -48,34 +48,6 @@ function pedidosCola() {
         })
 }
 
-function pedidosFiltros() {
-    fetch(`${api}/pedidos`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.length != 0) {
-                // console.log(data)
-                table = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th></tr>'
-                data.forEach((pedido, index) => {
-                    table += `<tr>
-                <td>${index + 1}</td>
-                <td>${pedido.IdCliente}</td>
-                <td>${pedido.Imagen}</td>
-                </tr>`
-                })
-                document.getElementById('colaPedidos').innerHTML = table
-                document.getElementById('idCliente').value = data[0].IdCliente
-                document.getElementById('idCliente').readOnly = true;
-
-                document.getElementById('imgCliente').value = data[0].Imagen
-                document.getElementById('imgCliente').readOnly = true;
-                
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        })
-}
-
 function vender() {
     var idEmp = document.getElementById('idEmp').value;
     var idCliente = document.getElementById('idCliente').value;
@@ -120,6 +92,7 @@ function vender() {
             alert(data.msg)
             limpiar()
             pedidosCola()
+            solicitudes()
         })
         .catch(error => {
             console.log(error)
@@ -127,11 +100,33 @@ function vender() {
     }
 }
 
+function solicitudes() {
+    fetch(`${api}/ventas`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length != 0) {
+                // console.log(data)
+                table1 = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th><th>Filtros</th></tr>'
+                data.forEach((pedido, index) => {
+                    table1 += `<tr>
+                <td>${index + 1}</td>
+                <td>${pedido.IdCliente}</td>
+                <td>${pedido.Imagen}</td>
+                <td>${pedido.Filtros}</td>
+                </tr>`
+                })
+                document.getElementById('solicitudes').innerHTML = table1
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+}
+
 function limpiar(){
     window.location.href = 'Empleado.html#close'
     
     document.getElementById('fecha').value = '';
-    document.getElementById('idEmp').value = '';
     document.getElementById('idCliente').value = '';
     document.getElementById('imgCliente').value = '';
     document.getElementById('pago').value = '';

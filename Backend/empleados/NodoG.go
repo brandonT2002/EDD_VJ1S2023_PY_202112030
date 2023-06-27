@@ -22,7 +22,6 @@ type EnvioMatriz struct {
 }
 
 type Solicitud struct {
-	Padre   string
 	Cliente string
 	Imagen  string
 	Filtros string

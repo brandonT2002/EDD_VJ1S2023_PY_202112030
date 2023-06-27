@@ -122,7 +122,6 @@ func (g *Grafo) Mjson() []Solicitud {
 		x = 0
 		y++
 	}
-
 	return solicitudes
 }
 
@@ -158,7 +157,7 @@ func (g *Grafo) matriz() string {
 			cadena += "nodo00 -- "
 			cadena += "nodo" + strconv.Itoa(x) + strconv.Itoa(y) + " -- "
 			cadena += "nodo" + strconv.Itoa(x+1) + strconv.Itoa(y) + " -- "
-			cadena += "nodo" + strconv.Itoa(x+2) + strconv.Itoa(y) + "[len=2.00]; \n"
+			cadena += "nodo" + strconv.Itoa(x+2) + strconv.Itoa(y) + "[len=2.25]; \n"
 		}
 		if aux != nil {
 			aux = aux.Abajo
@@ -178,9 +177,9 @@ func (g *Grafo) Dot() string {
 		dot += "rankdir=LR;\n"
 		dot += "node [shape=box];\n"
 		dot += "layout=neato;"
-		dot += "nodo00[label=\"" + g.Principal.valor + "\"]; "
+		dot += "nodo00[label=\"Empleado " + g.Principal.valor + "\"]; "
 		dot += g.matriz()
-		dot += "\n}"
+		dot += "}"
 	}
 	return dot
 }

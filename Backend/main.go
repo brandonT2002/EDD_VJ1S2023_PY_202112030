@@ -106,7 +106,6 @@ func registrarVentas(c *fiber.Ctx) error {
 	c.BodyParser(&nuevoNodo)
 	Emp.Grafo.InsertarValores(&nuevoNodo)
 	Cola.Eliminar()
-	// Emp.Solicitudes.Insertar1(&empleados.Solicitud{IdCliente: datos.IdCliente, Imagen: datos.Imagen, Filtros: nuevoNodo.Filtros})
 	fmt.Println(Emp.Grafo.Dot())
 	return c.JSON(&fiber.Map{
 		"msg": "Venta Registrada",
