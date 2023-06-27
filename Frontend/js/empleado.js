@@ -49,7 +49,6 @@ function verPedidos() {
 }
 
 function vender() {
-    var fecha = document.getElementById('fecha').value;
     var idEmp = document.getElementById('idEmp').value;
     var idCliente = document.getElementById('idCliente').value;
     var imagen = document.getElementById('imgCliente').value
@@ -64,17 +63,6 @@ function vender() {
     if (pago.replace(' ','') === ''){
         alert('Ingrese un costo de imagen')
     } else {
-        console.log('Fecha:', fecha);
-        console.log('ID Empleado:', idEmp);
-        console.log('ID Cliente:', idCliente);
-        console.log('Imagen:', imagen);
-        console.log('Pago:', pago);
-        console.log('Negativo:', negativo);
-        console.log('Escala de grises:', escalaGrises);
-        console.log('Espejo X:', espejoX);
-        console.log('Espejo Y:', espejoY);
-        console.log('Doble espejo:', dobleEspejo);
-
         var filtros = {
             N:negativo,
             G:escalaGrises,
@@ -102,11 +90,29 @@ function vender() {
         .then(response => response.json())
         .then(data => {
             alert(data.msg)
+            limpiar()
+            verPedidos()
         })
         .catch(error => {
             console.log(error)
         })
     }
+}
+
+function limpiar(){
+    window.location.href = 'Empleado.html#close'
+    
+    document.getElementById('fecha').value = '';
+    document.getElementById('idEmp').value = '';
+    document.getElementById('idCliente').value = '';
+    document.getElementById('imgCliente').value = '';
+    document.getElementById('pago').value = '';
+    
+    document.getElementById('negativo').checked = false;
+    document.getElementById('escala-grises').checked = false;
+    document.getElementById('espejo-x').checked = false;
+    document.getElementById('espejo-y').checked = false;
+    document.getElementById('doble-espejo').checked = false;
 }
 
 function updateDateTime() {
