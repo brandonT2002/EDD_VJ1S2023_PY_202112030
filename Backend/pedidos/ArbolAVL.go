@@ -1,6 +1,7 @@
 package pedidos
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -90,6 +91,20 @@ func (a *ArbolAVL) Dot() string {
 	dot += a.dot1(a.raiz)
 	dot += "\n}"
 	return dot
+}
+
+func (a *ArbolAVL) Inorder(cola *ColaPedidos) {
+	a.inorder1(a.raiz, cola)
+	fmt.Println()
+}
+
+func (a *ArbolAVL) inorder1(nodo *Nodo, cola *ColaPedidos) {
+	if nodo != nil {
+		a.inorder1(nodo.izq, cola)
+		// fmt.Print(strconv.Itoa(nodo.pedido.IdCliente) + " ")
+		cola.Insertar(nodo.pedido)
+		a.inorder1(nodo.der, cola)
+	}
 }
 
 func (a *ArbolAVL) dot1(nodo *Nodo) string {

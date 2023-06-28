@@ -1,9 +1,12 @@
 api = 'http://localhost:8080'
 
-/*
 window.addEventListener('load',function(){
     if(!this.sessionStorage.getItem('sesionActiva')){
         this.window.location.href = 'index.html'
+    } else {
+        var nombreUsuario = this.sessionStorage.getItem('nombreUsuario')
+        var nombreElemento = this.document.getElementById('admin');
+        nombreElemento.textContent = 'Bienvenido ' + nombreUsuario
     }
 })
 
@@ -11,7 +14,6 @@ function cerrarSesion() {
     sessionStorage.removeItem('sesionActiva')
     window.location.href = "index.html";
 }
-*/
 
 document.getElementById("card1").addEventListener("click", function () {
     var fileInput = document.createElement("input");
@@ -23,9 +25,7 @@ document.getElementById("card1").addEventListener("click", function () {
         fileReader.onload = function (e) {
             var fileContent = e.target.result;
 
-            var pedido = {
-                Pedidos: fileContent
-            };
+            var pedido = JSON.parse(fileContent);
 
             fetch(`${api}/pedidos`,{
                 method: 'POST',
@@ -43,6 +43,7 @@ document.getElementById("card1").addEventListener("click", function () {
                 }
             })
             .catch(error => {
+                console.log(error)
                 alert('Ocurrio un error en el servidor')
             })
 

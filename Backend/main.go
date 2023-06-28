@@ -3,6 +3,7 @@ package main
 import (
 	"paquete/empleados"
 	"paquete/pedidos"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -17,18 +18,23 @@ type Empleado struct {
 	Credenciales string
 }
 
-type Pedido struct {
-	Pedidos string
+type PedidoJSON struct {
+	IdCliente string `json:"IdCliente"`
+	Imagen    string `json:"Imagen"`
 }
 
 var admin = "123"
 var passA = "123"
+var Emp *empleados.Empleado
 var LEmp *empleados.ListaEmp
+var Tabla *empleados.TablaHash
 var Arbol *pedidos.ArbolAVL
+var Cola *pedidos.ColaPedidos
 
 func main() {
 	LEmp = &empleados.ListaEmp{}
 	Arbol = &pedidos.ArbolAVL{}
+	Cola = &pedidos.ColaPedidos{}
 
 	app := fiber.New()
 	app.Use(cors.New())
@@ -41,27 +47,40 @@ func main() {
 
 	app.Post("/login", Login)
 	app.Post("/pedidos", cargarPedidos)
+	app.Get("/pedidos", verPedidos)
 	app.Post("/empleado", cargarEmpleados)
+	app.Get("/empleado", grafo)
+	app.Post("/ventas", registrarVentas)
+	app.Get("/ventas", solicitudes)
+	app.Post("/factura", factura)
 
 	app.Listen(":8080")
 }
 
 func cargarPedidos(c *fiber.Ctx) error {
-	var pedido Pedido
-	err := c.BodyParser(&pedido)
+	type PedidoRequest struct {
+		Pedidos []PedidoJSON `json:"Pedidos"`
+	}
+
+	var request PedidoRequest
+	err := c.BodyParser(&request)
 	if err != nil {
 		return err
 	}
 
-	err = pedidos.LeerJSON(Arbol, pedido.Pedidos)
-	if err != nil {
-		return c.JSON(&fiber.Map{
-			"msg": "no",
-		})
+	for _, pedido := range request.Pedidos {
+		id, _ := strconv.Atoi(pedido.IdCliente)
+		Arbol.Insertar(&pedidos.Pedido{IdCliente: id, Imagen: pedido.Imagen})
 	}
+	Arbol.Inorder(Cola)
+	Cola.Mostrar()
 	return c.JSON(&fiber.Map{
 		"msg": "ok",
 	})
+}
+
+func verPedidos(c *fiber.Ctx) error {
+	return c.JSON(Cola.Cjson())
 }
 
 func cargarEmpleados(c *fiber.Ctx) error {
@@ -84,18 +103,47 @@ func cargarEmpleados(c *fiber.Ctx) error {
 
 }
 
+func registrarVentas(c *fiber.Ctx) error {
+	var nuevoNodo empleados.EnvioMatriz
+	c.BodyParser(&nuevoNodo)
+	Emp.Grafo.InsertarValores(&nuevoNodo)
+	Cola.Eliminar()
+	return c.JSON(&fiber.Map{
+		"msg": "Venta Registrada",
+	})
+}
+
+func solicitudes(c *fiber.Ctx) error {
+	return c.JSON(Emp.Grafo.Mjson())
+}
+
+func grafo(c *fiber.Ctx) error {
+	return c.JSON(Emp.Grafo.Dot())
+}
+
+func factura(c *fiber.Ctx) error {
+	var nuevo empleados.NodoHash
+	c.BodyParser(&nuevo)
+	Emp.Facturados.Insertar(nuevo.IdCliente, nuevo.IdFactura)
+	return c.JSON(&fiber.Map{
+		"msg": "Facturado",
+	})
+}
+
 func Login(c *fiber.Ctx) error {
 	var usuario Usuario
 	c.BodyParser(&usuario)
-	emp := LEmp.Buscar(usuario.Usuario, usuario.Contrasena)
+	Emp = LEmp.Buscar(usuario.Usuario, usuario.Contrasena)
 
 	if usuario.Usuario == admin && usuario.Contrasena == passA {
 		return c.JSON(&fiber.Map{
-			"msg": "admin",
+			"msg":     "admin",
+			"usuario": admin,
 		})
-	} else if emp != nil {
+	} else if Emp != nil {
 		return c.JSON(&fiber.Map{
-			"msg": "emp",
+			"msg":     "emp",
+			"usuario": Emp,
 		})
 	}
 	return c.JSON(&fiber.Map{
