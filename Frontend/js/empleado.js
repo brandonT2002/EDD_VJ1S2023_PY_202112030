@@ -43,9 +43,7 @@ function pedidosCola() {
                 
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
+        .catch(error => {})
 }
 
 function vender() {
@@ -78,8 +76,6 @@ function vender() {
             Filtros:filtros
         }
 
-        console.log(data)
-
         fetch(`${api}/ventas`,{
             method: 'POST',
             headers: {
@@ -93,10 +89,9 @@ function vender() {
             limpiar()
             pedidosCola()
             solicitudes()
+            verGrafo()
         })
-        .catch(error => {
-            console.log(error)
-        })
+        .catch(error => {})
     }
 }
 
@@ -105,7 +100,6 @@ function solicitudes() {
         .then(response => response.json())
         .then(data => {
             if (data.length != 0) {
-                // console.log(data)
                 table1 = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th><th>Filtros</th></tr>'
                 data.forEach((pedido, index) => {
                     table1 += `<tr>
@@ -118,9 +112,7 @@ function solicitudes() {
                 document.getElementById('solicitudes').innerHTML = table1
             }
         })
-        .catch(error => {
-            console.log(error)
-        })
+        .catch(error => {})
 }
 
 function limpiar(){
@@ -136,6 +128,20 @@ function limpiar(){
     document.getElementById('espejo-x').checked = false;
     document.getElementById('espejo-y').checked = false;
     document.getElementById('doble-espejo').checked = false;
+}
+
+// grafo 
+function verGrafo(){
+    fetch(`${api}/empleado`)
+        .then(response => response.json())
+        .then(data => {
+            grafo(data)
+        })
+        .catch(error => {})
+}
+
+function grafo(dot) {
+    d3.select('#grafo').graphviz().scale(.5).height(600*1).width(document.getElementById('grafo').clientWidth).renderDot(`${dot}`)
 }
 
 function updateDateTime() {

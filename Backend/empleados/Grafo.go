@@ -98,6 +98,10 @@ func (g *Grafo) Mjson() []Solicitud {
 	x := 0
 	y := 1
 
+	if g.Principal == nil || g.Principal.Abajo == nil {
+		return solicitudes
+	}
+
 	aux := g.Principal.Abajo
 	aux1 := aux
 

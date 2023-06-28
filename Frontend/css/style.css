@@ -46,6 +46,10 @@ input[type=number] {
     margin: 0 auto;
 }
 
+.container h2 {
+    font-weight: 100;
+}
+
 a {
     text-decoration: none;
     color: white;
@@ -322,7 +326,7 @@ h2 {
     transition: all 500ms ease-in;
 }
 
-.modalbox h2{
+.modalbox h2 {
     font-weight: 100;
     font-size: 2.2rem;
     margin: -20px 0px 50px 0px;
@@ -449,7 +453,8 @@ h2 {
     margin-top: 2rem;
     margin-bottom: 3.2rem;
 }
-.filters h2{
+
+.filters h2 {
     font-weight: 100;
     font-size: 2.2rem;
     margin-bottom: 0;
@@ -538,4 +543,22 @@ th {
 
 tr:hover {
     background-color: #bdcdd623;
+}
+
+.panel {
+    width: 90%;
+    height: auto;
+    background-color: #059A6A;
+}
+
+
+/* footer */
+footer {
+    background-color: var(--fondo2);
+    padding: 20px;
+    text-align: center;
+}
+
+p {
+    color: white;
 }

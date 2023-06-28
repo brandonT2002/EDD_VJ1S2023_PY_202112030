@@ -113,29 +113,46 @@
     </div>
 
     <div class="container container-table">
-        <h1 class="center-text">Pedidos en Cola</h1>
-        <table id="colaPedidos">
-            <tr>
-                <th id="noBooks" class="center-text">
-                    No hay pedidos
-                </th>
-            </tr>
-        </table>
+        <h2 class="center-text">Pedidos en Cola</h1>
+            <table id="colaPedidos">
+                <tr>
+                    <th id="noBooks" class="center-text">
+                        No hay pedidos
+                    </th>
+                </tr>
+            </table>
     </div>
 
     <div class="container container-table">
-        <h1 class="center-text">Solicitudes de Filtros por Clientes</h1>
-        <table id="solicitudes">
-            <tr>
-                <th id="noBooks" class="center-text">
-                    No hay elementos registrados
-                </th>
-            </tr>
-        </table>
+        <h2 class="center-text">Solicitudes de Filtros por Clientes</h1>
+            <table id="solicitudes">
+                <tr>
+                    <th id="noBooks" class="center-text">
+                        No hay elementos registrados
+                    </th>
+                </tr>
+            </table>
     </div>
+
+    <div class="container panel">
+        <h2 class="center-text">Grafo de Pedidos</h2>
+        <div id="grafo"></div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>EDD 202112030 ©</p>
+        </div>
+    </footer>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+    <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/empleado.js"></script>
     <script>pedidosCola()</script>
     <script>solicitudes()</script>
+    <script>verGrafo()</script>
 </body>
 
 </html>

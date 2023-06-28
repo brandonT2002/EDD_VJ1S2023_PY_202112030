@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"paquete/empleados"
 	"paquete/pedidos"
 	"strconv"
@@ -49,6 +48,7 @@ func main() {
 	app.Post("/pedidos", cargarPedidos)
 	app.Get("/pedidos", verPedidos)
 	app.Post("/empleado", cargarEmpleados)
+	app.Get("/empleado", grafo)
 	app.Post("/ventas", registrarVentas)
 	app.Get("/ventas", solicitudes)
 
@@ -106,7 +106,6 @@ func registrarVentas(c *fiber.Ctx) error {
 	c.BodyParser(&nuevoNodo)
 	Emp.Grafo.InsertarValores(&nuevoNodo)
 	Cola.Eliminar()
-	fmt.Println(Emp.Grafo.Dot())
 	return c.JSON(&fiber.Map{
 		"msg": "Venta Registrada",
 	})
@@ -114,6 +113,10 @@ func registrarVentas(c *fiber.Ctx) error {
 
 func solicitudes(c *fiber.Ctx) error {
 	return c.JSON(Emp.Grafo.Mjson())
+}
+
+func grafo(c *fiber.Ctx) error {
+	return c.JSON(Emp.Grafo.Dot())
 }
 
 func Login(c *fiber.Ctx) error {
