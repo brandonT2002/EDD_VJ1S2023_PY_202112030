@@ -548,13 +548,13 @@ tr:hover {
 .panel {
     width: 90%;
     height: auto;
-    background-color: #059A6A;
+    background-color: var(--fondo1);
 }
 
 
 /* footer */
 footer {
-    background-color: var(--fondo2);
+    background-color: var(--fondo1);
     padding: 20px;
     text-align: center;
 }

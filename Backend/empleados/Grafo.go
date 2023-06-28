@@ -179,7 +179,9 @@ func (g *Grafo) Dot() string {
 	if g.Principal != nil {
 		dot += "graph grafoDirigido{\n"
 		dot += "rankdir=LR;\n"
-		dot += "node [shape=box];\n"
+		dot += "bgcolor=\"#282A37\";\n"
+		dot += "edge[color=\"white\"]"
+		dot += "node [shape=box color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];\n"
 		dot += "layout=neato;"
 		dot += "nodo00[label=\"Empleado " + g.Principal.valor + "\"]; "
 		dot += g.matriz()

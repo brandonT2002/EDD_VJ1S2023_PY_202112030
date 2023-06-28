@@ -100,11 +100,11 @@ function solicitudes() {
         .then(response => response.json())
         .then(data => {
             if (data.length != 0) {
-                table1 = '<tr><th>Cola</th><th>ID Cliente</th><th>Imagen</th><th>Filtros</th></tr>'
+                table1 = '<tr><th>No.</th><th>ID Cliente</th><th>Imagen</th><th>Filtros</th></tr>'
                 data.forEach((pedido, index) => {
                     table1 += `<tr>
                 <td>${index + 1}</td>
-                <td>${pedido.IdCliente}</td>
+                <td>${pedido.Cliente}</td>
                 <td>${pedido.Imagen}</td>
                 <td>${pedido.Filtros}</td>
                 </tr>`
@@ -141,7 +141,7 @@ function verGrafo(){
 }
 
 function grafo(dot) {
-    d3.select('#grafo').graphviz().scale(.5).height(600*1).width(document.getElementById('grafo').clientWidth).renderDot(`${dot}`)
+    d3.select('#grafo').graphviz().scale(1).height(675*1).width(document.getElementById('grafo').clientWidth).renderDot(`${dot}`)
 }
 
 function updateDateTime() {
