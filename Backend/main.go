@@ -27,6 +27,7 @@ var admin = "123"
 var passA = "123"
 var Emp *empleados.Empleado
 var LEmp *empleados.ListaEmp
+var Tabla *empleados.TablaHash
 var Arbol *pedidos.ArbolAVL
 var Cola *pedidos.ColaPedidos
 
@@ -51,6 +52,7 @@ func main() {
 	app.Get("/empleado", grafo)
 	app.Post("/ventas", registrarVentas)
 	app.Get("/ventas", solicitudes)
+	app.Post("/factura", factura)
 
 	app.Listen(":8080")
 }
@@ -117,6 +119,15 @@ func solicitudes(c *fiber.Ctx) error {
 
 func grafo(c *fiber.Ctx) error {
 	return c.JSON(Emp.Grafo.Dot())
+}
+
+func factura(c *fiber.Ctx) error {
+	var nuevo empleados.NodoHash
+	c.BodyParser(&nuevo)
+	Emp.Facturados.Insertar(nuevo.IdCliente, nuevo.IdFactura)
+	return c.JSON(&fiber.Map{
+		"msg": "Facturado",
+	})
 }
 
 func Login(c *fiber.Ctx) error {

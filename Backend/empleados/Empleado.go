@@ -6,4 +6,5 @@ type Empleado struct {
 	Cargo      string
 	Contrasena string
 	Grafo      *Grafo
+	Facturados *TablaHash
 }
