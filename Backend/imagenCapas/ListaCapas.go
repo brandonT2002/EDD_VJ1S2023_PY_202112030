@@ -16,19 +16,19 @@ type ListaCapas struct {
 	longitud int
 }
 
-func (this *ListaCapas) Insertar(capa *MatrizDispersa) {
-	if this.primero != nil {
-		this.ultimo.siguiente = &Nodo{capa: capa}
-		this.ultimo = this.ultimo.siguiente
-		this.longitud++
+func (l *ListaCapas) Insertar(capa *MatrizDispersa) {
+	if l.primero != nil {
+		l.ultimo.siguiente = &Nodo{capa: capa}
+		l.ultimo = l.ultimo.siguiente
+		l.longitud++
 		return
 	}
-	this.primero = &Nodo{capa: capa}
-	this.ultimo = this.primero
-	this.longitud++
+	l.primero = &Nodo{capa: capa}
+	l.ultimo = l.primero
+	l.longitud++
 }
 
-func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre string) {
+func (l *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre string) {
 	css := `body {
 	background: #333333;
 	height: 100vh;
@@ -50,7 +50,7 @@ func (this *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombr
 	float: left;
 }`, anchoPx, altoPx)
 
-	actual := this.primero
+	actual := l.primero
 	for actual != nil {
 		css += actual.capa.ObtenerCSS(ancho)
 		actual = actual.siguiente

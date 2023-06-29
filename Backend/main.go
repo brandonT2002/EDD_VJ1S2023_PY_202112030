@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"paquete/empleados"
 	"paquete/facturas"
+	imagencapas "paquete/imagenCapas"
 	"paquete/pedidos"
 	"strconv"
 
@@ -22,6 +24,10 @@ type Empleado struct {
 type PedidoJSON struct {
 	IdCliente string `json:"IdCliente"`
 	Imagen    string `json:"Imagen"`
+}
+
+type Img struct {
+	Imagen string `json:"Imagen"`
 }
 
 var admin = "123"
@@ -60,6 +66,7 @@ func main() {
 	app.Post("/facturas", facturas_)
 	app.Get("/Arbol", Reportes1)
 	app.Get("/Blockchain", Reportes2)
+	app.Post("imagen", GenerarImg)
 
 	app.Listen(":8080")
 }
@@ -156,6 +163,15 @@ func Reportes1(c *fiber.Ctx) error {
 
 func Reportes2(c *fiber.Ctx) error {
 	return c.JSON(Blockchain.Reporte())
+}
+
+func GenerarImg(c *fiber.Ctx) error {
+	var img Img
+	c.BodyParser(&img)
+	fmt.Println(img)
+	return c.JSON(&fiber.Map{
+		"msg": imagencapas.CrearImg(img.Imagen),
+	})
 }
 
 func Login(c *fiber.Ctx) error {
