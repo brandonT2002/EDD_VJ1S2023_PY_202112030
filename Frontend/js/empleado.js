@@ -47,6 +47,7 @@ function pedidosCola() {
 }
 
 function vender() {
+    var fecha = document.getElementById('fecha').value
     var idEmp = document.getElementById('idEmp').value;
     var idCliente = document.getElementById('idCliente').value;
     var imagen = document.getElementById('imgCliente').value
@@ -86,6 +87,7 @@ function vender() {
         .then(response => response.json())
         .then(data => {
             alert(data.msg)
+            facturar(fecha,idEmp,idCliente,pago)
             limpiar()
             pedidosCola()
             solicitudes()
@@ -113,6 +115,27 @@ function solicitudes() {
             }
         })
         .catch(error => {})
+}
+
+function facturar(fecha,biller,customer,payment){
+    var data = {
+        Timestamp:fecha,
+        Biller:biller,
+        Customer:customer,
+        Payment:payment
+    }
+    fetch(`${api}/facturas`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // console.log(data.idFactura)
+    })
+    .catch(error => {})
 }
 
 function limpiar(){
@@ -161,7 +184,7 @@ function updateDateTime() {
     minutos = padZero(minutos);
     segundos = padZero(segundos);
 
-    var formatoFechaHora = dia + '-' + mes + '-' + anio + '   ' + horas + ':' + minutos + ':' + segundos;
+    var formatoFechaHora = dia + '-' + mes + '-' + anio + '-::' + horas + ':' + minutos + ':' + segundos;
     document.getElementById('fecha').value = formatoFechaHora;
 }
 

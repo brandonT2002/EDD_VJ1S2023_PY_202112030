@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"paquete/empleados"
 	"paquete/facturas"
 	"paquete/pedidos"
@@ -139,6 +140,8 @@ func facturas_(c *fiber.Ctx) error {
 	var nuevo facturas.Peticion
 	c.BodyParser(&nuevo)
 	hash := Blockchain.Insertar(&nuevo)
+	fmt.Println(nuevo)
+	fmt.Println(hash)
 	return c.JSON(&fiber.Map{
 		"idFactura": hash,
 	})
