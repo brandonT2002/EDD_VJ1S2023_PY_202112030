@@ -2,6 +2,7 @@ package main
 
 import (
 	"paquete/empleados"
+	"paquete/facturas"
 	"paquete/pedidos"
 	"strconv"
 
@@ -30,11 +31,13 @@ var LEmp *empleados.ListaEmp
 var Tabla *empleados.TablaHash
 var Arbol *pedidos.ArbolAVL
 var Cola *pedidos.ColaPedidos
+var Blockchain *facturas.Blockchain
 
 func main() {
 	LEmp = &empleados.ListaEmp{}
 	Arbol = &pedidos.ArbolAVL{}
 	Cola = &pedidos.ColaPedidos{}
+	Blockchain = &facturas.Blockchain{Longitud: 0}
 
 	app := fiber.New()
 	app.Use(cors.New())
@@ -53,6 +56,8 @@ func main() {
 	app.Post("/ventas", registrarVentas)
 	app.Get("/ventas", solicitudes)
 	app.Post("/factura", factura)
+	app.Post("/facturas", facturas_)
+	app.Get("/facturas", ReporteFact)
 
 	app.Listen(":8080")
 }
@@ -128,6 +133,19 @@ func factura(c *fiber.Ctx) error {
 	return c.JSON(&fiber.Map{
 		"msg": "Facturado",
 	})
+}
+
+func facturas_(c *fiber.Ctx) error {
+	var nuevo facturas.Peticion
+	c.BodyParser(&nuevo)
+	hash := Blockchain.Insertar(&nuevo)
+	return c.JSON(&fiber.Map{
+		"idFactura": hash,
+	})
+}
+
+func ReporteFact(c *fiber.Ctx) error {
+	return c.JSON(Blockchain.Reporte())
 }
 
 func Login(c *fiber.Ctx) error {

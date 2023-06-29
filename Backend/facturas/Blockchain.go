@@ -9,41 +9,42 @@ import (
 type Blockchain struct {
 	primero  *NodoB
 	ultimo   *NodoB
-	longitud int
+	Longitud int
 }
 
-func (b *Blockchain) Insertar(fecha, biller, customer, payment string) {
-	cadenaFuncion := strconv.Itoa(b.longitud) + fecha + biller + customer + payment
+func (b *Blockchain) Insertar(bloque *Peticion) string {
+	cadenaFuncion := strconv.Itoa(b.Longitud) + bloque.Timestamp + bloque.Biller + bloque.Customer + bloque.Payment
 	hash := SHA256(cadenaFuncion)
 	if b.primero != nil {
 		datosBloque := map[string]string{
-			"index":        strconv.Itoa(b.longitud),
-			"timestamp":    fecha,
-			"biller":       biller,
-			"customer":     customer,
-			"payment":      payment,
+			"index":        strconv.Itoa(b.Longitud),
+			"timestamp":    bloque.Timestamp,
+			"biller":       bloque.Biller,
+			"customer":     bloque.Customer,
+			"payment":      bloque.Payment,
 			"previoushash": b.ultimo.bloque["hash"],
 			"hash":         hash,
 		}
 		b.ultimo.siguiente = &NodoB{bloque: datosBloque}
 		b.ultimo.siguiente.anterior = b.ultimo
 		b.ultimo = b.ultimo.siguiente
-		b.longitud++
-		return
+		b.Longitud++
+		return hash
 	}
 	datosBloque := map[string]string{
-		"index":        strconv.Itoa(b.longitud),
-		"timestamp":    fecha,
-		"biller":       biller,
-		"customer":     customer,
-		"payment":      payment,
+		"index":        strconv.Itoa(b.Longitud),
+		"timestamp":    bloque.Timestamp,
+		"biller":       bloque.Biller,
+		"customer":     bloque.Customer,
+		"payment":      bloque.Payment,
 		"previoushash": "0000",
 		"hash":         hash,
 	}
 	nuevoBloque := &NodoB{bloque: datosBloque}
 	b.primero = nuevoBloque
 	b.ultimo = b.primero
-	b.longitud++
+	b.Longitud++
+	return hash
 }
 
 func (b *Blockchain) Facturas() []Respuesta {
@@ -83,7 +84,7 @@ func (b *Blockchain) Reporte() string {
 	actual = b.primero
 	long = 0
 	for actual != nil {
-		if long < b.longitud {
+		if long < b.Longitud {
 			dot += "nodo_" + strconv.Itoa(long) + " -> "
 			long++
 		} else {
