@@ -89,9 +89,6 @@ function vender() {
             alert(data.msg)
             facturar(fecha,idEmp,idCliente,pago)
             limpiar()
-            pedidosCola()
-            solicitudes()
-            verGrafo()
         })
         .catch(error => {})
     }
@@ -133,9 +130,49 @@ function facturar(fecha,biller,customer,payment){
     })
     .then(response => response.json())
     .then(data => {
+        guardarFactura(customer,data.idFactura)
+    })
+    .catch(error => {})
+}
+
+function guardarFactura(cliente, factura) {
+    var data = {
+        IdCliente:cliente,
+        IdFactura:factura
+    }
+    fetch(`${api}/factura`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
         // console.log(data.idFactura)
     })
     .catch(error => {})
+}
+
+function facturas() {
+    fetch(`${api}/factura`)
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data)
+            table3 = '<tr><th>No.</th><th>ID Cliente</th><th>ID Factura</th></tr>'
+            data.forEach((pedido, index) => {
+                if (pedido.Llave != -1){
+                    console.log(data.Llave)
+                    table3 += `<tr>
+                    <td>${index}</td>
+                    <td>${pedido.IdCliente}</td>
+                    <td>${pedido.IdFactura}</td>
+                    </tr>`
+                }
+            })
+            document.getElementById('facturas').innerHTML = table3
+        })
+        .catch(error => {})
 }
 
 function limpiar(){
@@ -151,6 +188,11 @@ function limpiar(){
     document.getElementById('espejo-x').checked = false;
     document.getElementById('espejo-y').checked = false;
     document.getElementById('doble-espejo').checked = false;
+
+    pedidosCola()
+    solicitudes()
+    facturas()
+    verGrafo()
 }
 
 // grafo 

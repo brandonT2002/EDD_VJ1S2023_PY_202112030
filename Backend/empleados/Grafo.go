@@ -183,7 +183,7 @@ func (g *Grafo) Dot() string {
 		dot += "edge[color=\"white\"]"
 		dot += "node [shape=box color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];\n"
 		dot += "layout=neato;"
-		dot += "nodo00[label=\"Empleado " + g.Principal.valor + "\"]; "
+		dot += "nodo00[label=\"Empleado\\n" + g.Principal.valor + "\"]; "
 		dot += g.matriz()
 		dot += "}"
 	}

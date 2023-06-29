@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"paquete/empleados"
 	"paquete/facturas"
 	"paquete/pedidos"
@@ -57,6 +56,7 @@ func main() {
 	app.Post("/ventas", registrarVentas)
 	app.Get("/ventas", solicitudes)
 	app.Post("/factura", factura)
+	app.Get("/factura", TablaFact)
 	app.Post("/facturas", facturas_)
 	app.Get("/facturas", ReporteFact)
 
@@ -136,12 +136,14 @@ func factura(c *fiber.Ctx) error {
 	})
 }
 
+func TablaFact(c *fiber.Ctx) error {
+	return c.JSON(Emp.Facturados.Tabla)
+}
+
 func facturas_(c *fiber.Ctx) error {
 	var nuevo facturas.Peticion
 	c.BodyParser(&nuevo)
 	hash := Blockchain.Insertar(&nuevo)
-	fmt.Println(nuevo)
-	fmt.Println(hash)
 	return c.JSON(&fiber.Map{
 		"idFactura": hash,
 	})

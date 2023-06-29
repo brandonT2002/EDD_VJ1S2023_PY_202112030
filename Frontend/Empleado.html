@@ -37,13 +37,6 @@
                     </div>
                 </a>
             </div>
-
-            <div class="card_ child2" id="card2">
-                <h2 class="card__title">Factura</h2>
-                <div class="card__image">
-                    <img src="img/gameboy.png" alt="gameboy">
-                </div>
-            </div>
         </div>
     </div>
 
@@ -114,24 +107,35 @@
 
     <div class="container container-table">
         <h2 class="center-text">Pedidos en Cola</h1>
-            <table id="colaPedidos">
-                <tr>
-                    <th id="noBooks" class="center-text">
-                        No hay pedidos
-                    </th>
-                </tr>
-            </table>
+        <table id="colaPedidos">
+            <tr>
+                <th id="noBooks" class="center-text">
+                    No hay pedidos
+                </th>
+            </tr>
+        </table>
     </div>
 
     <div class="container container-table">
         <h2 class="center-text">Solicitudes de Filtros por Clientes</h1>
-            <table id="solicitudes">
-                <tr>
-                    <th id="noBooks" class="center-text">
-                        No hay elementos registrados
-                    </th>
-                </tr>
-            </table>
+        <table id="solicitudes">
+            <tr>
+                <th id="noBooks" class="center-text">
+                    No hay solicitudes
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container container-table">
+        <h2 class="center-text">Facturas</h1>
+        <table id="facturas">
+            <tr>
+                <th id="noBooks" class="center-text">
+                    No hay facturas
+                </th>
+            </tr>
+        </table>
     </div>
 
     <div class="container panel">
@@ -152,6 +156,7 @@
     <script src="js/empleado.js"></script>
     <script>pedidosCola()</script>
     <script>solicitudes()</script>
+    <script>facturas()</script>
     <script>verGrafo()</script>
 </body>
 
