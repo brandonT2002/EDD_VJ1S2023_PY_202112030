@@ -1,20 +1,18 @@
 package empleados
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 )
 
 type TablaHash struct {
 	Tabla       [30]NodoHash
-	Capacidad   int // 5
-	Utilizacion int // 0.0
+	Capacidad   int
+	Utilizacion int
 }
 
 func (t *TablaHash) calculoIndice(id_cliente int, multiplicador int) int {
-	/*índice = (45*1526 + 202312345) % tamaño_tablahash*/
-	indice := (18*id_cliente + 201700918*multiplicador) % t.Capacidad
+	indice := (30*id_cliente + 202112030*multiplicador) % t.Capacidad
 	return indice
 }
 
@@ -32,7 +30,6 @@ func (t *TablaHash) reInsertar() {
 	t.NuevaTabla()
 	for i := 0; i < 30; i++ {
 		if auxTabla[i].Llave != -1 {
-			fmt.Println(auxTabla[i].IdCliente)
 			t.Insertar(auxTabla[i].IdCliente, auxTabla[i].IdFactura)
 		}
 	}
