@@ -60,13 +60,10 @@ func (b *Blockchain) Facturas() []Respuesta {
 func (b *Blockchain) Reporte() string {
 	dot := "digraph G {\n"
 	dot += "fontname=\"Arial\""
-	dot += "label=\"Lista Doble - Imagenes\"\n"
-	dot += "labelloc = t\n"
+	dot += "bgcolor=\"#282A37\";\n"
+	dot += "edge[color=\"white\"]"
 	dot += "rankdir=LR;\n"
-	dot += "node[shape=\"box\" fontname=\"Arial\"];\n"
-
-	dot += "null0 [label=\"null\"]\n"
-	dot += "null1 [label=\"null\"]\n"
+	dot += "node[shape=\"box\" fontname=\"Arial\" color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];\n"
 
 	actual := b.primero
 	long := 0
@@ -74,9 +71,9 @@ func (b *Blockchain) Reporte() string {
 		dot += "nodo_" + strconv.Itoa(long) +
 			" [label=\"TimeStamp:" + actual.bloque["timestamp"] +
 			"\\nBiller: " + actual.bloque["biller"] +
-			"\\nCustomer" + actual.bloque["customer"] +
+			"\\nCustomer: " + actual.bloque["customer"] +
 			"\\nPreviousHash: " + actual.bloque["previoushash"] +
-			"\\nPreviousHash: " + actual.bloque["hash"] + "\"];\n"
+			"\\nHash: " + actual.bloque["hash"] + "\"];\n"
 		long++
 		actual = actual.siguiente
 	}
@@ -84,15 +81,13 @@ func (b *Blockchain) Reporte() string {
 	actual = b.primero
 	long = 0
 	for actual != nil {
-		if long < b.Longitud {
-			dot += "nodo_" + strconv.Itoa(long) + " -> "
-			long++
-		} else {
-			dot += "nodo_" + strconv.Itoa(long)
-		}
 		if actual.siguiente == nil {
+			dot += "nodo_" + strconv.Itoa(long)
 			dot += ";\n"
+		} else {
+			dot += "nodo_" + strconv.Itoa(long) + " -> "
 		}
+		long++
 		actual = actual.siguiente
 	}
 

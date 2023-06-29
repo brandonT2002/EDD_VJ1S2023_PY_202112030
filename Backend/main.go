@@ -58,7 +58,8 @@ func main() {
 	app.Post("/factura", factura)
 	app.Get("/factura", TablaFact)
 	app.Post("/facturas", facturas_)
-	app.Get("/facturas", ReporteFact)
+	app.Get("/Arbol", Reportes1)
+	app.Get("/Blockchain", Reportes2)
 
 	app.Listen(":8080")
 }
@@ -124,7 +125,7 @@ func solicitudes(c *fiber.Ctx) error {
 }
 
 func grafo(c *fiber.Ctx) error {
-	return c.JSON(Emp.Grafo.Dot())
+	return c.JSON(Emp.Grafo.Reporte())
 }
 
 func factura(c *fiber.Ctx) error {
@@ -149,7 +150,11 @@ func facturas_(c *fiber.Ctx) error {
 	})
 }
 
-func ReporteFact(c *fiber.Ctx) error {
+func Reportes1(c *fiber.Ctx) error {
+	return c.JSON(Arbol.Reporte())
+}
+
+func Reportes2(c *fiber.Ctx) error {
 	return c.JSON(Blockchain.Reporte())
 }
 
