@@ -115,9 +115,9 @@ func (a *ArbolAVL) inorder1(nodo *Nodo, cola *ColaPedidos) {
 func (a *ArbolAVL) dot1(nodo *Nodo) string {
 	dot := ""
 	if nodo.izq == nil && nodo.der == nil {
-		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C3>" + strconv.Itoa(nodo.pedido.IdCliente) + "\" fontname=\"Arial\" color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];"
+		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C3>" + strconv.Itoa(nodo.pedido.IdCliente) + "\\n" + nodo.pedido.Imagen + "\" fontname=\"Arial\" color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];"
 	} else {
-		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C0> | <C3>" + strconv.Itoa(nodo.pedido.IdCliente) + " | <C1>\" fontname=\"Arial\" color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];"
+		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C0> | <C3>" + strconv.Itoa(nodo.pedido.IdCliente) + "\\n" + nodo.pedido.Imagen + " | <C1>\" fontname=\"Arial\" color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];"
 	}
 	if nodo.izq != nil {
 		dot += a.dot1(nodo.izq)
