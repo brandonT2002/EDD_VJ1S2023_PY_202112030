@@ -102,7 +102,7 @@ function Arbol() {
     }
     
 function Arbol1(dot) {
-    d3.select('#arbol').graphviz().scale(1).height(675*1).width(document.getElementById('arbol').clientWidth).renderDot(`${dot}`)
+    d3.select('#arbol').graphviz().scale(1).height(550*1).width(document.getElementById('arbol').clientWidth).renderDot(`${dot}`)
 }
 
 function Block() {
@@ -116,5 +116,5 @@ function Block() {
 }
 
 function Block1(dot) {
-    d3.select('#block').graphviz().scale(1).height(675*1).width(document.getElementById('block').clientWidth).renderDot(`${dot}`)
+    d3.select('#block').graphviz().scale(1).height(250*1).width(document.getElementById('block').clientWidth).renderDot(`${dot}`)
 }

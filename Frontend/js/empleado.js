@@ -206,7 +206,7 @@ function verGrafo(){
 }
 
 function grafo(dot) {
-    d3.select('#grafo').graphviz().scale(1).height(675*1).width(document.getElementById('grafo').clientWidth).renderDot(`${dot}`)
+    d3.select('#grafo').graphviz().scale(0.5).height(675*1).width(document.getElementById('grafo').clientWidth).renderDot(`${dot}`)
 }
 
 function updateDateTime() {
