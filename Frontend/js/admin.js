@@ -38,6 +38,7 @@ document.getElementById("card1").addEventListener("click", function () {
             .then(data => {
                 if (data.msg === 'ok'){
                     alert('Archivo cargado exitosamente')
+                    Arbol()
                 }else{
                     alert('Ocurrio un error')
                 }
@@ -90,3 +91,30 @@ document.getElementById('card2').addEventListener('click', function () {
     });
     fileInput.click();
 });
+
+function Arbol() {
+    fetch(`${api}/Arbol`)
+        .then(response => response.json())
+        .then(data => {
+            Arbol1(data)
+        })
+        .catch(error => {})
+    }
+    
+function Arbol1(dot) {
+    d3.select('#arbol').graphviz().scale(1).height(550*1).width(document.getElementById('arbol').clientWidth).renderDot(`${dot}`)
+}
+
+function Block() {
+    fetch(`${api}/Blockchain`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            Block1(data)
+        })
+        .catch(error => {})
+}
+
+function Block1(dot) {
+    d3.select('#block').graphviz().scale(1).height(250*1).width(document.getElementById('block').clientWidth).renderDot(`${dot}`)
+}

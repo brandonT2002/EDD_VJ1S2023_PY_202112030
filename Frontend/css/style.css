@@ -191,7 +191,7 @@ h2 {
     color: white;
     padding: 2rem;
     border-radius: 1rem;
-    width: 30rem;
+    width: 40rem;
     height: 37rem;
     text-align: center;
     cursor: pointer;
@@ -230,20 +230,12 @@ h2 {
     font-size: 1.6rem;
 }
 
-.card:nth-child(1) {
-    background: linear-gradient(to bottom right, #E03E34, #E27755);
-}
-
 .card:nth-child(2) {
     background: linear-gradient(to bottom right, #2EDEB0, #27CBCF);
 }
 
-.card:nth-child(3) {
+.card:nth-child(1) {
     background: linear-gradient(to bottom right, #29CBF4, #5085D1);
-}
-
-.child1 {
-    background: linear-gradient(to bottom right, #1A2841, #7B3127);
 }
 
 .child2 {
@@ -464,7 +456,7 @@ h2 {
     margin-bottom: 1.2rem;
 }
 
-.filter-option input[type="checkbox"] {
+.filter-option input[type="radio"] {
     display: none;
 }
 
@@ -483,10 +475,10 @@ h2 {
     height: 20px;
     margin-right: 10px;
     border: 2px solid #D7D7D7;
-    border-radius: 20%;
+    border-radius: 50%;
 }
 
-.filter-option input[type="checkbox"]:checked+label:before {
+.filter-option input[type="radio"]:checked+label:before {
     background-color: #04AA6D;
     border-color: #04AA6D;
 }

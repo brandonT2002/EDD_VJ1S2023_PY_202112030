@@ -47,6 +47,7 @@ function pedidosCola() {
 }
 
 function vender() {
+    var fecha = document.getElementById('fecha').value
     var idEmp = document.getElementById('idEmp').value;
     var idCliente = document.getElementById('idCliente').value;
     var imagen = document.getElementById('imgCliente').value
@@ -86,10 +87,8 @@ function vender() {
         .then(response => response.json())
         .then(data => {
             alert(data.msg)
+            facturar(fecha,idEmp,idCliente,pago)
             limpiar()
-            pedidosCola()
-            solicitudes()
-            verGrafo()
         })
         .catch(error => {})
     }
@@ -115,6 +114,67 @@ function solicitudes() {
         .catch(error => {})
 }
 
+function facturar(fecha,biller,customer,payment){
+    var data = {
+        Timestamp:fecha,
+        Biller:biller,
+        Customer:customer,
+        Payment:payment
+    }
+    fetch(`${api}/facturas`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        guardarFactura(customer,data.idFactura)
+    })
+    .catch(error => {})
+}
+
+function guardarFactura(cliente, factura) {
+    var data = {
+        IdCliente:cliente,
+        IdFactura:factura
+    }
+    fetch(`${api}/factura`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // console.log(data.idFactura)
+    })
+    .catch(error => {})
+}
+
+function facturas() {
+    fetch(`${api}/factura`)
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data)
+            table3 = '<tr><th>No.</th><th>ID Cliente</th><th>ID Factura</th></tr>'
+            data.forEach((pedido, index) => {
+                if (pedido.Llave != -1){
+                    console.log(data.Llave)
+                    table3 += `<tr>
+                    <td>${index}</td>
+                    <td>${pedido.IdCliente}</td>
+                    <td>${pedido.IdFactura}</td>
+                    </tr>`
+                }
+            })
+            document.getElementById('facturas').innerHTML = table3
+        })
+        .catch(error => {})
+}
+
 function limpiar(){
     window.location.href = 'Empleado.html#close'
     
@@ -128,6 +188,11 @@ function limpiar(){
     document.getElementById('espejo-x').checked = false;
     document.getElementById('espejo-y').checked = false;
     document.getElementById('doble-espejo').checked = false;
+
+    pedidosCola()
+    solicitudes()
+    facturas()
+    verGrafo()
 }
 
 // grafo 
@@ -141,7 +206,7 @@ function verGrafo(){
 }
 
 function grafo(dot) {
-    d3.select('#grafo').graphviz().scale(1).height(675*1).width(document.getElementById('grafo').clientWidth).renderDot(`${dot}`)
+    d3.select('#grafo').graphviz().scale(0.5).height(675*1).width(document.getElementById('grafo').clientWidth).renderDot(`${dot}`)
 }
 
 function updateDateTime() {
@@ -161,7 +226,7 @@ function updateDateTime() {
     minutos = padZero(minutos);
     segundos = padZero(segundos);
 
-    var formatoFechaHora = dia + '-' + mes + '-' + anio + '   ' + horas + ':' + minutos + ':' + segundos;
+    var formatoFechaHora = dia + '-' + mes + '-' + anio + '-::' + horas + ':' + minutos + ':' + segundos;
     document.getElementById('fecha').value = formatoFechaHora;
 }
 
