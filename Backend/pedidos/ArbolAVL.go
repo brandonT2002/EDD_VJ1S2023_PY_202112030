@@ -1,6 +1,9 @@
 package pedidos
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 type ArbolAVL struct {
 	raiz *Nodo
@@ -83,19 +86,38 @@ func (a *ArbolAVL) rotarDobleDer(nodo *Nodo) *Nodo {
 	return a.rotarDer(nodo)
 }
 
-func (a *ArbolAVL) Dot() string {
+func (a *ArbolAVL) Reporte() string {
 	dot := "digraph Tree{\n\tnode [shape = record];"
-	dot += a.dot1(a.raiz)
+	dot += "fontname=\"Arial\""
+	dot += "bgcolor=\"#282A37\";\n"
+	dot += "edge[color=\"white\"]"
+	if a.raiz != nil {
+		dot += a.dot1(a.raiz)
+	}
 	dot += "\n}"
 	return dot
+}
+
+func (a *ArbolAVL) Inorder(cola *ColaPedidos) {
+	a.inorder1(a.raiz, cola)
+	fmt.Println()
+}
+
+func (a *ArbolAVL) inorder1(nodo *Nodo, cola *ColaPedidos) {
+	if nodo != nil {
+		a.inorder1(nodo.izq, cola)
+		// fmt.Print(strconv.Itoa(nodo.pedido.IdCliente) + " ")
+		cola.Insertar(nodo.pedido)
+		a.inorder1(nodo.der, cola)
+	}
 }
 
 func (a *ArbolAVL) dot1(nodo *Nodo) string {
 	dot := ""
 	if nodo.izq == nil && nodo.der == nil {
-		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C3>" + strconv.Itoa(nodo.pedido.IdCliente) + "\"];"
+		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C3>" + strconv.Itoa(nodo.pedido.IdCliente) + "\\n" + nodo.pedido.Imagen + "\" fontname=\"Arial\" color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];"
 	} else {
-		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C0> | <C3>" + strconv.Itoa(nodo.pedido.IdCliente) + " | <C1>\"];"
+		dot = "\n\tnode_" + strconv.Itoa(nodo.pedido.IdCliente) + "[label=\"<C0> | <C3>" + strconv.Itoa(nodo.pedido.IdCliente) + "\\n" + nodo.pedido.Imagen + " | <C1>\" fontname=\"Arial\" color=\"white\" fontcolor=\"white\" fillcolor=\"#282A37\"];"
 	}
 	if nodo.izq != nil {
 		dot += a.dot1(nodo.izq)

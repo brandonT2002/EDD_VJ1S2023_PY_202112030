@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/empleado.css">
-    <title>Administrador</title>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Empleado</title>
 </head>
 
 <body>
@@ -20,31 +20,146 @@
                     <h1 class="logo__name no-margin center-text"><span class="logo__bold">EDD</span> Creative</h1>
                 </a>
                 <nav class="navigation">
-                    <a href="index.html" class="navigation__link">Cerrar Sesión</a>
+                    <a href="#" onclick="cerrarSesion()" class="navigation__link">Cerrar Sesión</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <div class="contenedor">
-        <h1 class="bienvenido">Bienvenido</h1>
+        <h1 class="bienvenido" id="empleado">Bienvenido</h1>
         <div class="card-container">
-            <div class="card" id="card1">
-                <h2 class="card__title">Aplicar Filtros</h2>
-                <div class="card__image">
-                    <img src="img/spider.png" alt="estrella">
-                </div>
-            </div>
-
-            <div class="card" id="card2">
-                <h2 class="card__title">Factura</h2>
-                <div class="card__image">
-                    <img src="img/gameboy.png" alt="yoshi">
-                </div>
+            <div class="card_ child2" id="card1">
+                <a href="#modal1">
+                    <h2 class="card__title">Aplicar Filtros</h2>
+                    <div class="card__image">
+                        <img src="img/gameboy.png" alt="gameboy">
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-    <script src="js/admin.js"></script>
-</body>
 
+    <div id="modal1" class="modalmask">
+        <form action="" autocomplete="off">
+            <div class="modalbox movedown">
+                <a href="#close" title="Close" class="close">&times;</a>
+                <h2 class="center-text">Atender Pedido</h2>
+                <div class="container-fields">
+                    <div class="columnas">
+                        <div class="input-container">
+                            <input id="fecha" class="input" type="text" min="0" placeholder=" " />
+                            <div class="cut cut-short"></div>
+                            <label for="fecha" class="placeholder">Fecha</label>
+                        </div>
+                        <div class="input-container">
+                            <input id="idEmp" class="input" type="text" placeholder=" " />
+                            <div class="cut cut-short"></div>
+                            <label for="idEmp" class="placeholder">Empleado</>
+                        </div>
+                        <div class="input-container">
+                            <input id="idCliente" class="input" type="text" placeholder=" " />
+                            <div class="cut cut-short"></div>
+                            <label for="idCliente" class="placeholder">ID Cliente</>
+                        </div>
+                        <div class="input-container">
+                            <input id="imgCliente" class="input" type="text" placeholder=" " />
+                            <div class="cut cut-short"></div>
+                            <label for="imgCliente" class="placeholder">Imagen</>
+                        </div>
+                    </div>
+
+                    <h2 class="center-text">Filtros</h2>
+                    <div class="columnas">
+                        <div class="filters">
+                            <div class="filter-option">
+                                <input id="negativo" type="radio" name="filter" onclick="cambiarImagen('img/m2.jpg')" />
+                                <label for="negativo">Negativo</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="escala-grises" type="radio" name="filter" onclick="cambiarImagen('img/m3.jpg')" />
+                                <label for="escala-grises">Escala de grises</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="espejo-x" type="radio" name="filter" onclick="cambiarImagen('img/m4.jpg')" />
+                                <label for="espejo-x">Espejo x</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="espejo-y" type="radio" name="filter" onclick="cambiarImagen('img/m5.jpg')" />
+                                <label for="espejo-y">Espejo y</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="doble-espejo" type="radio" name="filter" onclick="cambiarImagen('img/m6.jpg')" />
+                                <label for="doble-espejo">Doble espejo</label>
+                            </div>
+                        </div>
+
+                        <img id="img1" src="img/m1.jpg" alt="mario">
+                    </div>
+
+                    <div class="input-container">
+                        <input id="pago" class="input" type="number" placeholder=" " />
+                        <div class="cut cut-short"></div>
+                        <label for="pago" class="placeholder">Pago</>
+                    </div>
+                </div>
+                <button id="pagar" type="button" class="submit" onclick="vender()">Realizar Pago</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container container-table">
+        <h2 class="center-text">Pedidos en Cola</h1>
+        <table id="colaPedidos">
+            <tr>
+                <th id="noBooks" class="center-text">
+                    No hay pedidos
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container container-table">
+        <h2 class="center-text">Solicitudes de Filtros por Clientes</h1>
+        <table id="solicitudes">
+            <tr>
+                <th id="noBooks" class="center-text">
+                    No hay solicitudes
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container container-table">
+        <h2 class="center-text">Facturas</h1>
+        <table id="facturas">
+            <tr>
+                <th id="noBooks" class="center-text">
+                    No hay facturas
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="container panel">
+        <h2 class="center-text">Grafo de Pedidos</h2>
+        <div id="grafo"></div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>EDD 202112030 ©</p>
+        </div>
+    </footer>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+    <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/empleado.js"></script>
+    <script>pedidosCola()</script>
+    <script>solicitudes()</script>
+    <script>facturas()</script>
+    <script>verGrafo()</script>
+</body>
 </html>

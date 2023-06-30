@@ -3,27 +3,19 @@ package empleados
 import (
 	"encoding/csv"
 	"io"
-	"os"
+	"strings"
 
 	"github.com/fatih/color"
 )
 
-func LeerCSV(lista *ListaEmp, archivo string) {
-	file, err := os.Open("csv/" + archivo + ".csv")
-
-	if err != nil {
-		color.Red("\n  Error, no se pudo abrir el archivo\n\n")
-		return
-	}
-	defer file.Close()
-
-	lectura := csv.NewReader(file)
+func LeerCSV(lista *ListaEmp, contenido string) string {
+	lectura := csv.NewReader(strings.NewReader(contenido))
 	lectura.Comma = ','
 	encabezado := true
 	for {
 		linea, err := lectura.Read()
 		if err == io.EOF {
-			break
+			return "ok"
 		}
 		if err != nil {
 			color.Yellow("\n  No se pudo leer la linea del csv\n\n")
@@ -33,7 +25,10 @@ func LeerCSV(lista *ListaEmp, archivo string) {
 			encabezado = false
 			continue
 		}
-		lista.Insertar(&Empleado{Id: linea[0], Nombre: linea[1], Cargo: linea[2], Contrasena: linea[3]})
+		if strings.ReplaceAll(linea[0], " ", "") != "" || strings.ReplaceAll(linea[1], " ", "") != "" || strings.ReplaceAll(linea[2], " ", "") != "" || strings.ReplaceAll(linea[3], " ", "") != "" {
+			emp := &Empleado{Id: linea[0], Nombre: linea[1], Cargo: linea[2], Contrasena: linea[3], Grafo: &Grafo{nil}, Facturados: &TablaHash{Capacidad: 5, Utilizacion: 0}}
+			lista.Insertar(emp)
+			emp.Facturados.NuevaTabla()
+		}
 	}
-	color.Green("\n  Archivo cargado exitosamente\n\n")
 }

@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Administrador</title>
 </head>
 
@@ -20,19 +20,19 @@
                     <h1 class="logo__name no-margin center-text"><span class="logo__bold">EDD</span> Creative</h1>
                 </a>
                 <nav class="navigation">
-                    <a href="index.html" class="navigation__link">Cerrar Sesión</a>
+                    <a href="#" onclick="cerrarSesion()" class="navigation__link">Cerrar Sesión</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <div class="contenedor">
-        <h1 class="bienvenido">Bienvenido</h1>
+        <h1 class="bienvenido" id="admin">Bienvenido</h1>
         <div class="card-container">
             <div class="card" id="card1">
                 <h2 class="card__title">Cargar Pedidos</h2>
                 <div class="card__image">
-                    <img src="img/star.png" alt="estrella">
+                    <img src="img/tortuga.png" alt="caparazon azul">
                 </div>
             </div>
 
@@ -43,15 +43,33 @@
                 </div>
             </div>
 
-            <div class="card">
-                <h2 class="card__title">Reportes</h2>
-                <div class="card__image">
-                    <img src="img/tortuga.png" alt="caparazon azul">
-                </div>
-            </div>
         </div>
     </div>
+
+    <div class="container panel">
+        <h2 class="center-text">Reporte de Pedidos</h2>
+        <div id="arbol"></div>
+    </div>
+
+    <div class="container panel">
+        <h2 class="center-text">Reporte de Pagos</h2>
+        <div id="block"></div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>EDD 202112030 ©</p>
+        </div>
+    </footer>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+    <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/login.js"></script>
     <script src="js/admin.js"></script>
+    <script>Arbol()</script>
+    <script>Block()</script>
 </body>
 
 </html>
