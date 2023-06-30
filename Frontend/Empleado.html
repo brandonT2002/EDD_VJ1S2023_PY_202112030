@@ -69,36 +69,38 @@
                         </div>
                     </div>
 
-                    <div class="filters">
-                        <h2 class="center-text">Filtros</h2>
-                        <div class="filter-option">
-                            <input id="negativo" type="radio" name="filter" />
-                            <label for="negativo">Negativo</label>
+                    <h2 class="center-text">Filtros</h2>
+                    <div class="columnas">
+                        <div class="filters">
+                            <div class="filter-option">
+                                <input id="negativo" type="radio" name="filter" onclick="cambiarImagen('img/m2.jpg')" />
+                                <label for="negativo">Negativo</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="escala-grises" type="radio" name="filter" onclick="cambiarImagen('img/m3.jpg')" />
+                                <label for="escala-grises">Escala de grises</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="espejo-x" type="radio" name="filter" onclick="cambiarImagen('img/m4.jpg')" />
+                                <label for="espejo-x">Espejo x</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="espejo-y" type="radio" name="filter" onclick="cambiarImagen('img/m5.jpg')" />
+                                <label for="espejo-y">Espejo y</label>
+                            </div>
+                            <div class="filter-option">
+                                <input id="doble-espejo" type="radio" name="filter" onclick="cambiarImagen('img/m6.jpg')" />
+                                <label for="doble-espejo">Doble espejo</label>
+                            </div>
                         </div>
-                        <div class="filter-option">
-                            <input id="escala-grises" type="radio" name="filter" />
-                            <label for="escala-grises">Escala de grises</label>
-                        </div>
-                        <div class="filter-option">
-                            <input id="espejo-x" type="radio" name="filter" />
-                            <label for="espejo-x">Espejo x</label>
-                        </div>
-                        <div class="filter-option">
-                            <input id="espejo-y" type="radio" name="filter" />
-                            <label for="espejo-y">Espejo y</label>
-                        </div>
-                        <div class="filter-option">
-                            <input id="doble-espejo" type="radio" name="filter" />
-                            <label for="doble-espejo">Doble espejo</label>
-                        </div>
-                    </div>
-                    
 
+                        <img id="img1" src="img/m1.jpg" alt="mario">
+                    </div>
 
                     <div class="input-container">
                         <input id="pago" class="input" type="number" placeholder=" " />
                         <div class="cut cut-short"></div>
-                        <label for="pago" class="placeholder">Pago (Bitcoins)</>
+                        <label for="pago" class="placeholder">Pago</>
                     </div>
                 </div>
                 <button id="pagar" type="button" class="submit" onclick="vender()">Realizar Pago</button>
@@ -160,5 +162,4 @@
     <script>facturas()</script>
     <script>verGrafo()</script>
 </body>
-
 </html>
