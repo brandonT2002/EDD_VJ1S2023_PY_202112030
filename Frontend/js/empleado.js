@@ -239,3 +239,8 @@ updateDateTime();
 
 // Update the date and time every second (1000 milliseconds)
 setInterval(updateDateTime, 1000);
+
+function cambiarImagen(nuevaImagen) {
+    var imgElement = document.getElementById('img1');
+    imgElement.src = nuevaImagen;
+}
