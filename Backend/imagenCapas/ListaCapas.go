@@ -3,6 +3,7 @@ package imagencapas
 import (
 	"fmt"
 	"os"
+	"paquete/empleados"
 )
 
 type Nodo struct {
@@ -28,7 +29,8 @@ func (l *ListaCapas) Insertar(capa *MatrizDispersa) {
 	l.longitud++
 }
 
-func (l *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre string) {
+func (l *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre string, filtros *empleados.EnvioFiltros) {
+	nombreFiltro := ""
 	css := `body {
 	background: #333333;
 	height: 100vh;
@@ -44,25 +46,43 @@ func (l *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre s
 }`, ancho*anchoPx, alto*altoPx)
 
 	css += fmt.Sprintf(`
-.pixel {
+	.pixel {
 	width: %dpx;
 	height: %dpx;
 	float: left;
-}`, anchoPx, altoPx)
-
+	`, anchoPx, altoPx)
+	if filtros != nil {
+		css += "filter:"
+		if filtros.N {
+			nombreFiltro = "Negativo"
+			css += "invert();"
+		}
+		if filtros.G {
+			nombreFiltro = "Grises"
+			css += "grayscale();"
+		}
+	}
+	css += "}"
 	actual := l.primero
 	for actual != nil {
 		css += actual.capa.ObtenerCSS(ancho)
 		actual = actual.siguiente
 	}
 
+	estilos := ""
+	if filtros == nil {
+		estilos = fmt.Sprintf(`<link rel="stylesheet"  href="%s.css">`, nombre)
+	} else {
+		estilos = fmt.Sprintf(`<link rel="stylesheet"  href="%s_Filtro_%s.css">`, nombre, nombreFiltro)
+	}
+
 	html := fmt.Sprintf(`<!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet"  href="%s.css">
+		%s
 	</head>
 	<body>
-		<div class="canvas">`, nombre)
+		<div class="canvas">`, estilos)
 
 	for i := 0; i < alto; i++ {
 		for j := 0; j < ancho; j++ {
@@ -75,34 +95,57 @@ func (l *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre s
 	</body>
 </html>`
 
-	// Crear un nuevo archivo
-	file, err := os.Create(ruta + "/" + nombre + ".html")
-	if err != nil {
-		fmt.Println("Error al crear el archivo:", err)
-		return
-	}
-	defer file.Close()
+	if filtros == nil {
+		file, err := os.Create(ruta + "/" + nombre + ".html")
+		if err != nil {
+			fmt.Println("Error al crear el archivo:", err)
+			return
+		}
+		defer file.Close()
 
-	// Escribir el nuevo contenido en el archivo
-	_, err = file.WriteString(html)
-	if err != nil {
-		fmt.Println("Error al escribir en el archivo:", err)
-		return
-	}
+		_, err = file.WriteString(html)
+		if err != nil {
+			fmt.Println("Error al escribir en el archivo:", err)
+			return
+		}
 
-	// Crear un nuevo archivo
-	file1, err := os.Create(ruta + "/" + nombre + ".css")
-	if err != nil {
-		fmt.Println("Error al crear el archivo:", err)
-		return
-	}
-	defer file.Close()
+		file1, err := os.Create(ruta + "/" + nombre + ".css")
+		if err != nil {
+			fmt.Println("Error al crear el archivo:", err)
+			return
+		}
+		defer file1.Close()
 
-	// Escribir el nuevo contenido en el archivo
-	_, err = file1.WriteString(css)
-	if err != nil {
-		fmt.Println("Error al escribir en el archivo:", err)
-		return
-	}
+		_, err = file1.WriteString(css)
+		if err != nil {
+			fmt.Println("Error al escribir en el archivo:", err)
+			return
+		}
+	} else {
+		file, err := os.Create(ruta + "/" + nombre + "_Filtro_" + nombreFiltro + ".html")
+		if err != nil {
+			fmt.Println("Error al crear el archivo:", err)
+			return
+		}
+		defer file.Close()
 
+		_, err = file.WriteString(html)
+		if err != nil {
+			fmt.Println("Error al escribir en el archivo:", err)
+			return
+		}
+
+		file1, err := os.Create(ruta + "/" + nombre + "_Filtro_" + nombreFiltro + ".css")
+		if err != nil {
+			fmt.Println("Error al crear el archivo:", err)
+			return
+		}
+		defer file1.Close()
+
+		_, err = file1.WriteString(css)
+		if err != nil {
+			fmt.Println("Error al escribir en el archivo:", err)
+			return
+		}
+	}
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"paquete/empleados"
 	"sort"
 	"strconv"
 	"strings"
@@ -154,7 +155,7 @@ func LeerConfig(carpeta, nombre string) []int {
 	return config
 }
 
-func CrearImg(img, cliente string) string {
+func CrearImg(img, cliente string, filtros *empleados.EnvioFiltros) string {
 	array := leerArchivos(img)
 	imagen := &ListaCapas{}
 	nombre := ""
@@ -188,7 +189,8 @@ func CrearImg(img, cliente string) string {
 			continue
 		}
 		config := LeerConfig(img, fl.Archivo)
-		imagen.GenerarImg(config[0], config[1], config[2], config[3], ruta, img)
+		imagen.GenerarImg(config[0], config[1], config[2], config[3], ruta, img, nil)
+		imagen.GenerarImg(config[0], config[1], config[2], config[3], ruta, img, filtros)
 	}
 	return "Imagen Creada"
 }

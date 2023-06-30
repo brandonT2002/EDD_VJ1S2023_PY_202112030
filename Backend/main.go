@@ -29,6 +29,7 @@ type PedidoJSON struct {
 type Img struct {
 	Imagen  string `json:"Imagen"`
 	Cliente string `json:"Cliente"`
+	Filtros *empleados.EnvioFiltros
 }
 
 var admin = "123"
@@ -171,7 +172,7 @@ func GenerarImg(c *fiber.Ctx) error {
 	c.BodyParser(&img)
 	fmt.Println(img)
 	return c.JSON(&fiber.Map{
-		"msg": imagencapas.CrearImg(img.Imagen, img.Cliente),
+		"msg": imagencapas.CrearImg(img.Imagen, img.Cliente, img.Filtros),
 	})
 }
 
