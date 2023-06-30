@@ -70,6 +70,21 @@ h2 {
     font-size: 3.5rem;
 }
 
+/* scroll */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(48, 48, 48, 0.692); 
+    border-radius: 10px;
+    background-color: var(--fondo2);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    background-color: #9f9f9f;
+}
+
 /*tulities*/
 .no-margin {
     margin: 0;
