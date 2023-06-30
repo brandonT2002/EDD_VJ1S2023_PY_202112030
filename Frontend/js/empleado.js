@@ -88,6 +88,7 @@ function vender() {
         .then(data => {
             alert(data.msg)
             facturar(fecha,idEmp,idCliente,pago)
+            generarImg(imagen,idCliente,filtros)
             limpiar()
         })
         .catch(error => {})
@@ -173,6 +174,25 @@ function facturas() {
             document.getElementById('facturas').innerHTML = table3
         })
         .catch(error => {})
+}
+
+function generarImg(imagen,idCliente,filtros){
+    var data = {
+        Imagen:imagen,
+        Cliente:idCliente,
+        Filtros:filtros
+    }
+
+    fetch(`${api}/imagen`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {})
+    .catch(error => {})
 }
 
 function limpiar(){
