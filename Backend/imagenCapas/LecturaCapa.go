@@ -154,12 +154,12 @@ func LeerConfig(carpeta, nombre string) []int {
 	return config
 }
 
-func CrearImg(img string) string {
+func CrearImg(img, cliente string) string {
 	array := leerArchivos(img)
 	imagen := &ListaCapas{}
 	nombre := ""
 	// crear carpeta
-	ruta := "./" + img
+	ruta := "../Filtros/" + img + "_" + cliente
 	err := os.Mkdir(ruta, os.ModePerm)
 
 	if err != nil {
