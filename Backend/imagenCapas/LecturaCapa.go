@@ -162,7 +162,6 @@ func CrearImg(img, cliente string, filtros *empleados.EnvioFiltros) string {
 	// crear carpeta
 	ruta := "../Filtros/" + img + "_" + cliente
 	err := os.Mkdir(ruta, os.ModePerm)
-
 	if err != nil {
 		// La carpeta ya existe, intenta crear una con distinción
 		i := 1

@@ -51,21 +51,28 @@ func (l *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre s
 	height: %dpx;
 	float: left;
 	`, anchoPx, altoPx)
+
+	espejo := 3
+
 	if filtros != nil {
-		css += "filter:"
 		if filtros.N {
 			nombreFiltro = "Negativo"
-			css += "invert();"
-		}
-		if filtros.G {
+			css += "filter: invert();"
+		} else if filtros.G {
 			nombreFiltro = "Grises"
-			css += "grayscale();"
+			css += "filter: grayscale();"
+		} else if filtros.EX {
+			espejo = 0
+		} else if filtros.EY {
+			espejo = 1
+		} else if filtros.DE {
+			espejo = 2
 		}
 	}
 	css += "}"
 	actual := l.primero
 	for actual != nil {
-		css += actual.capa.ObtenerCSS(ancho)
+		css += actual.capa.ObtenerCSS(ancho, alto, espejo)
 		actual = actual.siguiente
 	}
 

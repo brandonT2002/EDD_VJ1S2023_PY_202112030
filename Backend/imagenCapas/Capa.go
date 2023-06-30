@@ -2,10 +2,13 @@ package imagencapas
 
 import (
 	"fmt"
-	"log"
-	"os"
-	"os/exec"
-	"strconv"
+)
+
+const (
+	ESPEJOX int = 0
+	ESPEJOY     = 1
+	ESPEJOD     = 2
+	DEFAULT     = 3
 )
 
 type NodoCabeza struct {
@@ -167,154 +170,24 @@ func (nodo *MatrizDispersa) agregarColumna(columna int, nodoI *NodoInterno) {
 	}
 }
 
-func (nodo *MatrizDispersa) dot() string {
-	dot := "digraph T{\n\tnode[shape=box fontname=\"Arial\" fillcolor=\"white\" style=filled];"
-	dot += "\n\tedge[dir=\"both\"];"
-	dot += "\n\tRoot[label = \"Capa 0\", group=\"0\"];"
-
-	actualF := nodo.accesoF.primero
-	for actualF != nil {
-		dot += "\n\tF" + strconv.Itoa(actualF.indice) + "[group=\"0\" fillcolor=\"plum\"];"
-		actualF = actualF.siguiente
-	}
-
-	actualC := nodo.accesoC.primero
-	for actualC != nil {
-		dot += "\n\tC" + strconv.Itoa(actualC.indice) + "[group=\"" + strconv.Itoa(actualC.indice) + "\" fillcolor=\"powderblue\"];"
-		actualC = actualC.siguiente
-	}
-
-	actualC = nodo.accesoC.primero
-	for actualC != nil {
-		actualF := actualC.acceso
-		for actualF != nil {
-			dot += "\n\tN" + strconv.Itoa(actualF.fila) + "_" + strconv.Itoa(actualF.columna) + "[group=\"" + strconv.Itoa(actualF.columna) + "\" label=\"" + actualF.color.R + "-" + actualF.color.G + "-" + actualF.color.B + "\"];"
-			actualF = actualF.abajo
-		}
-		actualC = actualC.siguiente
-	}
-
-	dot += "\n\tsubgraph columnHeader {\n\t\trank = same;"
-	enlace := "\n\t\tRoot -> "
-	actualC = nodo.accesoC.primero
-	for actualC != nil {
-		enlace += "C" + strconv.Itoa(actualC.indice)
-		actualC = actualC.siguiente
-		if actualC != nil {
-			enlace += " -> "
-		}
-	}
-	dot += enlace + ";\n\t}"
-
-	actualF = nodo.accesoF.primero
-	for actualF != nil {
-		dot += "\n\tsubgraph row" + strconv.Itoa(actualF.indice) + " {\n\t\trank = same;"
-		enlace := "\n\t\tF" + strconv.Itoa(actualF.indice) + " -> "
-		actualC := actualF.acceso
-		for actualC != nil {
-			enlace += "N" + strconv.Itoa(actualC.fila) + "_" + strconv.Itoa(actualC.columna)
-			if actualC.derecha != nil {
-				actualC = actualC.derecha
-			} else {
-				break
-			}
-			if actualC != nil {
-				enlace += " -> "
-			}
-		}
-		dot += enlace + ";\n\t}"
-		actualF = actualF.siguiente
-	}
-
-	dot += "\n\tsubgraph rowHeader {"
-	enlace = "\n\t\tRoot -> "
-	actualF = nodo.accesoF.primero
-	for actualF != nil {
-		enlace += "F" + strconv.Itoa(actualF.indice)
-		actualF = actualF.siguiente
-		if actualF != nil {
-			enlace += " -> "
-		}
-	}
-	dot += enlace + ";\n\t}"
-
-	actualC = nodo.accesoC.primero
-	for actualC != nil {
-		dot += "\n\tsubgraph column" + strconv.Itoa(actualC.indice) + " {"
-		enlace = "\n\t\tC" + strconv.Itoa(actualC.indice) + " -> "
-		actualF := actualC.acceso
-		for actualF != nil {
-			enlace += "N" + strconv.Itoa(actualF.fila) + "_" + strconv.Itoa(actualF.columna)
-			if actualF.abajo != nil {
-				actualF = actualF.abajo
-			} else {
-				break
-			}
-			if actualF != nil {
-				enlace += " -> "
-			}
-		}
-		dot += enlace + ";\n\t}"
-		actualC = actualC.siguiente
-	}
-	dot += "\n}"
-
-	return dot
-}
-
-func (nodo *MatrizDispersa) ObtenerCSS(ancho int) string {
+func (nodo *MatrizDispersa) ObtenerCSS(ancho, alto, espejo int) string {
 	actualF := nodo.accesoF.primero
 	css := ""
 	for actualF != nil {
 		actualC := actualF.acceso
 		for actualC != nil {
-			css += fmt.Sprintf("\n.pixel:nth-child(%d) {background: rgb(%s,%s,%s);}", actualF.indice*ancho+actualC.columna+1, actualC.color.R, actualC.color.G, actualC.color.B)
+			if espejo == ESPEJOX {
+				css += fmt.Sprintf("\n.pixel:nth-child(%d) {background: rgb(%s,%s,%s);}", ancho*(actualF.indice+1)-actualC.columna, actualC.color.R, actualC.color.G, actualC.color.B)
+			} else if espejo == ESPEJOY {
+				css += fmt.Sprintf("\n.pixel:nth-child(%d) {background: rgb(%s,%s,%s);}", ancho*(alto-actualF.indice-1)+actualC.columna+1, actualC.color.R, actualC.color.G, actualC.color.B)
+			} else if espejo == ESPEJOD {
+				css += fmt.Sprintf("\n.pixel:nth-child(%d) {background: rgb(%s,%s,%s);}", ancho*(alto-actualF.indice)-actualC.columna, actualC.color.R, actualC.color.G, actualC.color.B)
+			} else if espejo == DEFAULT {
+				css += fmt.Sprintf("\n.pixel:nth-child(%d) {background: rgb(%s,%s,%s);}", ancho*actualF.indice+actualC.columna+1, actualC.color.R, actualC.color.G, actualC.color.B)
+			}
 			actualC = actualC.derecha
 		}
 		actualF = actualF.siguiente
 	}
 	return css
-}
-
-func (nodo *MatrizDispersa) GenerarGrafo(carpeta string) {
-	// Eliminar el archivo existente
-	err := os.Remove("./" + carpeta + "/" + nodo.nombre + ".dot")
-	if err != nil && !os.IsNotExist(err) {
-		fmt.Println("Error al eliminar el archivo:", err)
-		return
-	}
-
-	// Crear un nuevo archivo
-	file, err := os.Create("./" + carpeta + "/" + nodo.nombre + ".dot")
-	if err != nil {
-		fmt.Println("Error al crear el archivo:", err)
-		return
-	}
-	defer file.Close()
-
-	// Escribir el nuevo contenido en el archivo
-	_, err = file.WriteString(nodo.dot())
-	if err != nil {
-		fmt.Println("Error al escribir en el archivo:", err)
-		return
-	}
-
-	generarImg(carpeta, nodo.nombre)
-}
-
-func generarImg(carpeta, nombre string) {
-	// Ruta del archivo .dot de entrada
-	inputFile := "./" + carpeta + "/" + nombre + ".dot"
-
-	// Ruta del archivo de imagen de salida
-	outputFile := "./" + carpeta + "/" + nombre + ".pdf"
-
-	// Comando para ejecutar Graphviz
-	cmd := exec.Command("dot", "-Tpdf", "-o", outputFile, inputFile)
-
-	// Ejecutar el comando
-	err := cmd.Run()
-	if err != nil {
-		log.Fatal(err)
-	}
 }
