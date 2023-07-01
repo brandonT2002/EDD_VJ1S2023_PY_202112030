@@ -62,10 +62,13 @@ func (l *ListaCapas) GenerarImg(anchoPx, ancho, altoPx, alto int, ruta, nombre s
 			nombreFiltro = "Grises"
 			css += "filter: grayscale();"
 		} else if filtros.EX {
+			nombreFiltro = "EspejoX"
 			espejo = 0
 		} else if filtros.EY {
+			nombreFiltro = "EspejoY"
 			espejo = 1
 		} else if filtros.DE {
+			nombreFiltro = "EspejoD"
 			espejo = 2
 		}
 	}
