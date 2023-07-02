@@ -32,8 +32,8 @@ type Img struct {
 	Filtros *empleados.EnvioFiltros
 }
 
-var admin = "123"
-var passA = "123"
+var admin = "ADMIN_202112030"
+var passA = "Admin"
 var Emp *empleados.Empleado
 var LEmp *empleados.ListaEmp
 var Tabla *empleados.TablaHash
