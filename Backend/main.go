@@ -6,7 +6,6 @@ import (
 	"paquete/facturas"
 	imagencapas "paquete/imagenCapas"
 	"paquete/pedidos"
-	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -22,8 +21,8 @@ type Empleado struct {
 }
 
 type PedidoJSON struct {
-	IdCliente string `json:"IdCliente"`
-	Imagen    string `json:"Imagen"`
+	Id_cliente int    `json:"id_cliente"`
+	Imagen     string `json:"imagen"`
 }
 
 type Img struct {
@@ -75,7 +74,7 @@ func main() {
 
 func cargarPedidos(c *fiber.Ctx) error {
 	type PedidoRequest struct {
-		Pedidos []PedidoJSON `json:"Pedidos"`
+		Pedidos []PedidoJSON `json:"pedidos"`
 	}
 
 	var request PedidoRequest
@@ -85,8 +84,7 @@ func cargarPedidos(c *fiber.Ctx) error {
 	}
 
 	for _, pedido := range request.Pedidos {
-		id, _ := strconv.Atoi(pedido.IdCliente)
-		Arbol.Insertar(&pedidos.Pedido{IdCliente: id, Imagen: pedido.Imagen})
+		Arbol.Insertar(&pedidos.Pedido{IdCliente: pedido.Id_cliente, Imagen: pedido.Imagen})
 	}
 	Arbol.Inorder(Cola)
 	Cola.Mostrar()
